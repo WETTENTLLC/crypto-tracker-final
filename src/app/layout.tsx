@@ -1,6 +1,9 @@
 import './globals.css'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
+import Script from 'next/script'
+import MCPUserAcquisitionAutomation from './components/MCPUserAcquisitionAutomation'
+import MCPNotificationCenter from './components/MCPNotificationCenter'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -8,10 +11,11 @@ export const metadata: Metadata = {
   title: 'CryptoTracker - Real-time Cryptocurrency Price Alerts & Portfolio Tracking',
   description: 'Track cryptocurrency prices, set custom price alerts, and manage your crypto portfolio with advanced analytics. Get instant notifications when prices hit your targets.',
   keywords: 'cryptocurrency, bitcoin, ethereum, crypto alerts, price tracker, portfolio management, crypto investment, blockchain, digital assets, crypto notifications',
+  metadataBase: new URL('https://crypto-tracker-no-modules-hwrl1vyun-wettentllcs-projects.vercel.app'),
   openGraph: {
     title: 'CryptoTracker - Real-time Cryptocurrency Price Alerts & Portfolio Tracking',
     description: 'Track cryptocurrency prices, set custom price alerts, and manage your crypto portfolio with advanced analytics. Get instant notifications when prices hit your targets.',
-    url: 'https://cryptotracker.vercel.app',
+    url: 'https://crypto-tracker-no-modules-hwrl1vyun-wettentllcs-projects.vercel.app',
     siteName: 'CryptoTracker',
     images: [
       {
@@ -44,6 +48,9 @@ export const metadata: Metadata = {
   alternates: {
     canonical: 'https://cryptotracker.vercel.app',
   },
+  verification: {
+    google: 'google-site-verification-code',
+  },
 }
 
 export default function RootLayout({
@@ -53,7 +60,26 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <head>
+        {/* Google Analytics */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-XXXXXXXXXX');
+          `}
+        </Script>
+      </head>
+      <body className={inter.className}>
+        <MCPUserAcquisitionAutomation />
+        <MCPNotificationCenter />
+        {children}
+      </body>
     </html>
   )
 }

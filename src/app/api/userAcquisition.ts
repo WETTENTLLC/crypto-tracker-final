@@ -1,17 +1,28 @@
 import axios from 'axios';
+import Twitter from 'twitter-v2';
+import { FacebookAdsApi, Page } from 'facebook-nodejs-business-sdk';
+import Mailchimp from '@mailchimp/mailchimp_marketing';
 
 // Twitter API integration for automated content sharing
 export const shareToTwitter = async (content, apiKey, apiSecret, accessToken, accessTokenSecret) => {
   try {
-    // This is a placeholder for actual Twitter API integration
-    // In production, you would use the Twitter API v2 endpoints
-    console.log('Sharing to Twitter:', content);
+    // Initialize Twitter client
+    const client = new Twitter({
+      consumer_key: apiKey,
+      consumer_secret: apiSecret,
+      access_token_key: accessToken,
+      access_token_secret: accessTokenSecret
+    });
     
-    // Mock API call
+    // Post tweet
+    const response = await client.post('tweets', {
+      text: content
+    });
+    
     return {
       success: true,
-      id: 'tweet_' + Date.now(),
-      text: content
+      id: response.data.id,
+      text: response.data.text
     };
   } catch (error) {
     console.error('Error sharing to Twitter:', error);
@@ -22,13 +33,23 @@ export const shareToTwitter = async (content, apiKey, apiSecret, accessToken, ac
 // Facebook API integration for page posts
 export const shareToFacebook = async (content, pageId, accessToken) => {
   try {
-    // This is a placeholder for actual Facebook Graph API integration
-    console.log('Sharing to Facebook page:', pageId, content);
+    // Initialize Facebook API
+    FacebookAdsApi.init(accessToken);
     
-    // Mock API call
+    // Get page instance
+    const page = new Page(pageId);
+    
+    // Create page post
+    const response = await page.createFeed(
+      [],
+      {
+        message: content
+      }
+    );
+    
     return {
       success: true,
-      id: 'post_' + Date.now(),
+      id: response.id,
       message: content
     };
   } catch (error) {
@@ -40,13 +61,32 @@ export const shareToFacebook = async (content, pageId, accessToken) => {
 // LinkedIn API integration for professional network sharing
 export const shareToLinkedIn = async (content, accessToken) => {
   try {
-    // This is a placeholder for actual LinkedIn API integration
-    console.log('Sharing to LinkedIn:', content);
+    // LinkedIn API requires OAuth 2.0 authentication
+    const response = await axios.post('https://api.linkedin.com/v2/ugcPosts', {
+      author: 'urn:li:person:{PERSON_ID}', // Replace with actual person ID
+      lifecycleState: 'PUBLISHED',
+      specificContent: {
+        'com.linkedin.ugc.ShareContent': {
+          shareCommentary: {
+            text: content
+          },
+          shareMediaCategory: 'NONE'
+        }
+      },
+      visibility: {
+        'com.linkedin.ugc.MemberNetworkVisibility': 'PUBLIC'
+      }
+    }, {
+      headers: {
+        'Authorization': `Bearer ${accessToken}`,
+        'Content-Type': 'application/json',
+        'X-Restli-Protocol-Version': '2.0.0'
+      }
+    });
     
-    // Mock API call
     return {
       success: true,
-      id: 'share_' + Date.now(),
+      id: response.data.id,
       text: content
     };
   } catch (error) {
@@ -58,15 +98,27 @@ export const shareToLinkedIn = async (content, accessToken) => {
 // Email marketing integration (Mailchimp)
 export const addToMailchimpList = async (email, firstName, lastName, apiKey, listId, serverPrefix) => {
   try {
-    // This is a placeholder for actual Mailchimp API integration
-    console.log('Adding to Mailchimp list:', email, firstName, lastName);
+    // Set up Mailchimp client
+    Mailchimp.setConfig({
+      apiKey: apiKey,
+      server: serverPrefix
+    });
     
-    // Mock API call
+    // Add subscriber to list
+    const response = await Mailchimp.lists.addListMember(listId, {
+      email_address: email,
+      status: 'subscribed',
+      merge_fields: {
+        FNAME: firstName || '',
+        LNAME: lastName || ''
+      }
+    });
+    
     return {
       success: true,
-      id: 'subscriber_' + Date.now(),
-      email_address: email,
-      status: 'subscribed'
+      id: response.id,
+      email_address: response.email_address,
+      status: response.status
     };
   } catch (error) {
     console.error('Error adding to Mailchimp list:', error);
@@ -128,7 +180,7 @@ export const generateMarketUpdate = async (apiKey) => {
     });
     
     // Add CTA
-    content += '\nTrack these coins and set price alerts on CryptoTracker! 👉 https://cryptotracker.vercel.app';
+    content += '\nTrack these coins and set price alerts on CryptoTracker! 👉 ' + process.env.NEXT_PUBLIC_SITE_URL;
     
     return {
       success: true,
@@ -150,15 +202,36 @@ export const scheduleContentSharing = (apiKey, twitterConfig, facebookConfig) =>
       const update = await generateMarketUpdate(apiKey);
       
       // Share to social platforms
-      await Promise.all([
-        shareToTwitter(update.content, twitterConfig.apiKey, twitterConfig.apiSecret, twitterConfig.accessToken, twitterConfig.accessTokenSecret),
-        shareToFacebook(update.content, facebookConfig.pageId, facebookConfig.accessToken)
-      ]);
+      const sharePromises = [];
+      
+      if (twitterConfig && twitterConfig.apiKey) {
+        sharePromises.push(shareToTwitter(
+          update.content, 
+          twitterConfig.apiKey, 
+          twitterConfig.apiSecret, 
+          twitterConfig.accessToken, 
+          twitterConfig.accessTokenSecret
+        ));
+      }
+      
+      if (facebookConfig && facebookConfig.pageId) {
+        sharePromises.push(shareToFacebook(
+          update.content, 
+          facebookConfig.pageId, 
+          facebookConfig.accessToken
+        ));
+      }
+      
+      const results = await Promise.allSettled(sharePromises);
       
       return {
         success: true,
         timestamp: new Date().toISOString(),
-        platforms: ['twitter', 'facebook']
+        platforms: results.map((result, index) => ({
+          platform: index === 0 ? 'twitter' : 'facebook',
+          success: result.status === 'fulfilled',
+          result: result.status === 'fulfilled' ? result.value : result.reason
+        }))
       };
     } catch (error) {
       console.error('Error in scheduled content sharing:', error);
@@ -192,7 +265,7 @@ export const generateRSSFeed = async (apiKey) => {
 <rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:wfw="http://wellformedweb.org/CommentAPI/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>CryptoTracker Market Updates</title>
-    <link>https://cryptotracker.vercel.app</link>
+    <link>${process.env.NEXT_PUBLIC_SITE_URL}</link>
     <description>Latest cryptocurrency market updates and price alerts</description>
     <language>en-US</language>
     <lastBuildDate>${new Date().toUTCString()}</lastBuildDate>
@@ -207,13 +280,13 @@ export const generateRSSFeed = async (apiKey) => {
         <p>7d Change: ${coin.price_change_percentage_7d_in_currency.toFixed(2)}%</p>
         <p>Market Cap: $${coin.market_cap.toLocaleString()}</p>
         <p>Volume (24h): $${coin.total_volume.toLocaleString()}</p>
-        <p><a href="https://cryptotracker.vercel.app/coin/${coin.id}">View detailed analysis and set price alerts</a></p>
+        <p><a href="${process.env.NEXT_PUBLIC_SITE_URL}/coin/${coin.id}">View detailed analysis and set price alerts</a></p>
       `;
       
       rss += `
     <item>
       <title>${coin.name} (${coin.symbol.toUpperCase()}) Price Update</title>
-      <link>https://cryptotracker.vercel.app/coin/${coin.id}</link>
+      <link>${process.env.NEXT_PUBLIC_SITE_URL}/coin/${coin.id}</link>
       <pubDate>${pubDate}</pubDate>
       <guid isPermaLink="false">crypto-${coin.id}-${Date.now()}</guid>
       <description><![CDATA[${description}]]></description>

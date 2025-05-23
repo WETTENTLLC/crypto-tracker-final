@@ -1,0 +1,23 @@
+import React from 'react';
+
+export default function AdminLoginLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  // This is a specialized layout just for the admin login page
+  // It should not have any authentication logic to prevent redirect loops
+  
+  // Adding console log for debugging
+  if (typeof window !== 'undefined') {
+    console.log('Admin login layout rendering');
+  }
+  
+  return (
+    <div className="min-h-screen bg-gray-50 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-md w-full space-y-8">
+        {children}
+      </div>
+    </div>
+  );
+}

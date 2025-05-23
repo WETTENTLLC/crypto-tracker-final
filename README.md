@@ -1,4 +1,27 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# CryptoTracker
+
+CryptoTracker is a Next.js application for tracking cryptocurrency prices, managing a portfolio, and receiving price alerts. It includes premium subscription features via PayPal integration.
+
+## Deployment
+
+The application is deployed on Vercel at: [https://crypto-tracker-no-modules-pf3q6dusk-wettentllcs-projects.vercel.app](https://crypto-tracker-no-modules-pf3q6dusk-wettentllcs-projects.vercel.app)
+
+### Deployment Documentation
+
+The following documentation files are available to guide you through the deployment process:
+
+- [Final Deployment Guide](./final_deployment_guide.md) - Comprehensive deployment instructions
+- [Deployment Checklist](./complete_deployment_checklist.md) - Step-by-step checklist for deployment
+- [Deployment Validation](./deployment_validation_instructions.md) - How to validate the deployment
+- [Post-Deployment Guide](./post_deployment_guide.md) - Tasks to complete after deployment
+
+### Verify Deployment
+
+To verify that the deployment is working correctly, run:
+
+```bash
+node verify-deployment.js
+```
 
 ## Getting Started
 
@@ -16,18 +39,45 @@ bun dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Environment Variables
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Create a `.env.local` file for local development with the following variables:
+
+```
+NEXT_PUBLIC_API_URL=http://localhost:3000/api
+NEXT_PUBLIC_SITE_URL=http://localhost:3000
+COINGECKO_API_KEY=your_coingecko_api_key
+PAYPAL_CLIENT_ID=your_paypal_client_id
+PAYPAL_CLIENT_SECRET=your_paypal_client_secret
+PAYPAL_WEBHOOK_ID=your_paypal_webhook_id
+```
+
+For production, these variables should be configured in the Vercel dashboard.
+
+## Features
+
+- Cryptocurrency price tracking
+- Price alerts
+- Portfolio management
+- Premium subscription via PayPal
+- User acquisition automation
+- SEO optimizations
+
+## Technologies
+
+- Next.js with App Router
+- TypeScript
+- Tailwind CSS
+- CoinGecko API
+- PayPal API
+- Recharts for visualizations
 
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- [Next.js Documentation](https://nextjs.org/docs)
+- [Learn Next.js](https://nextjs.org/learn)
 
 ## Deploy on Vercel
 

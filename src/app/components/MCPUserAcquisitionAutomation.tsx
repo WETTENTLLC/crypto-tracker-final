@@ -16,10 +16,9 @@ declare global {
   }
 }
 
-// Component to implement automated user acquisition strategies
-export default function UserAcquisitionAutomation() {
+// Component to implement automated user acquisition strategies using MCP approach
+export default function MCPUserAcquisitionAutomation() {
   const pathname = usePathname();
-  const [isUsingMcp, setIsUsingMcp] = useState(true);
   
   useEffect(() => {
     // Log page views for analytics
@@ -89,72 +88,26 @@ export default function UserAcquisitionAutomation() {
 
   return (
     <>
-      {/* Google Analytics */}
-      <Script
-        strategy="afterInteractive"
-        src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID}`}
-      />
-      <Script id="google-analytics" strategy="afterInteractive">
-        {`
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-          gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID}');
-        `}
-      </Script>
+      {/* Google Analytics (only if configured) */}
+      {process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID && (
+        <>
+          <Script
+            strategy="afterInteractive"
+            src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID}`}
+          />
+          <Script id="google-analytics" strategy="afterInteractive">
+            {`
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID}');
+            `}
+          </Script>
+        </>
+      )}
       
-      {/* Twitter Pixel */}
-      <Script id="twitter-pixel" strategy="afterInteractive">
-        {`
-          !function(e,t,n,s,u,a){e.twq||(s=e.twq=function(){s.exe?s.exe.apply(s,arguments):s.queue.push(arguments);
-          },s.version='1.1',s.queue=[],u=t.createElement(n),u.async=!0,u.src='https://static.ads-twitter.com/uwt.js',
-          a=t.getElementsByTagName(n)[0],a.parentNode.insertBefore(u,a))}(window,document,'script');
-          twq('config','${process.env.NEXT_PUBLIC_TWITTER_PIXEL_ID}');
-        `}
-      </Script>
-      
-      {/* Facebook Pixel */}
-      <Script id="facebook-pixel" strategy="afterInteractive">
-        {`
-          !function(f,b,e,v,n,t,s)
-          {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-          n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-          if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-          n.queue=[];t=b.createElement(e);t.async=!0;
-          t.src=v;s=b.getElementsByTagName(e)[0];
-          s.parentNode.insertBefore(t,s)}(window, document,'script',
-          'https://connect.facebook.net/en_US/fbevents.js');
-          fbq('init', '${process.env.NEXT_PUBLIC_FACEBOOK_PIXEL_ID}');
-          fbq('track', 'PageView');
-        `}
-      </Script>
-      
-      {/* LinkedIn Insight Tag */}
-      <Script id="linkedin-insight" strategy="afterInteractive">
-        {`
-          _linkedin_partner_id = "${process.env.NEXT_PUBLIC_LINKEDIN_PARTNER_ID}";
-          window._linkedin_data_partner_ids = window._linkedin_data_partner_ids || [];
-          window._linkedin_data_partner_ids.push(_linkedin_partner_id);
-          (function(l) {
-            if (!l){window.lintrk = function(a,b){window.lintrk.q.push([a,b])};
-            window.lintrk.q=[]}
-            var s = document.getElementsByTagName("script")[0];
-            var b = document.createElement("script");
-            b.type = "text/javascript";b.async = true;
-            b.src = "https://snap.licdn.com/li.lms-analytics/insight.min.js";
-            s.parentNode.insertBefore(b, s);})(window.lintrk);
-        `}
-      </Script>
-      
-      {/* Reddit Pixel */}
-      <Script id="reddit-pixel" strategy="afterInteractive">
-        {`
-          !function(w,d){if(!w.rdt){var p=w.rdt=function(){p.sendEvent?p.sendEvent.apply(p,arguments):p.callQueue.push(arguments)};p.callQueue=[];var t=d.createElement("script");t.src="https://www.redditstatic.com/ads/pixel.js",t.async=!0;var s=d.getElementsByTagName("script")[0];s.parentNode.insertBefore(t,s)}}(window,document);rdt('init','${process.env.NEXT_PUBLIC_REDDIT_PIXEL_ID}');rdt('track', 'PageVisit');
-        `}
-      </Script>
-      
-      {/* Email Capture Popup Logic */}
-      <Script id="email-capture" strategy="afterInteractive">
+      {/* MCP Setup */}
+      <Script id="mcp-setup" strategy="afterInteractive">
         {`
           // Setup MCP subscribe function
           window.mcpSubscribe = async (email, firstName, lastName) => {
@@ -172,7 +125,12 @@ export default function UserAcquisitionAutomation() {
               return { success: false, error };
             }
           };
-
+        `}
+      </Script>
+      
+      {/* Email Capture Popup Logic */}
+      <Script id="email-capture" strategy="afterInteractive">
+        {`
           // Exit intent detection
           document.addEventListener('mouseout', function(e) {
             // If the mouse leaves the top of the page
@@ -243,6 +201,8 @@ export default function UserAcquisitionAutomation() {
                         document.getElementById('popup-close-success').addEventListener('click', function() {
                           document.body.removeChild(popup);
                         });
+                      } else {
+                        alert('There was an error subscribing. Please try again.');
                       }
                     })
                     .catch(error => {

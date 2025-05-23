@@ -1,8 +1,6 @@
-'use client';
-
 import { useEffect } from 'react';
 import Script from 'next/script';
-import { JsonLdScript } from './components/JsonLdScript';
+import JsonLdScript from './components/JsonLdScript';
 import { Inter } from 'next/font/google';
 import './globals.css';
 

@@ -36,15 +36,14 @@
 - [x] Set up proper HTTP security headers in vercel.json
 
 ## GitHub Repository Setup
-1. Create a new repository on GitHub
-2. Initialize Git in the project folder:
+- [x] Initialize Git in the project folder
+- [x] Create proper .gitignore file
+- [x] Make initial commit with all deployment changes
+- [x] Create GitHub repository (https://github.com/WETTENTLLC/crypto-tracker-final)
+- [x] Push code to GitHub repository
    ```bash
    cd "c:\Users\wette\Downloads\crypto-tracker-no-modules"
-   git init
-   git add .
-   git commit -m "Initial commit"
-   git branch -M main
-   git remote add origin https://github.com/yourusername/crypto-tracker.git
+   git remote add origin https://github.com/WETTENTLLC/crypto-tracker-final.git
    git push -u origin main
    ```
 

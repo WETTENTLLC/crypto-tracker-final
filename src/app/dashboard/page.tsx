@@ -1,8 +1,9 @@
 'use client';
-
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell } from 'recharts';
+import RealTimeCryptoTicker from '../components/RealTimeCryptoTicker';
+import MarketOverview from '../components/MarketOverview';
 
 export default function UserDashboard() {
   const [isPremium, setIsPremium] = useState<boolean>(false);
@@ -348,7 +349,17 @@ export default function UserDashboard() {
         </div>
       </div>
       
-      <div className="grid grid-cols-1 gap-5 lg:grid-cols-2">
+      {/* Market Overview */}
+      <div className="mb-8">
+        <MarketOverview />
+      </div>
+      
+      {/* Real-time Crypto Ticker */}
+      <div className="mb-8">
+        <RealTimeCryptoTicker />
+      </div>
+      
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
         {/* Recent Activity */}
         <div className="bg-white overflow-hidden shadow rounded-lg">
           <div className="px-4 py-5 sm:px-6">

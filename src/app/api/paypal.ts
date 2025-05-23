@@ -1,9 +1,13 @@
 // PayPal API integration
 // This file handles all PayPal-related functionality for subscription management
 
-const PAYPAL_CLIENT_ID = 'AX_UCD0FG6LaVhl1smF44PQuxkRzoCNE_GreJfYg1DHycaE_IDKHrCJEhfcDWlK5sdVX44E8yBWnFns5';
-const PAYPAL_SECRET = 'ELac9rsu8SC5C5pa04b3N2ywO9UAZ_s7p9eXl59E1-kryMttyJ-ndyLlHUqtT058pmMoP9aMEZEBnEUX';
-const PAYPAL_API_BASE = 'https://api-m.sandbox.paypal.com'; // Use sandbox for development, change to https://api-m.paypal.com for production
+const PAYPAL_CLIENT_ID = process.env.PAYPAL_CLIENT_ID || 'AX_UCD0FG6LaVhl1smF44PQuxkRzoCNE_GreJfYg1DHycaE_IDKHrCJEhfcDWlK5sdVX44E8yBWnFns5';
+const PAYPAL_SECRET = process.env.PAYPAL_CLIENT_SECRET || 'ELac9rsu8SC5C5pa04b3N2ywO9UAZ_s7p9eXl59E1-kryMttyJ-ndyLlHUqtT058pmMoP9aMEZEBnEUX';
+
+// Use production API in production environment, otherwise use sandbox
+const PAYPAL_API_BASE = process.env.NODE_ENV === 'production' 
+  ? 'https://api-m.paypal.com'  // Production environment
+  : 'https://api-m.sandbox.paypal.com'; // Sandbox environment
 
 // Function to get PayPal access token
 export const getPayPalAccessToken = async (): Promise<string> => {

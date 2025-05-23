@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
+import { PayPalScriptProvider, PayPalButtons } from '@paypal/react-paypal-js';
 import Link from 'next/link';
 
 export default function PremiumPage() {
@@ -193,7 +193,7 @@ export default function PremiumPage() {
                 
                 <div className="mb-4">
                   <PayPalScriptProvider options={{ 
-                    "client-id": "AX_UCD0FG6LaVhl1smF44PQuxkRzoCNE_GreJfYg1DHycaE_IDKHrCJEhfcDWlK5sdVX44E8yBWnFns5",
+                    clientId: "AX_UCD0FG6LaVhl1smF44PQuxkRzoCNE_GreJfYg1DHycaE_IDKHrCJEhfcDWlK5sdVX44E8yBWnFns5",
                     components: "buttons",
                     currency: "USD"
                   }}>
@@ -201,6 +201,7 @@ export default function PremiumPage() {
                       style={{ layout: "vertical" }}
                       createOrder={(data, actions) => {
                         return actions.order.create({
+                          intent: "CAPTURE",
                           purchase_units: [
                             {
                               amount: {
@@ -216,9 +217,11 @@ export default function PremiumPage() {
                         });
                       }}
                       onApprove={(data, actions) => {
-                        return actions.order.capture().then((details) => {
-                          handlePaymentSuccess();
-                        });
+                        return actions.order?.capture?.() 
+                          ? actions.order.capture().then((details) => {
+                              handlePaymentSuccess();
+                            })
+                          : Promise.resolve();
                       }}
                     />
                   </PayPalScriptProvider>

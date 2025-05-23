@@ -1,5 +1,3 @@
-'use client';
-
 import { useState, useEffect } from 'react';
 import { getCoins, Coin } from '../api/coingecko';
 import Link from 'next/link';

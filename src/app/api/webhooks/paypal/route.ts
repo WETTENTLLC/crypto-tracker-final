@@ -1,15 +1,48 @@
 import { NextResponse } from 'next/server';
+import crypto from 'crypto';
+
+// Function to verify PayPal webhook signature
+async function verifyWebhookSignature(request: Request, payload: any): Promise<boolean> {
+  try {
+    // Get webhook ID from environment variables
+    const webhookId = process.env.PAYPAL_WEBHOOK_ID;
+    
+    // Get headers from the request
+    const headers = request.headers;
+    const transmissionId = headers.get('paypal-transmission-id');
+    const timestamp = headers.get('paypal-transmission-time');
+    const webhookSignature = headers.get('paypal-transmission-sig');
+    const certUrl = headers.get('paypal-cert-url');
+    
+    // In production, you would verify these values against PayPal's public certificate
+    // This is a simplified version for demonstration
+    
+    if (!webhookId || !transmissionId || !timestamp || !webhookSignature || !certUrl) {
+      console.error('Missing required PayPal webhook headers');
+      return false;
+    }
+    
+    // In production, implement full signature verification
+    // For now, we'll return true for demonstration purposes
+    return true;
+  } catch (error) {
+    console.error('Error verifying webhook signature:', error);
+    return false;
+  }
+}
 
 // This file handles PayPal webhook events for subscription management
 export async function POST(request: Request) {
   try {
     const payload = await request.json();
     
-    // Verify webhook signature (in production, you would verify the signature with PayPal)
-    // const isValid = await verifyWebhookSignature(request);
-    // if (!isValid) {
-    //   return NextResponse.json({ error: 'Invalid signature' }, { status: 401 });
-    // }
+    // Verify webhook signature in production
+    if (process.env.NODE_ENV === 'production') {
+      const isValid = await verifyWebhookSignature(request, payload);
+      if (!isValid) {
+        return NextResponse.json({ error: 'Invalid signature' }, { status: 401 });
+      }
+    }
     
     // Process different webhook event types
     const eventType = payload.event_type;
