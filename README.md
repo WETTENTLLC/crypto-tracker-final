@@ -4,7 +4,7 @@ CryptoTracker is a Next.js application for tracking cryptocurrency prices, manag
 
 ## Deployment
 
-The application is deployed on Vercel at: [https://crypto-tracker-no-modules-pf3q6dusk-wettentllcs-projects.vercel.app](https://crypto-tracker-no-modules-pf3q6dusk-wettentllcs-projects.vercel.app)
+The application is deployed on Vercel at: [https://crypto-tracker-no-modules-befhbaldu-wettentllcs-projects.vercel.app](https://crypto-tracker-no-modules-befhbaldu-wettentllcs-projects.vercel.app)
 
 ### Deployment Documentation
 
@@ -14,6 +14,8 @@ The following documentation files are available to guide you through the deploym
 - [Deployment Checklist](./complete_deployment_checklist.md) - Step-by-step checklist for deployment
 - [Deployment Validation](./deployment_validation_instructions.md) - How to validate the deployment
 - [Post-Deployment Guide](./post_deployment_guide.md) - Tasks to complete after deployment
+- [Analytics API Fix](./analytics_api_fix.md) - Documentation of the analytics API fix
+- [Redeployment Summary](./redeployment_summary.md) - Summary of the latest redeployment
 
 ### Verify Deployment
 

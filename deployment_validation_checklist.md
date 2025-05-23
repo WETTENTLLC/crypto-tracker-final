@@ -1,9 +1,9 @@
 # Deployment Validation Checklist
 
 ## Application Details
-- **Production URL**: https://crypto-tracker-no-modules-5zoj9kynx-wettentllcs-projects.vercel.app
+- **Production URL**: https://crypto-tracker-no-modules-befhbaldu-wettentllcs-projects.vercel.app
 - **Deployment Date**: May 23, 2025
-- **Version**: 1.0.0 with Real-Time Data Integration
+- **Version**: 1.0.1 with Analytics API Fix
 
 ## API Endpoints Validation
 

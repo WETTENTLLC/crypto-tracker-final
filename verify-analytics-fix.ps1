@@ -1,7 +1,7 @@
 # Analytics API Fix Verification Script
 # This script tests the analytics API endpoint with both formats of event data
 
-$BaseUrl = "https://crypto-tracker-no-modules-5zoj9kynx-wettentllcs-projects.vercel.app"
+$BaseUrl = "https://crypto-tracker-no-modules-befhbaldu-wettentllcs-projects.vercel.app"
 
 Write-Host "Testing Analytics API Fix..." -ForegroundColor Cyan
 Write-Host "===========================" -ForegroundColor Cyan
