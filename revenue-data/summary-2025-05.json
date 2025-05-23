@@ -1,0 +1,23 @@
+{
+    "total":  36.67,
+    "streams":  {
+                    "affiliate_marketing":  6.67,
+                    "advertising":  10,
+                    "api_access":  3.33,
+                    "premium_subscriptions":  16.67
+                },
+    "dailyData":  [
+                      {
+                          "date":  "2025-05-23",
+                          "streams":  {
+                                          "affiliate_marketing":  6.67,
+                                          "advertising":  10,
+                                          "api_access":  3.33,
+                                          "premium_subscriptions":  16.67
+                                      },
+                          "total":  36.67
+                      }
+                  ],
+    "year":  2025,
+    "month":  5
+}

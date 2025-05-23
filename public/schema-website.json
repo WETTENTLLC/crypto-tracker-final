@@ -2,11 +2,11 @@
   "@context": "https://schema.org",
   "@type": "WebSite",
   "name": "CryptoTracker",
-  "url": "https://cryptotracker.vercel.app",
+  "url": "https://crypto-tracker-no-modules-befhbaldu-wettentllcs-projects.vercel.app",
   "description": "Track cryptocurrency prices, set custom price alerts, and manage your crypto portfolio with advanced analytics.",
   "potentialAction": {
     "@type": "SearchAction",
-    "target": "https://cryptotracker.vercel.app/search?q={search_term_string}",
+    "target": "https://crypto-tracker-no-modules-befhbaldu-wettentllcs-projects.vercel.app/search?q={search_term_string}",
     "query-input": "required name=search_term_string"
   }
 }

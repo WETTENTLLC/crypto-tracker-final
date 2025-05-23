@@ -384,7 +384,7 @@ export default function AdminPayments() {
                   type="text"
                   name="webhook_url"
                   id="webhook_url"
-                  value="https://cryptotracker.vercel.app/api/webhooks/paypal"
+                  value="https://crypto-tracker-no-modules-befhbaldu-wettentllcs-projects.vercel.app/api/webhooks/paypal"
                   readOnly
                   className="shadow-sm focus:ring-blue-500 focus:border-blue-500 block w-full sm:text-sm border-gray-300 rounded-md bg-gray-50"
                 />

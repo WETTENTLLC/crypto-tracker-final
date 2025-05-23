@@ -12,11 +12,11 @@ export default function JsonLdScript() {
             "@context": "https://schema.org",
             "@type": "WebSite",
             "name": "CryptoTracker",
-            "url": "https://cryptotracker.vercel.app",
+            "url": "https://crypto-tracker-no-modules-befhbaldu-wettentllcs-projects.vercel.app",
             "description": "Track cryptocurrency prices, set custom price alerts, and manage your crypto portfolio with advanced analytics.",
             "potentialAction": {
               "@type": "SearchAction",
-              "target": "https://cryptotracker.vercel.app/search?q={search_term_string}",
+              "target": "https://crypto-tracker-no-modules-befhbaldu-wettentllcs-projects.vercel.app/search?q={search_term_string}",
               "query-input": "required name=search_term_string"
             }
           })
@@ -30,8 +30,8 @@ export default function JsonLdScript() {
             "@context": "https://schema.org",
             "@type": "Organization",
             "name": "CryptoTracker",
-            "url": "https://cryptotracker.vercel.app",
-            "logo": "https://cryptotracker.vercel.app/logo.png",
+            "url": "https://crypto-tracker-no-modules-befhbaldu-wettentllcs-projects.vercel.app",
+            "logo": "https://crypto-tracker-no-modules-befhbaldu-wettentllcs-projects.vercel.app/logo.png",
             "sameAs": [
               "https://twitter.com/cryptotracker",
               "https://facebook.com/cryptotracker",
@@ -41,7 +41,7 @@ export default function JsonLdScript() {
               "@type": "ContactPoint",
               "telephone": "",
               "contactType": "customer service",
-              "email": "support@cryptotracker.vercel.app",
+              "email": "support@crypto-tracker-no-modules-befhbaldu-wettentllcs-projects.vercel.app",
               "availableLanguage": "English"
             }
           })

@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 
 # Allow all crawlers
-Sitemap: https://cryptotracker.vercel.app/sitemap.xml
+Sitemap: https://crypto-tracker-no-modules-befhbaldu-wettentllcs-projects.vercel.app/sitemap.xml

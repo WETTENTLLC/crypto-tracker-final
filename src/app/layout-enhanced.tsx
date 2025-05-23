@@ -51,7 +51,7 @@ export default function RootLayout({
         <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
         
         {/* Canonical URL */}
-        <link rel="canonical" href="https://cryptotracker.vercel.app" />
+        <link rel="canonical" href="https://crypto-tracker-no-modules-befhbaldu-wettentllcs-projects.vercel.app" />
         
         {/* Structured Data */}
         <JsonLdScript />
