@@ -1,7 +1,7 @@
-import mcpConfig, { MCPServiceConfig } from './config';
+import mcpConfig from './config';
 
 // Generic response type for all MCP services
-interface MCPResponse<T = any> {
+interface MCPResponse<T = unknown> {
   success: boolean;
   message: string;
   data?: T;
@@ -24,7 +24,7 @@ const simulateDelay = async (ms: number) => {
 export const shareSocialContent = async (
   content: string, 
   platform: 'twitter' | 'facebook' | 'linkedin' | 'reddit',
-  options?: Record<string, any>
+  options?: Record<string, unknown> // eslint-disable-line @typescript-eslint/no-unused-vars
 ): Promise<MCPResponse> => {
   const config = mcpConfig.socialMedia[platform];
   
@@ -40,11 +40,14 @@ export const shareSocialContent = async (
   
   // If it's a mock service, simulate a response
   if (config.serviceType === 'mock') {
-    const delay = config.options?.simulateDelay || 500;
+    const delay = (config.options?.simulateDelay as number) || 500;
     await simulateDelay(delay);
     
     // Simulate success or failure based on mock success rate
-    const isSuccess = Math.random() < (config.options?.mockSuccessRate || 0.9);
+    const mockSuccessRate = typeof config.options?.mockSuccessRate === 'number' 
+      ? config.options.mockSuccessRate 
+      : 0.9;
+    const isSuccess = Math.random() < mockSuccessRate;
     
     if (isSuccess) {
       return {
@@ -113,8 +116,7 @@ export const shareSocialContent = async (
 export const subscribeEmail = async (
   email: string,
   firstName?: string,
-  lastName?: string,
-  options?: Record<string, any>
+  lastName?: string
 ): Promise<MCPResponse> => {
   // Decide which email service to use
   const mailchimpConfig = mcpConfig.email.mailchimp;
@@ -134,10 +136,13 @@ export const subscribeEmail = async (
   
   // For mock services
   if (config.serviceType === 'mock') {
-    const delay = config.options?.simulateDelay || 1000;
+    const delay = (config.options?.simulateDelay as number) || 1000;
     await simulateDelay(delay);
     
-    const isSuccess = Math.random() < (config.options?.mockSuccessRate || 0.95);
+    const mockSuccessRate = typeof config.options?.mockSuccessRate === 'number' 
+      ? config.options.mockSuccessRate 
+      : 0.95;
+    const isSuccess = Math.random() < mockSuccessRate;
     
     if (isSuccess) {
       // Store in localStorage if browser environment
@@ -226,7 +231,7 @@ export const subscribeEmail = async (
 // Track analytics events using the MCP approach
 export const trackAnalyticsEvent = async (
   eventName: string,
-  eventData: Record<string, any>
+  eventData: Record<string, unknown>
 ): Promise<MCPResponse> => {
   const gaConfig = mcpConfig.analytics.googleAnalytics;
   const customConfig = mcpConfig.analytics.customAnalytics;
@@ -306,7 +311,7 @@ export const trackAnalyticsEvent = async (
 // Generate content for distribution
 export const generateDistributableContent = async (
   contentType: 'market_update' | 'price_alert' | 'trending_coins',
-  options?: Record<string, any>
+  options?: Record<string, unknown>
 ): Promise<MCPResponse> => {
   try {
     // Import content generator functions
@@ -324,8 +329,8 @@ export const generateDistributableContent = async (
         content = marketUpdate || 'Failed to generate market update content';
         break;
       case 'price_alert':
-        const coinId = options?.coinId || 'bitcoin';
-        const targetPrice = options?.targetPrice;
+        const coinId = (options?.coinId as string) || 'bitcoin';
+        const targetPrice = parseFloat((options?.targetPrice as string) || '0');
         const priceAlert = await generatePriceAlertContent(coinId, targetPrice);
         content = priceAlert || 'Failed to generate price alert content';
         break;
@@ -363,7 +368,7 @@ export const generateDistributableContent = async (
 export const distributeContent = async (
   content: string,
   channels: ('social' | 'email' | 'rss' | 'webpush')[],
-  options?: Record<string, any>
+  options?: Record<string, unknown>
 ): Promise<MCPResponse> => {
   const results: Record<string, MCPResponse> = {};
   

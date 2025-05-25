@@ -110,7 +110,6 @@ const updateMonthlySummary = (date) => {
   }
   
   // Scan all daily files for the month
-  const startDate = new Date(year, month - 1, 1);
   const endDate = new Date(year, month, 0);
   
   // Reset totals

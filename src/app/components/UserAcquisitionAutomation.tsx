@@ -1,25 +1,24 @@
 'use client';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import Script from 'next/script';
 import { usePathname } from 'next/navigation';
 
 // Add type definitions
 declare global {
   interface Window {
-    gtag: (command: string, action: string, params?: any) => void;
-    dataLayer: any[];
-    fbq: any;
-    rdt: any;
-    lintrk: any;
-    mcpTrackEvent: (eventName: string, eventData: any) => void;
-    mcpSubscribe: (email: string, firstName?: string, lastName?: string) => Promise<any>;
+    gtag: (command: string, action: string, params?: Record<string, unknown>) => void;
+    dataLayer: Record<string, unknown>[];
+    fbq: (action: string, event: string, params?: Record<string, unknown> | undefined) => void;
+    rdt: (action: string, params?: Record<string, unknown> | undefined) => void;
+    lintrk: (action: string, params?: Record<string, unknown> | undefined) => void;
+    mcpTrackEvent: (eventName: string, eventData: Record<string, unknown>) => void;
+    mcpSubscribe: (email: string, firstName?: string, lastName?: string) => Promise<{ success: boolean; error?: string; }>;
   }
 }
 
 // Component to implement automated user acquisition strategies
 export default function UserAcquisitionAutomation() {
   const pathname = usePathname();
-  const [isUsingMcp, setIsUsingMcp] = useState(true);
   
   useEffect(() => {
     // Log page views for analytics

@@ -1,13 +1,12 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell } from 'recharts';
-import Link from 'next/link';
 
 export default function AdminAnalytics() {
   const [timeRange, setTimeRange] = useState('month');
   
-  const [conversionData, setConversionData] = useState([
+  const [conversionData] = useState([
     { name: 'Free Users', value: 917 },
     { name: 'Premium Users', value: 328 }
   ]);
@@ -20,14 +19,14 @@ export default function AdminAnalytics() {
     { name: 'Week 5', users: 520 }
   ]);
   
-  const [engagementData, setEngagementData] = useState([
+  const [engagementData] = useState([
     { name: 'Alerts Created', value: 4721 },
     { name: 'Portfolio Views', value: 3250 },
     { name: 'Chart Interactions', value: 8940 },
     { name: 'Coin Details', value: 6320 }
   ]);
   
-  const [referralData, setReferralData] = useState([
+  const [referralData] = useState([
     { source: 'Google', users: 520, percentage: 41.8 },
     { source: 'Direct', users: 350, percentage: 28.1 },
     { source: 'Social Media', users: 180, percentage: 14.5 },
@@ -35,7 +34,7 @@ export default function AdminAnalytics() {
     { source: 'Other', users: 75, percentage: 6.0 }
   ]);
   
-  const [deviceData, setDeviceData] = useState([
+  const [deviceData] = useState([
     { name: 'Desktop', value: 640 },
     { name: 'Mobile', value: 480 },
     { name: 'Tablet', value: 125 }
@@ -43,7 +42,7 @@ export default function AdminAnalytics() {
   
   const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#8884d8'];
   
-  const handleTimeRangeChange = (range) => {
+  const handleTimeRangeChange = (range: string) => {
     setTimeRange(range);
     
     // In a real app, this would fetch new data based on the time range

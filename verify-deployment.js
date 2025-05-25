@@ -11,7 +11,7 @@
  * 2. Run: node verify-deployment.js
  */
 
-const https = require('https');
+import https from 'https';
 
 // Update this to your deployed Vercel URL
 const BASE_URL = 'https://crypto-tracker-no-modules-hwrl1vyun-wettentllcs-projects.vercel.app';
@@ -30,7 +30,7 @@ const endpoints = [
 
 // Function to make a GET request and check status
 function testEndpoint(endpoint) {
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     const url = `${BASE_URL}${endpoint.path}`;
     console.log(`Testing ${endpoint.name}: ${url}`);
     

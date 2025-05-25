@@ -10,6 +10,16 @@ const nextConfig: NextConfig = {
     // Ignore TypeScript errors during build
     ignoreBuildErrors: true,
   },
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'coin-images.coingecko.com',
+        port: '',
+        pathname: '/coins/images/**',
+      },
+    ],
+  },
   async headers() {
     return [
       {

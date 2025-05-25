@@ -1,0 +1,121 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://crypto-tracker-no-modules-befhbaldu-wettentllcs-projects.vercel.app/#organization",
+      "name": "CryptoTracker",
+      "url": "https://crypto-tracker-no-modules-befhbaldu-wettentllcs-projects.vercel.app",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://crypto-tracker-no-modules-befhbaldu-wettentllcs-projects.vercel.app/logo.png",
+        "width": 512,
+        "height": 512
+      },
+      "sameAs": [
+        "https://twitter.com/cryptotracker",
+        "https://facebook.com/cryptotracker",
+        "https://linkedin.com/company/cryptotracker",
+        "https://github.com/cryptotracker",
+        "https://medium.com/@cryptotracker"
+      ],
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "customer service",
+        "email": "support@cryptotracker.com",
+        "availableLanguage": ["English", "Spanish", "French", "German", "Japanese", "Korean"],
+        "areaServed": "Worldwide"
+      },
+      "founder": {
+        "@type": "Person",
+        "name": "CryptoTracker Team"
+      },
+      "foundingDate": "2025-01-01",
+      "description": "Leading cryptocurrency tracking platform providing real-time price alerts, portfolio management, and advanced analytics for crypto investors worldwide.",
+      "knowsAbout": [
+        "Cryptocurrency",
+        "Bitcoin",
+        "Ethereum",
+        "Blockchain Technology",
+        "Digital Assets",
+        "Portfolio Management",
+        "Financial Technology",
+        "Investment Analytics"
+      ],
+      "serviceArea": {
+        "@type": "GeoShape",
+        "name": "Worldwide"
+      }
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://crypto-tracker-no-modules-befhbaldu-wettentllcs-projects.vercel.app/#website",
+      "url": "https://crypto-tracker-no-modules-befhbaldu-wettentllcs-projects.vercel.app",
+      "name": "CryptoTracker - Real-time Cryptocurrency Price Alerts & Portfolio Tracking",
+      "description": "Track cryptocurrency prices, set custom price alerts, and manage your crypto portfolio with advanced analytics. Get instant notifications when prices hit your targets.",
+      "publisher": {
+        "@id": "https://crypto-tracker-no-modules-befhbaldu-wettentllcs-projects.vercel.app/#organization"
+      },
+      "potentialAction": [
+        {
+          "@type": "SearchAction",
+          "target": {
+            "@type": "EntryPoint",
+            "urlTemplate": "https://crypto-tracker-no-modules-befhbaldu-wettentllcs-projects.vercel.app/search?q={search_term_string}"
+          },
+          "query-input": "required name=search_term_string"
+        }
+      ],
+      "inLanguage": "en-US",
+      "copyrightYear": 2025,
+      "copyrightHolder": {
+        "@id": "https://crypto-tracker-no-modules-befhbaldu-wettentllcs-projects.vercel.app/#organization"
+      }
+    },
+    {
+      "@type": "WebApplication",
+      "@id": "https://crypto-tracker-no-modules-befhbaldu-wettentllcs-projects.vercel.app/#webapp",
+      "name": "CryptoTracker Web Application",
+      "url": "https://crypto-tracker-no-modules-befhbaldu-wettentllcs-projects.vercel.app",
+      "applicationCategory": "FinanceApplication",
+      "operatingSystem": "Web Browser",
+      "offers": [
+        {
+          "@type": "Offer",
+          "name": "Free Plan",
+          "price": "0",
+          "priceCurrency": "USD",
+          "description": "Basic cryptocurrency tracking with limited alerts"
+        },
+        {
+          "@type": "Offer",
+          "name": "Premium Plan",
+          "price": "9.99",
+          "priceCurrency": "USD",
+          "priceSpecification": {
+            "@type": "UnitPriceSpecification",
+            "price": "9.99",
+            "priceCurrency": "USD",
+            "billingIncrement": "1",
+            "unitCode": "MON"
+          },
+          "description": "Advanced portfolio tracking, unlimited alerts, and premium analytics"
+        }
+      ],
+      "featureList": [
+        "Real-time cryptocurrency price tracking",
+        "Custom price alerts and notifications",
+        "Portfolio management and analytics",
+        "Multi-currency support",
+        "Advanced charting tools",
+        "Market trend analysis",
+        "Risk management tools",
+        "Mobile-responsive design"
+      ],
+      "screenshot": "https://crypto-tracker-no-modules-befhbaldu-wettentllcs-projects.vercel.app/screenshot.png",
+      "author": {
+        "@id": "https://crypto-tracker-no-modules-befhbaldu-wettentllcs-projects.vercel.app/#organization"
+      }
+    }
+  ]
+}

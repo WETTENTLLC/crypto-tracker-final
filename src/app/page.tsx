@@ -3,6 +3,9 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import CoinList from './components/CoinList';
+import SocialShareOptimization from './components/SocialShareOptimization';
+import InternalLinkingStrategy, { SmartInternalLinks } from './components/InternalLinkingStrategy';
+import SEOPerformanceMonitor from './components/SEOPerformanceMonitor';
 
 export default function Home() {
   const [isPremium, setIsPremium] = useState<boolean>(false);
@@ -216,6 +219,22 @@ export default function Home() {
           </div>
         </div>
       </footer>
+
+      {/* SEO Enhancement Components */}
+      <SocialShareOptimization 
+        title="CryptoTracker - Real-time Cryptocurrency Price Alerts & Portfolio Tracking"
+        description="Track cryptocurrency prices in real-time, set custom price alerts, and manage your crypto portfolio with advanced analytics."
+        hashtags={['crypto', 'bitcoin', 'ethereum', 'cryptocurrency', 'portfolio']}
+      />
+      
+      <InternalLinkingStrategy 
+        currentPath="/"
+        category="tools"
+      />
+      
+      <SmartInternalLinks />
+      
+      <SEOPerformanceMonitor />
     </main>
   );
 }

@@ -39,7 +39,7 @@ export default function PremiumPage() {
             <svg className="w-12 h-12 text-green-500 mr-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
               <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"></path>
             </svg>
-            <h1 className="text-2xl font-bold">You're already a Premium member!</h1>
+            <h1 className="text-2xl font-bold">You&apos;re already a Premium member!</h1>
           </div>
           <p className="text-gray-600 mb-6">
             You already have access to all premium features, including unlimited price alerts, SMS notifications, portfolio tracking, and an ad-free experience.
@@ -218,7 +218,7 @@ export default function PremiumPage() {
                       }}
                       onApprove={(data, actions) => {
                         return actions.order?.capture?.() 
-                          ? actions.order.capture().then((details) => {
+                          ? actions.order.capture().then(() => {
                               handlePaymentSuccess();
                             })
                           : Promise.resolve();
@@ -258,7 +258,7 @@ export default function PremiumPage() {
                 </div>
                 <h3 className="text-lg font-semibold mb-2">SMS & Email Notifications</h3>
                 <p className="text-gray-600">
-                  Receive instant notifications when your price alerts are triggered, even when you're away from your computer.
+                  Receive instant notifications when your price alerts are triggered, even when you&apos;re away from your computer.
                 </p>
               </div>
               
@@ -319,19 +319,19 @@ export default function PremiumPage() {
               <div>
                 <h3 className="text-lg font-semibold mb-2">How does the subscription work?</h3>
                 <p className="text-gray-600">
-                  Your premium subscription is billed monthly at $5.99. You can cancel anytime from your account page, and you'll continue to have access until the end of your current billing period.
+                  Your premium subscription is billed monthly at $5.99. You can cancel anytime from your account page, and you&apos;ll continue to have access until the end of your current billing period.
                 </p>
               </div>
               <div>
                 <h3 className="text-lg font-semibold mb-2">Can I cancel my subscription?</h3>
                 <p className="text-gray-600">
-                  Yes, you can cancel your subscription at any time. After cancellation, you'll continue to have premium access until the end of your current billing period.
+                  Yes, you can cancel your subscription at any time. After cancellation, you&apos;ll continue to have premium access until the end of your current billing period.
                 </p>
               </div>
               <div>
                 <h3 className="text-lg font-semibold mb-2">How do SMS notifications work?</h3>
                 <p className="text-gray-600">
-                  After upgrading to premium, you can add your phone number in the account settings. You'll receive SMS notifications whenever your price alerts are triggered.
+                  After upgrading to premium, you can add your phone number in the account settings. You&apos;ll receive SMS notifications whenever your price alerts are triggered.
                 </p>
               </div>
               <div>

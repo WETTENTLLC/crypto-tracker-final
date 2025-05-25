@@ -1,11 +1,11 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Link from 'next/link';
 
 export default function AdminPayments() {
   const [timeRange, setTimeRange] = useState('month');
-  const [paymentData, setPaymentData] = useState([
+  const [paymentData] = useState([
     { id: 1, user: 'user2@example.com', amount: '$5.99', status: 'Successful', date: '2025-05-22', subscription: 'Active' },
     { id: 2, user: 'user5@example.com', amount: '$5.99', status: 'Successful', date: '2025-05-21', subscription: 'Active' },
     { id: 3, user: 'user8@example.com', amount: '$5.99', status: 'Successful', date: '2025-05-20', subscription: 'Active' },
@@ -18,16 +18,18 @@ export default function AdminPayments() {
     { id: 10, user: 'user30@example.com', amount: '$5.99', status: 'Successful', date: '2025-05-14', subscription: 'Active' }
   ]);
   
-  const [stats, setStats] = useState({
+  const stats = {
     totalRevenue: '$1,964.72',
     activeSubscriptions: 328,
     averageRevenue: '$5.99',
     churnRate: '3.2%',
     failedPayments: 12,
     lifetimeValue: '$71.88'
-  });
+  };
   
-  const handleTimeRangeChange = (range) => {
+  type TimeRange = 'week' | 'month' | 'year';
+  
+  const handleTimeRangeChange = (range: TimeRange): void => {
     setTimeRange(range);
     // In a real app, this would fetch new data based on the time range
   };
@@ -36,8 +38,8 @@ export default function AdminPayments() {
     // In a real app, this would generate and download a CSV file
     alert('Exporting payment data as CSV...');
   };
-  
-  const handleRefundPayment = (id) => {
+
+  const handleRefundPayment = (id: number): void => {
     if (confirm('Are you sure you want to refund this payment?')) {
       // In a real app, this would call an API to process the refund
       alert(`Payment #${id} has been refunded.`);

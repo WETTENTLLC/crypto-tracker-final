@@ -7,7 +7,7 @@ import MarketOverview from '../components/MarketOverview';
 
 export default function UserDashboard() {
   const [isPremium, setIsPremium] = useState<boolean>(false);
-  const [watchlist, setWatchlist] = useState([
+  const [watchlist] = useState([
     { id: 'bitcoin', name: 'Bitcoin', symbol: 'BTC', price: '$62,450.00', change: '+2.3%', isPositive: true },
     { id: 'ethereum', name: 'Ethereum', symbol: 'ETH', price: '$3,120.75', change: '+1.8%', isPositive: true },
     { id: 'solana', name: 'Solana', symbol: 'SOL', price: '$142.25', change: '-0.5%', isPositive: false },
@@ -15,19 +15,19 @@ export default function UserDashboard() {
     { id: 'dogecoin', name: 'Dogecoin', symbol: 'DOGE', price: '$0.12', change: '-1.2%', isPositive: false }
   ]);
   
-  const [alerts, setAlerts] = useState([
+  const [alerts] = useState([
     { id: 1, coinId: 'bitcoin', coinName: 'Bitcoin', targetPrice: 65000, alertType: 'above', createdAt: new Date().toISOString() },
     { id: 2, coinId: 'ethereum', coinName: 'Ethereum', targetPrice: 3000, alertType: 'below', createdAt: new Date().toISOString() }
   ]);
   
-  const [portfolioValue, setPortfolioValue] = useState({
+  const [portfolioValue] = useState({
     total: '$12,450.75',
     change: '+$345.28',
     changePercent: '+2.8%',
     isPositive: true
   });
   
-  const [portfolioData, setPortfolioData] = useState([
+  const [portfolioData] = useState([
     { name: 'Bitcoin', value: 7500 },
     { name: 'Ethereum', value: 3200 },
     { name: 'Solana', value: 950 },
@@ -35,14 +35,14 @@ export default function UserDashboard() {
     { name: 'Other', value: 350 }
   ]);
   
-  const [recentActivity, setRecentActivity] = useState([
+  const [recentActivity] = useState([
     { id: 1, type: 'Alert Triggered', coin: 'Bitcoin', details: 'Price above $62,000', time: '2 hours ago' },
     { id: 2, type: 'Alert Created', coin: 'Ethereum', details: 'Alert when below $3,000', time: '1 day ago' },
     { id: 3, type: 'Watchlist Added', coin: 'Solana', details: 'Added to watchlist', time: '2 days ago' },
     { id: 4, type: 'Premium Upgrade', coin: '', details: 'Subscription activated', time: '3 days ago' }
   ]);
   
-  const [trendingCoins, setTrendingCoins] = useState([
+  const [trendingCoins] = useState([
     { id: 'bitcoin', name: 'Bitcoin', symbol: 'BTC', price: '$62,450.00', change: '+2.3%', isPositive: true },
     { id: 'ethereum', name: 'Ethereum', symbol: 'ETH', price: '$3,120.75', change: '+1.8%', isPositive: true },
     { id: 'solana', name: 'Solana', symbol: 'SOL', price: '$142.25', change: '-0.5%', isPositive: false },
@@ -329,7 +329,7 @@ export default function UserDashboard() {
               </div>
             ) : (
               <div className="p-6 text-center">
-                <p className="text-gray-500">You haven't set any price alerts yet.</p>
+                <p className="text-gray-500">You haven&apos;t set any price alerts yet.</p>
                 <Link 
                   href="/" 
                   className="mt-2 inline-block text-blue-600 hover:text-blue-500"

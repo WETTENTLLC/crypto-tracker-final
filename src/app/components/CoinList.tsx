@@ -86,7 +86,18 @@ export default function CoinList() {
               <td className="px-6 py-4 whitespace-nowrap">
                 <Link href={`/coin/${coin.id}`} className="flex items-center">
                   <div className="flex-shrink-0 h-8 w-8 mr-3">
-                    <Image src={coin.image} alt={coin.name} width={32} height={32} className="rounded-full" />
+                    <Image 
+                      src={coin.image} 
+                      alt={coin.name} 
+                      width={32} 
+                      height={32} 
+                      className="rounded-full" 
+                      onError={(e) => {
+                        e.currentTarget.src = '/crypto-placeholder.svg';
+                      }}
+                      placeholder="blur"
+                      blurDataURL="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHZpZXdCb3g9IjAgMCAzMiAzMiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMTYiIGN5PSIxNiIgcj0iMTYiIGZpbGw9IiNmM2Y0ZjYiLz4KPHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAxNiAxNiIgZmlsbD0iIzk0YTNiOCIgeD0iOCIgeT0iOCI+CjxwYXRoIGQ9Im04IDFhNyA3IDAgMSAwIDAgMTRhNyA3IDAgMCAwIDAtMTR6bTAgMTJhNSA1IDAgMSAxIDAtMTBhNSA1IDAgMCAxIDAgMTB6Ii8+Cjwvc3ZnPgo8L3N2Zz4K"
+                    />
                   </div>
                   <div className="flex flex-col">
                     <div className="text-sm font-medium text-gray-900">{coin.name}</div>

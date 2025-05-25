@@ -19,7 +19,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
         setIsAdmin(admin);
         setIsLoading(false);
         if (!admin) window.location.href = '/admin/login';
-      } catch (error) {
+      } catch {
         setIsLoading(false);
         window.location.href = '/admin/login';
       }

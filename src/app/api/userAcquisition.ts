@@ -4,7 +4,30 @@ import { FacebookAdsApi, Page } from 'facebook-nodejs-business-sdk';
 import Mailchimp from '@mailchimp/mailchimp_marketing';
 
 // Twitter API integration for automated content sharing
-export const shareToTwitter = async (content, apiKey, apiSecret, accessToken, accessTokenSecret) => {
+// Twitter API response types
+interface TwitterApiResponseData {
+  id: string;
+  text: string;
+}
+
+interface TwitterApiResponse {
+  data: TwitterApiResponseData;
+}
+
+// Return type for the function
+interface TwitterShareResult {
+  success: boolean;
+  id: string;
+  text: string;
+}
+
+export const shareToTwitter = async (
+  content: string, 
+  apiKey: string, 
+  apiSecret: string, 
+  accessToken: string, 
+  accessTokenSecret: string
+): Promise<TwitterShareResult> => {
   try {
     // Initialize Twitter client
     const client = new Twitter({
@@ -17,13 +40,19 @@ export const shareToTwitter = async (content, apiKey, apiSecret, accessToken, ac
     // Post tweet
     const response = await client.post('tweets', {
       text: content
-    });
+    }) as TwitterApiResponse;
     
-    return {
-      success: true,
-      id: response.data.id,
-      text: response.data.text
-    };
+    // Type assertion for the response
+    if (response && typeof response === 'object' && 'data' in response && 
+        typeof response.data === 'object' && response.data !== null) {
+      return {
+        success: true,
+        id: (response.data as TwitterApiResponseData).id,
+        text: (response.data as TwitterApiResponseData).text
+      };
+    }
+    
+    throw new Error('Invalid response format from Twitter API');
   } catch (error) {
     console.error('Error sharing to Twitter:', error);
     throw new Error('Failed to share to Twitter');
@@ -31,12 +60,26 @@ export const shareToTwitter = async (content, apiKey, apiSecret, accessToken, ac
 };
 
 // Facebook API integration for page posts
-export const shareToFacebook = async (content, pageId, accessToken) => {
+// Facebook API response and result types
+interface FacebookApiResponse {
+  id: string;
+  [key: string]: unknown;
+}
+
+interface FacebookShareResult {
+  success: boolean;
+  id: string;
+  message: string;
+}
+
+export const shareToFacebook = async (
+  content: string, 
+  pageId: string, 
+  accessToken: string
+): Promise<FacebookShareResult> => {
   try {
     // Initialize Facebook API
     FacebookAdsApi.init(accessToken);
-    
-    // Get page instance
     const page = new Page(pageId);
     
     // Create page post
@@ -45,11 +88,11 @@ export const shareToFacebook = async (content, pageId, accessToken) => {
       {
         message: content
       }
-    );
+    ) as unknown as FacebookApiResponse;
     
     return {
       success: true,
-      id: response.id,
+      id: response.id || 'unknown',
       message: content
     };
   } catch (error) {
@@ -59,10 +102,27 @@ export const shareToFacebook = async (content, pageId, accessToken) => {
 };
 
 // LinkedIn API integration for professional network sharing
-export const shareToLinkedIn = async (content, accessToken) => {
+// LinkedIn API response and result types
+interface LinkedInApiResponse {
+  data: {
+    id: string;
+    [key: string]: unknown;
+  }
+}
+
+interface LinkedInShareResult {
+  success: boolean;
+  id: string;
+  text: string;
+}
+
+export const shareToLinkedIn = async (
+  content: string, 
+  accessToken: string
+): Promise<LinkedInShareResult> => {
   try {
     // LinkedIn API requires OAuth 2.0 authentication
-    const response = await axios.post('https://api.linkedin.com/v2/ugcPosts', {
+    const response: LinkedInApiResponse = await axios.post('https://api.linkedin.com/v2/ugcPosts', {
       author: 'urn:li:person:{PERSON_ID}', // Replace with actual person ID
       lifecycleState: 'PUBLISHED',
       specificContent: {
@@ -96,7 +156,30 @@ export const shareToLinkedIn = async (content, accessToken) => {
 };
 
 // Email marketing integration (Mailchimp)
-export const addToMailchimpList = async (email, firstName, lastName, apiKey, listId, serverPrefix) => {
+// Email marketing integration (Mailchimp)
+// Mailchimp API response and result types
+interface MailchimpResponse {
+  id: string;
+  email_address: string;
+  status: string;
+  [key: string]: unknown;
+}
+
+interface MailchimpResult {
+  success: boolean;
+  id: string;
+  email_address: string;
+  status: string;
+}
+
+export const addToMailchimpList = async (
+  email: string,
+  firstName: string | null,
+  lastName: string | null,
+  apiKey: string,
+  listId: string,
+  serverPrefix: string
+): Promise<MailchimpResult> => {
   try {
     // Set up Mailchimp client
     Mailchimp.setConfig({
@@ -105,7 +188,7 @@ export const addToMailchimpList = async (email, firstName, lastName, apiKey, lis
     });
     
     // Add subscriber to list
-    const response = await Mailchimp.lists.addListMember(listId, {
+    const response: MailchimpResponse = await Mailchimp.lists.addListMember(listId, {
       email_address: email,
       status: 'subscribed',
       merge_fields: {
@@ -127,9 +210,40 @@ export const addToMailchimpList = async (email, firstName, lastName, apiKey, lis
 };
 
 // CoinGecko API integration for trending coins
-export const getTrendingCoins = async (apiKey) => {
+// CoinGecko API trending coin response interfaces
+interface TrendingCoinItem {
+  id: string;
+  name: string;
+  symbol: string;
+  market_cap_rank: number;
+  thumb: string;
+  small: string;
+  large: string;
+  slug: string;
+  price_btc: number;
+  score: number;
+}
+
+interface TrendingCoinData {
+  item: TrendingCoinItem;
+}
+
+interface TrendingExchange {
+  id: string;
+  name: string;
+  market_type: string;
+  thumb: string;
+  image: string;
+}
+
+interface TrendingCoinsResponse {
+  coins: TrendingCoinData[];
+  exchanges: TrendingExchange[];
+}
+
+export const getTrendingCoins = async (apiKey: string): Promise<TrendingCoinsResponse> => {
   try {
-    const response = await axios.get('https://api.coingecko.com/api/v3/search/trending', {
+    const response = await axios.get<TrendingCoinsResponse>('https://api.coingecko.com/api/v3/search/trending', {
       headers: {
         'x-cg-api-key': apiKey
       }
@@ -143,10 +257,26 @@ export const getTrendingCoins = async (apiKey) => {
 };
 
 // Automated content generation based on market movements
-export const generateMarketUpdate = async (apiKey) => {
+// Types for market update data
+interface Coin {
+  id: string;
+  name: string;
+  symbol: string;
+  current_price: number;
+  price_change_percentage_24h: number;
+  market_cap: number;
+}
+
+interface MarketUpdateResponse {
+  success: boolean;
+  content: string;
+  timestamp: string;
+}
+
+export const generateMarketUpdate = async (apiKey: string): Promise<MarketUpdateResponse> => {
   try {
     // Get top coins
-    const response = await axios.get('https://api.coingecko.com/api/v3/coins/markets', {
+    const response = await axios.get<Coin[]>('https://api.coingecko.com/api/v3/coins/markets', {
       params: {
         vs_currency: 'usd',
         order: 'market_cap_desc',
@@ -194,15 +324,45 @@ export const generateMarketUpdate = async (apiKey) => {
 };
 
 // Schedule automated content sharing
-export const scheduleContentSharing = (apiKey, twitterConfig, facebookConfig) => {
+// Social platform configuration types
+interface TwitterConfig {
+  apiKey: string;
+  apiSecret: string;
+  accessToken: string;
+  accessTokenSecret: string;
+}
+
+interface FacebookConfig {
+  pageId: string;
+  accessToken: string;
+}
+
+// Result types
+interface SharingPlatformResult {
+  platform: string;
+  success: boolean;
+  result: TwitterShareResult | FacebookShareResult | Error;
+}
+
+interface ScheduledSharingResult {
+  success: boolean;
+  timestamp: string;
+  platforms: SharingPlatformResult[];
+}
+
+export const scheduleContentSharing = (
+  apiKey: string, 
+  twitterConfig: TwitterConfig | null, 
+  facebookConfig: FacebookConfig | null
+): () => Promise<ScheduledSharingResult> => {
   // This function would be called by a cron job or scheduler in production
-  return async () => {
+  return async (): Promise<ScheduledSharingResult> => {
     try {
       // Generate market update
       const update = await generateMarketUpdate(apiKey);
       
       // Share to social platforms
-      const sharePromises = [];
+      const sharePromises: Promise<TwitterShareResult | FacebookShareResult>[] = [];
       
       if (twitterConfig && twitterConfig.apiKey) {
         sharePromises.push(shareToTwitter(
@@ -241,10 +401,22 @@ export const scheduleContentSharing = (apiKey, twitterConfig, facebookConfig) =>
 };
 
 // Generate RSS feed for content syndication
-export const generateRSSFeed = async (apiKey) => {
+// Define interfaces for the coin data from API response
+interface CoinMarketData {
+  id: string;
+  name: string;
+  symbol: string;
+  current_price: number;
+  price_change_percentage_24h: number;
+  price_change_percentage_7d_in_currency: number;
+  market_cap: number;
+  total_volume: number;
+}
+
+export const generateRSSFeed = async (apiKey: string): Promise<string> => {
   try {
     // Get market data
-    const response = await axios.get('https://api.coingecko.com/api/v3/coins/markets', {
+    const response = await axios.get<CoinMarketData[]>('https://api.coingecko.com/api/v3/coins/markets', {
       params: {
         vs_currency: 'usd',
         order: 'market_cap_desc',
@@ -258,10 +430,10 @@ export const generateRSSFeed = async (apiKey) => {
       }
     });
     
-    const coins = response.data;
+    const coins: CoinMarketData[] = response.data;
     
     // Generate RSS XML
-    let rss = `<?xml version="1.0" encoding="UTF-8" ?>
+    let rss: string = `<?xml version="1.0" encoding="UTF-8" ?>
 <rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:wfw="http://wellformedweb.org/CommentAPI/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>CryptoTracker Market Updates</title>
@@ -272,9 +444,9 @@ export const generateRSSFeed = async (apiKey) => {
 `;
     
     // Add items for each coin
-    coins.forEach(coin => {
-      const pubDate = new Date().toUTCString();
-      const description = `
+    coins.forEach((coin: CoinMarketData) => {
+      const pubDate: string = new Date().toUTCString();
+      const description: string = `
         <p><strong>${coin.name} (${coin.symbol.toUpperCase()})</strong> is currently trading at $${coin.current_price.toLocaleString()}.</p>
         <p>24h Change: ${coin.price_change_percentage_24h.toFixed(2)}%</p>
         <p>7d Change: ${coin.price_change_percentage_7d_in_currency.toFixed(2)}%</p>

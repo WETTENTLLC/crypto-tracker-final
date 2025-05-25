@@ -1,6 +1,162 @@
 // PayPal API integration
 // This file handles all PayPal-related functionality for subscription management
 
+interface PayPalSubscription {
+  id: string;
+  status: string;
+  status_update_time: string;
+  plan_id: string;
+  start_time: string;
+  quantity: string;
+  shipping_amount?: {
+    currency_code: string;
+    value: string;
+  };
+  subscriber?: {
+    name?: {
+      given_name: string;
+      surname: string;
+    };
+    email_address: string;
+  };
+  billing_info?: {
+    outstanding_balance: {
+      currency_code: string;
+      value: string;
+    };
+    cycle_executions: Array<{
+      tenure_type: string;
+      sequence: number;
+      cycles_completed: number;
+      cycles_remaining: number;
+      current_pricing_scheme_version: number;
+    }>;
+  };
+  create_time: string;
+  update_time: string;
+  links: Array<{
+    href: string;
+    rel: string;
+    method: string;
+  }>;
+}
+
+interface PayPalTransactionsResponse {
+  transactions: Array<{
+    id: string;
+    status: string;
+    payer_email: string;
+    payer_name: {
+      given_name: string;
+      surname: string;
+    };
+    amount_with_breakdown: {
+      gross_amount: {
+        currency_code: string;
+        value: string;
+      };
+      fee_amount?: {
+        currency_code: string;
+        value: string;
+      };
+      net_amount?: {
+        currency_code: string;
+        value: string;
+      };
+    };
+    time: string;
+  }>;
+  total_items: number;
+  total_pages: number;
+  links: Array<{
+    href: string;
+    rel: string;
+    method: string;
+  }>;
+}
+
+interface PayPalRefundResponse {
+  id: string;
+  status: string;
+  status_details?: {
+    reason: string;
+  };
+  amount: {
+    currency_code: string;
+    value: string;
+  };
+  seller_payable_breakdown?: {
+    gross_amount: {
+      currency_code: string;
+      value: string;
+    };
+    paypal_fee: {
+      currency_code: string;
+      value: string;
+    };
+    net_amount: {
+      currency_code: string;
+      value: string;
+    };
+  };
+  create_time: string;
+  update_time: string;
+  links: Array<{
+    href: string;
+    rel: string;
+    method: string;
+  }>;
+}
+
+interface PayPalCancelSubscriptionResponse {
+  status: string;
+  status_change_note?: string;
+  links: Array<{
+    href: string;
+    rel: string;
+    method: string;
+  }>;
+}
+
+interface PayPalSubscriptionPlan {
+  id: string;
+  product_id: string;
+  name: string;
+  description: string;
+  status: string;
+  billing_cycles: Array<{
+    frequency: {
+      interval_unit: string;
+      interval_count: number;
+    };
+    tenure_type: string;
+    sequence: number;
+    total_cycles: number;
+    pricing_scheme: {
+      fixed_price: {
+        value: string;
+        currency_code: string;
+      };
+    };
+  }>;
+  payment_preferences: {
+    auto_bill_outstanding: boolean;
+    setup_fee: {
+      value: string;
+      currency_code: string;
+    };
+    setup_fee_failure_action: string;
+  payment_failure_threshold: number;
+};
+create_time: string;
+update_time: string;
+  links: Array<{
+    href: string;
+    rel: string;
+    method: string;
+  }>;
+}
+
 const PAYPAL_CLIENT_ID = process.env.PAYPAL_CLIENT_ID || 'AX_UCD0FG6LaVhl1smF44PQuxkRzoCNE_GreJfYg1DHycaE_IDKHrCJEhfcDWlK5sdVX44E8yBWnFns5';
 const PAYPAL_SECRET = process.env.PAYPAL_CLIENT_SECRET || 'ELac9rsu8SC5C5pa04b3N2ywO9UAZ_s7p9eXl59E1-kryMttyJ-ndyLlHUqtT058pmMoP9aMEZEBnEUX';
 
@@ -31,7 +187,7 @@ export const getPayPalAccessToken = async (): Promise<string> => {
 };
 
 // Create a subscription plan
-export const createSubscriptionPlan = async (name: string, description: string, price: string): Promise<any> => {
+export const createSubscriptionPlan = async (name: string, description: string, price: string): Promise<PayPalSubscriptionPlan> => {
   try {
     const accessToken = await getPayPalAccessToken();
     
@@ -40,12 +196,11 @@ export const createSubscriptionPlan = async (name: string, description: string, 
       headers: {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${accessToken}`
-      },
-      body: JSON.stringify({
-        product_id: 'PROD-5BG87665TS610315P', // Replace with your product ID
-        name,
-        description,
-        billing_cycles: [
+},
+body: JSON.stringify({
+  name,
+  description,
+  billing_cycles: [
           {
             frequency: {
               interval_unit: 'MONTH',
@@ -82,7 +237,7 @@ export const createSubscriptionPlan = async (name: string, description: string, 
 };
 
 // Get subscription details
-export const getSubscription = async (subscriptionId: string): Promise<any> => {
+export const getSubscription = async (subscriptionId: string): Promise<PayPalSubscription> => {
   try {
     const accessToken = await getPayPalAccessToken();
     
@@ -102,7 +257,7 @@ export const getSubscription = async (subscriptionId: string): Promise<any> => {
 };
 
 // Cancel a subscription
-export const cancelSubscription = async (subscriptionId: string, reason: string): Promise<any> => {
+export const cancelSubscription = async (subscriptionId: string, reason: string): Promise<PayPalCancelSubscriptionResponse> => {
   try {
     const accessToken = await getPayPalAccessToken();
     
@@ -117,7 +272,7 @@ export const cancelSubscription = async (subscriptionId: string, reason: string)
       })
     });
 
-    return response.status === 204; // Success returns 204 No Content
+    return await response.json();
   } catch (error) {
     console.error('Error cancelling subscription:', error);
     throw new Error('Failed to cancel subscription');
@@ -125,7 +280,7 @@ export const cancelSubscription = async (subscriptionId: string, reason: string)
 };
 
 // Process a refund
-export const processRefund = async (captureId: string, amount: string): Promise<any> => {
+export const processRefund = async (captureId: string, amount: string): Promise<PayPalRefundResponse> => {
   try {
     const accessToken = await getPayPalAccessToken();
     
@@ -151,7 +306,7 @@ export const processRefund = async (captureId: string, amount: string): Promise<
 };
 
 // List transactions
-export const listTransactions = async (subscriptionId: string, startDate: string, endDate: string): Promise<any> => {
+export const listTransactions = async (subscriptionId: string, startDate: string, endDate: string): Promise<PayPalTransactionsResponse> => {
   try {
     const accessToken = await getPayPalAccessToken();
     
@@ -171,7 +326,7 @@ export const listTransactions = async (subscriptionId: string, startDate: string
 };
 
 // Update subscription pricing
-export const updateSubscriptionPricing = async (subscriptionId: string, price: string): Promise<any> => {
+export const updateSubscriptionPricing = async (subscriptionId: string, price: string): Promise<PayPalSubscription> => {
   try {
     const accessToken = await getPayPalAccessToken();
     
@@ -185,7 +340,7 @@ export const updateSubscriptionPricing = async (subscriptionId: string, price: s
         plan_id: 'P-5ML4271244454362WXNWU5NQ', // Replace with your plan ID
         shipping_amount: {
           currency_code: 'USD',
-          value: '0'
+          value: price
         }
       })
     });

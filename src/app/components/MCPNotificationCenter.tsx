@@ -11,12 +11,23 @@ interface Notification {
   link?: string;
 }
 
+interface StoredNotification {
+  id: string;
+  type: 'info' | 'success' | 'warning' | 'error';
+  title: string;
+  message: string;
+  timestamp: string;
+  read: boolean;
+  link?: string;
+}
+
+
 export default function MCPNotificationCenter() {
   const [notifications, setNotifications] = useState<Notification[]>([]);
   const [showNotifications, setShowNotifications] = useState<boolean>(false);
   const [unreadCount, setUnreadCount] = useState<number>(0);
 
-  // Load notifications from localStorage on initial render
+  // Load notifications from localStorage on component mount
   useEffect(() => {
     const storedNotifications = localStorage.getItem('mcpNotifications');
     
@@ -25,7 +36,7 @@ export default function MCPNotificationCenter() {
         const parsedNotifications = JSON.parse(storedNotifications);
         
         // Convert timestamp strings back to Date objects
-        const processedNotifications = parsedNotifications.map((n: any) => ({
+        const processedNotifications = parsedNotifications.map((n: StoredNotification) => ({
           ...n,
           timestamp: new Date(n.timestamp)
         }));
@@ -36,14 +47,18 @@ export default function MCPNotificationCenter() {
         console.error('Error parsing stored notifications:', err);
       }
     }
-    
-    // Add a demo notification if none exist
-    setTimeout(() => {
+  }, []);
+
+  // Add demo notification separately to avoid dependency issues
+  useEffect(() => {
+    const timer = setTimeout(() => {
       if (notifications.length === 0) {
         addDemoNotification();
       }
     }, 3000);
-  }, []);
+
+    return () => clearTimeout(timer);
+  }, [notifications.length]);
 
   // Update unread count when notifications change
   useEffect(() => {

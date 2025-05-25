@@ -11,7 +11,7 @@
  * 2. Run: node verify-admin-page.js
  */
 
-const https = require('https');
+import https from 'https';
 
 // Update this to your deployed Vercel URL
 const BASE_URL = 'https://crypto-tracker-no-modules-hwrl1vyun-wettentllcs-projects.vercel.app';

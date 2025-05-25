@@ -1,7 +1,15 @@
 import { NextResponse } from 'next/server';
 
+interface AnalyticsEvent {
+  eventName: string;
+  eventData: Record<string, unknown>;
+  timestamp: string;
+  sessionId: string;
+  userAgent: string;
+}
+
 // In-memory storage for analytics data (in a production app, this would be a database)
-let analyticsEvents: any[] = [];
+let analyticsEvents: AnalyticsEvent[] = [];
 
 // API route to handle custom analytics tracking
 export async function POST(request: Request) {
@@ -38,7 +46,7 @@ export async function POST(request: Request) {
       success: true,
       message: 'Event tracked successfully',
       eventId: analyticsEvents.length
-    });  } catch (error: any) {
+    });  } catch (error: unknown) {
     console.error('Error tracking analytics event:', error);
     console.error('Request body might be invalid. Expected format: { eventName: string, eventData?: object }');
     return NextResponse.json({ 
@@ -81,7 +89,7 @@ export async function GET(request: Request) {
         offset
       }
     });
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('Error retrieving analytics data:', error);
     return NextResponse.json({ 
       success: false, 

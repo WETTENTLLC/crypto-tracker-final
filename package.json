@@ -6,7 +6,13 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "seo:audit": "node seo-health-check.js",
+    "seo:validate": "powershell -ExecutionPolicy Bypass -File validate-seo-deployment.ps1 -GenerateReport",
+    "seo:monitor": "powershell -ExecutionPolicy Bypass -File run-seo-audit.ps1 -Monitor",
+    "seo:detailed": "powershell -ExecutionPolicy Bypass -File run-seo-audit.ps1 -Detailed",
+    "seo:quick": "powershell -ExecutionPolicy Bypass -File run-seo-audit.ps1",
+    "seo:report": "powershell -ExecutionPolicy Bypass -File validate-seo-deployment.ps1 -GenerateReport -Verbose"
   },
   "dependencies": {
     "@mailchimp/mailchimp_marketing": "^3.0.80",
@@ -20,11 +26,13 @@
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "recharts": "^2.15.3",
-    "twitter-v2": "^1.1.0"
+    "twitter-v2": "^1.1.0",
+    "web-vitals": "^5.0.1"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
     "@tailwindcss/postcss": "^4.1.7",
+    "@types/facebook-nodejs-business-sdk": "^22.0.0",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",

@@ -1,10 +1,11 @@
 'use client';
 import { useState, useEffect } from 'react';
 import { getCoins, getTrendingCoins, Coin } from '../api/coingecko';
+import Image from 'next/image';
 
 export default function RealTimeCryptoTicker() {
   const [topCoins, setTopCoins] = useState<Coin[]>([]);
-  const [trendingCoins, setTrendingCoins] = useState<any[]>([]);
+  const [trendingCoins, setTrendingCoins] = useState<{item: {id: string, name: string, symbol: string, small: string, market_cap_rank: number}}[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
   const [lastUpdate, setLastUpdate] = useState<string>('');
@@ -114,11 +115,19 @@ export default function RealTimeCryptoTicker() {
             </thead>
             <tbody className="bg-white divide-y divide-gray-200 dark:bg-gray-800 dark:divide-gray-700">
               {topCoins.map((coin) => (
-                <tr key={coin.id} className="hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
-                  <td className="px-4 py-3 whitespace-nowrap">
+                <tr key={coin.id} className="hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">                  <td className="px-4 py-3 whitespace-nowrap">
                     <div className="flex items-center">
                       <div className="flex-shrink-0 h-8 w-8 mr-2">
-                        <img src={coin.image} alt={coin.name} className="h-8 w-8 rounded-full" />
+                        <Image 
+                          src={coin.image} 
+                          alt={coin.name} 
+                          width={32}
+                          height={32}
+                          className="h-8 w-8 rounded-full" 
+                          onError={(e) => {
+                            e.currentTarget.src = '/crypto-placeholder.svg';
+                          }}
+                        />
                       </div>
                       <div>
                         <div className="font-medium text-gray-900 dark:text-white">{coin.name}</div>
@@ -152,11 +161,19 @@ export default function RealTimeCryptoTicker() {
           <h2 className="text-xl font-bold text-gray-800 dark:text-white mb-4">
             Trending on CoinGecko
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {trendingCoins.slice(0, 6).map((item, index) => (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">            {trendingCoins.slice(0, 6).map((item, index) => (
               <div key={index} className="border border-gray-200 dark:border-gray-700 rounded-lg p-3 flex items-center">
                 <div className="flex-shrink-0 h-10 w-10 mr-3">
-                  <img src={item.item.small} alt={item.item.name} className="h-10 w-10 rounded-full" />
+                  <Image 
+                    src={item.item.small} 
+                    alt={item.item.name} 
+                    width={40}
+                    height={40}
+                    className="h-10 w-10 rounded-full" 
+                    onError={(e) => {
+                      e.currentTarget.src = '/crypto-placeholder.svg';
+                    }}
+                  />
                 </div>
                 <div>
                   <div className="font-medium text-gray-900 dark:text-white">{item.item.name}</div>

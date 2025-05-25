@@ -1,5 +1,5 @@
 'use client';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { getCoinMarketChart, MarketChart } from '../api/coingecko';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 
@@ -48,7 +48,7 @@ export default function RealTimePriceChart({
   };
 
   // Fetch chart data
-  const fetchChartData = async () => {
+  const fetchChartData = useCallback(async () => {
     try {
       setLoading(true);
       const data = await getCoinMarketChart(coinId, selectedDays);
@@ -60,12 +60,12 @@ export default function RealTimePriceChart({
     } finally {
       setLoading(false);
     }
-  };
+  }, [coinId, selectedDays]);
 
   // Fetch data when component mounts or when selectedDays changes
   useEffect(() => {
     fetchChartData();
-  }, [coinId, selectedDays]);
+  }, [fetchChartData]);
 
   // Generate color based on price trend
   const getLineColor = () => {

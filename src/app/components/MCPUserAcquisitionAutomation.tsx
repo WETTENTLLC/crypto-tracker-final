@@ -1,18 +1,18 @@
 'use client';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import Script from 'next/script';
 import { usePathname } from 'next/navigation';
 
 // Add type definitions
 declare global {
   interface Window {
-    gtag: (command: string, action: string, params?: any) => void;
-    dataLayer: any[];
-    fbq: any;
-    rdt: any;
-    lintrk: any;
-    mcpTrackEvent: (eventName: string, eventData: any) => void;
-    mcpSubscribe: (email: string, firstName?: string, lastName?: string) => Promise<any>;
+    gtag: (command: string, action: string, params?: Record<string, unknown>) => void;
+    dataLayer: Record<string, unknown>[];
+    fbq: (action: string, event: string, params?: Record<string, unknown>) => void;
+    rdt: (action: string, params?: Record<string, unknown>) => void;
+    lintrk: (action: string, params?: Record<string, unknown>) => void;
+    mcpTrackEvent: (eventName: string, eventData: Record<string, unknown>) => void;
+    mcpSubscribe: (email: string, firstName?: string, lastName?: string) => Promise<{ success: boolean; error?: string }>;
   }
 }
 
@@ -126,8 +126,7 @@ export default function MCPUserAcquisitionAutomation() {
             }
           };
         `}
-      </Script>
-      
+      </Script>      
       {/* Email Capture Popup Logic */}
       <Script id="email-capture" strategy="afterInteractive">
         {`
@@ -139,28 +138,18 @@ export default function MCPUserAcquisitionAutomation() {
               if (!localStorage.getItem('subscribed')) {
                 // Create and show popup
                 const popup = document.createElement('div');
-                popup.style.position = 'fixed';
-                popup.style.top = '0';
-                popup.style.left = '0';
-                popup.style.width = '100%';
-                popup.style.height = '100%';
-                popup.style.backgroundColor = 'rgba(0,0,0,0.7)';
-                popup.style.zIndex = '9999';
-                popup.style.display = 'flex';
-                popup.style.justifyContent = 'center';
-                popup.style.alignItems = 'center';
+                popup.className = 'popup-container';
                 
-                popup.innerHTML = \`
-                  <div style="background-color: white; padding: 2rem; border-radius: 0.5rem; max-width: 500px; width: 90%;">
-                    <h2 style="margin-top: 0;">Don't miss out on crypto opportunities!</h2>
-                    <p>Subscribe to get price alerts and market insights directly to your inbox.</p>
-                    <form id="popup-form" style="display: flex; flex-direction: column;">
-                      <input type="email" id="popup-email" placeholder="Your email address" style="margin-bottom: 1rem; padding: 0.5rem;" required />
-                      <button type="submit" style="background-color: #3b82f6; color: white; border: none; padding: 0.5rem; border-radius: 0.25rem;">Subscribe</button>
-                    </form>
-                    <button id="popup-close" style="background: none; border: none; position: absolute; top: 1rem; right: 1rem; cursor: pointer;">✕</button>
-                  </div>
-                \`;
+                popup.innerHTML = '<div class="popup-content">' +
+                  '<h2 style="margin-top: 0; font-size: 1.5rem; font-weight: 700; color: #1f2937;">Don\\'t miss out on crypto opportunities!</h2>' +
+                  '<p style="margin-bottom: 1.5rem; color: #374151; font-size: 1rem;">Subscribe to get price alerts and market insights directly to your inbox.</p>' +
+                  '<form id="popup-form" style="display: flex; flex-direction: column;">' +
+                    '<input type="email" id="popup-email" class="popup-input" placeholder="Your email address" required />' +
+                    '<button type="submit" class="popup-button">Get Price Alerts</button>' +
+                  '</form>' +
+                  '<p style="margin-top: 1rem; font-size: 0.875rem; color: #4b5563; text-align: center;">We respect your privacy and will never share your email.</p>' +
+                  '<button id="popup-close" class="popup-close">✕</button>' +
+                '</div>';
                 
                 document.body.appendChild(popup);
                 
@@ -185,13 +174,11 @@ export default function MCPUserAcquisitionAutomation() {
                     .then(data => {
                       if (data.success) {
                         localStorage.setItem('subscribed', 'true');
-                        popup.innerHTML = \`
-                          <div style="background-color: white; padding: 2rem; border-radius: 0.5rem; max-width: 500px; width: 90%; text-align: center;">
-                            <h2 style="margin-top: 0;">Thank you for subscribing!</h2>
-                            <p>You'll receive your first market update soon.</p>
-                            <button id="popup-close-success" style="background-color: #3b82f6; color: white; border: none; padding: 0.5rem; border-radius: 0.25rem; margin-top: 1rem;">Close</button>
-                          </div>
-                        \`;
+                        popup.innerHTML = '<div class="popup-content" style="text-align: center;">' +
+                          '<h2 style="margin-top: 0; font-size: 1.5rem; font-weight: 700; color: #1f2937;">Thank you for subscribing!</h2>' +
+                          '<p style="margin-bottom: 1.5rem; color: #374151; font-size: 1rem;">You\\'ll receive your first market update soon.</p>' +
+                          '<button id="popup-close-success" class="popup-button">Close</button>' +
+                        '</div>';
                         
                         // Track successful subscription
                         if (window.mcpTrackEvent) {
@@ -211,7 +198,7 @@ export default function MCPUserAcquisitionAutomation() {
                         window.mcpTrackEvent('email_subscription_error', { email, error: error.toString() });
                       }
                       
-                      alert('There was an error subscribing. Please try again.');
+                                            alert('There was an error subscribing. Please try again.');
                     });
                 });
               }

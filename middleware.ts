@@ -1,8 +1,7 @@
 import { NextResponse } from 'next/server';
-import type { NextRequest } from 'next/server';
 
 // This middleware will handle all requests
-export function middleware(request: NextRequest) {
+export function middleware() {
   // Get response
   const response = NextResponse.next();
 

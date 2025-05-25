@@ -3,8 +3,23 @@ import { useState, useEffect } from 'react';
 import { getGlobalData } from '../api/coingecko';
 import RealTimePriceChart from './RealTimePriceChart';
 
+interface GlobalData {
+  total_market_cap?: {
+    usd?: number;
+  };
+  market_cap_change_percentage_24h_usd?: number;
+  total_volume?: {
+    usd?: number;
+  };
+  market_cap_percentage?: {
+    btc?: number;
+    eth?: number;
+  };
+  active_cryptocurrencies?: number;
+}
+
 export default function MarketOverview() {
-  const [globalData, setGlobalData] = useState<any>(null);
+  const [globalData, setGlobalData] = useState<GlobalData | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
   const [featuredCoin, setFeaturedCoin] = useState<string>('bitcoin');

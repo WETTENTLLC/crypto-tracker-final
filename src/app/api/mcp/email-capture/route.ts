@@ -34,7 +34,7 @@ export async function POST(request: Request) {
         error: result.error || 'Failed to process subscription'
       }, { status: 500 });
     }
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('Error processing subscription:', error);
     return NextResponse.json({ 
       success: false, 

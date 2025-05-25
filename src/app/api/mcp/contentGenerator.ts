@@ -88,8 +88,19 @@ export const generateTrendingCoinsContent = async () => {
     let content = `🔥 Trending Coins Today 🔥\n\n`;
     
     // Add trending coins
-    trendingCoins.slice(0, 5).forEach((coinData, index) => {
-      const coin = coinData.item;
+    // Define interfaces for trending coin data structure
+    interface TrendingCoinItem {
+      name: string;
+      symbol: string;
+      market_cap_rank?: number;
+    }
+    
+    interface TrendingCoinData {
+      item: TrendingCoinItem;
+    }
+
+    trendingCoins.slice(0, 5).forEach((coinData: TrendingCoinData, index: number) => {
+      const coin: TrendingCoinItem = coinData.item;
       content += `${index + 1}. ${coin.name} (${coin.symbol.toUpperCase()})`;
       if (coin.market_cap_rank) {
         content += ` | Rank #${coin.market_cap_rank}`;

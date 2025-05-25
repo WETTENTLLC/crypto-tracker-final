@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 import { generateMarketUpdate } from '../../userAcquisition';
 
 // API route to generate and schedule automated content
-export async function GET(request: Request) {
+export async function GET() {
   try {
     // Get API keys from environment variables
     const coingeckoApiKey = process.env.COINGECKO_API_KEY;
@@ -34,7 +34,7 @@ export async function GET(request: Request) {
     const marketUpdate = await generateMarketUpdate(coingeckoApiKey);
     
     // If social media credentials are available, post the content
-    let socialShares = [];
+    const socialShares = [];
     
     // Dynamically import to avoid issues with server components
     const { shareToTwitter, shareToFacebook } = await import('../../userAcquisition');

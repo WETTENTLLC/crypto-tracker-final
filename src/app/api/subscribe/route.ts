@@ -39,7 +39,7 @@ export async function POST(request: Request) {
     };
 
     // Send request to Mailchimp API
-    const response = await axios.post(
+    await axios.post(
       `https://${serverPrefix}.api.mailchimp.com/3.0/lists/${listId}/members`,
       subscriberData,
       {
@@ -63,10 +63,10 @@ export async function POST(request: Request) {
         status: 'active'
       }
     });
-  } catch (error: any) {
+  } catch (error: unknown) {
     // Check if this is a Mailchimp error about already subscribed
-    if (error.response && error.response.status === 400 && 
-        error.response.data.title === 'Member Exists') {
+    if (axios.isAxiosError(error) && error.response?.status === 400 && 
+        error.response.data?.title === 'Member Exists') {
       return NextResponse.json({
         success: true,
         message: 'You are already subscribed',

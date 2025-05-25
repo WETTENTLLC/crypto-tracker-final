@@ -1,8 +1,7 @@
 import { NextResponse } from 'next/server';
-import crypto from 'crypto';
 
 // Function to verify PayPal webhook signature
-async function verifyWebhookSignature(request: Request, payload: any): Promise<boolean> {
+async function verifyWebhookSignature(request: Request): Promise<boolean> {
   try {
     // Get webhook ID from environment variables
     const webhookId = process.env.PAYPAL_WEBHOOK_ID;
@@ -38,7 +37,7 @@ export async function POST(request: Request) {
     
     // Verify webhook signature in production
     if (process.env.NODE_ENV === 'production') {
-      const isValid = await verifyWebhookSignature(request, payload);
+      const isValid = await verifyWebhookSignature(request);
       if (!isValid) {
         return NextResponse.json({ error: 'Invalid signature' }, { status: 401 });
       }

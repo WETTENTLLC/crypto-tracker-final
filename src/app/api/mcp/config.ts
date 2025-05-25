@@ -6,7 +6,7 @@ export interface MCPServiceConfig {
   serviceType: 'mock' | 'aggregator' | 'webhook' | 'analytics';
   endpoint?: string;
   apiKey?: string;
-  options?: Record<string, any>;
+  options?: Record<string, unknown>;
 }
 
 export interface MCPConfig {

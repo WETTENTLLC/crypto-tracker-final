@@ -1,0 +1,28 @@
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="cryptoGradient512" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#3b82f6;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#1d4ed8;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1e40af;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background circle -->
+  <circle cx="256" cy="256" r="252" fill="url(#cryptoGradient512)" stroke="#1e40af" stroke-width="2"/>
+  
+  <!-- Chart line -->
+  <path d="M 102.4,332.8 L 179.2,281.6 L 256,307.2 L 332.8,230.4 L 409.6,256" 
+        fill="none" stroke="#ffffff" stroke-width="10.24" stroke-linecap="round"/>
+  
+  <!-- Data points -->
+  <circle cx="102.4" cy="332.8" r="10.24" fill="#fbbf24"/>
+  <circle cx="179.2" cy="281.6" r="10.24" fill="#fbbf24"/>
+  <circle cx="256" cy="307.2" r="10.24" fill="#fbbf24"/>
+  <circle cx="332.8" cy="230.4" r="10.24" fill="#fbbf24"/>
+  <circle cx="409.6" cy="256" r="10.24" fill="#fbbf24"/>
+  
+  <!-- Alert bell -->
+  <path d="M 230.4,384 Q 230.4,358.4 256,358.4 Q 281.6,358.4 281.6,384 L 281.6,409.6 Q 281.6,424.96 266.24,424.96 L 245.76,424.96 Q 230.4,424.96 230.4,409.6 Z" 
+        fill="#ffffff"/>
+  <circle cx="256" cy="435.2" r="5.12" fill="#f59e0b"/>
+</svg>

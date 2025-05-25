@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 
 // API route to generate RSS feed for content syndication
-export async function GET(request: Request) {
+export async function GET() {
   try {
     const apiKey = process.env.COINGECKO_API_KEY || 'CG-d43qzmJiMgUWSyPUnugQesvj';
     

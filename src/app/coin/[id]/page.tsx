@@ -8,21 +8,32 @@ import PriceAlertForm from '../../components/PriceAlertForm';
 
 // Define params prop type for dynamic route
 type PageProps = {
-  params: {
+  params: Promise<{
     id: string;
-  };
+  }>;
 }
 
 export default function CoinDetailPage({ params }: PageProps) {
-  const { id } = params;
   const [coin, setCoin] = useState<CoinDetail | null>(null);
   const [chartData, setChartData] = useState<MarketChart | null>(null);
   const [timeframe, setTimeframe] = useState<number>(7); // Default to 7 days
   const [loading, setLoading] = useState<boolean>(true);
+  const [id, setId] = useState<string>('');
+
+  // Handle async params
+  useEffect(() => {
+    const resolveParams = async () => {
+      const resolvedParams = await params;
+      setId(resolvedParams.id);
+    };
+    resolveParams();
+  }, [params]);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchCoinData = async () => {
+      if (!id) return; // Don't fetch if id is not available yet
+      
       try {
         setLoading(true);
         const coinData = await getCoinDetails(id);
@@ -93,6 +104,9 @@ export default function CoinDetailPage({ params }: PageProps) {
             width={64} 
             height={64} 
             className="rounded-full mr-4"
+            onError={(e) => {
+              e.currentTarget.src = '/crypto-placeholder.svg';
+            }}
           />
           <div>
             <h1 className="text-3xl font-bold">{coin.name}</h1>

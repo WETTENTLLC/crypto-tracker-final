@@ -3,19 +3,16 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --gray-500: #4b5563; /* Darker than default gray-500 */
+  --gray-600: #374151; /* Darker than default gray-600 */
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
+    --gray-500: #bec5d0; /* Much lighter than default gray-500 in dark mode */
+    --gray-600: #e2e6eb; /* Much lighter than default gray-600 in dark mode */
   }
 }
 
@@ -23,4 +20,89 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Improved contrast for gray text */
+.text-gray-500 {
+  color: var(--gray-500) !important;
+  font-weight: 500 !important;
+}
+
+.text-gray-600 {
+  color: var(--gray-600) !important;
+  font-weight: 500 !important;
+}
+
+/* Improved styling for popup forms */
+.popup-container {
+  background-color: rgba(0, 0, 0, 0.8);
+  padding: 2rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.popup-content {
+  background-color: white;
+  border-radius: 0.75rem;
+  padding: 2.5rem;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3), 0 10px 10px -5px rgba(0, 0, 0, 0.2);
+  max-width: 500px;
+  width: 90%;
+  position: relative;
+}
+
+.popup-input {
+  border: 2px solid #d1d5db;
+  border-radius: 0.5rem;
+  padding: 0.875rem;
+  width: 100%;
+  margin-bottom: 1.25rem;
+  font-size: 1rem;
+}
+
+.popup-button {
+  background-color: #2563eb;
+  color: white;
+  border: none;
+  padding: 0.875rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  cursor: pointer;
+  width: 100%;
+  font-size: 1rem;
+  transition: background-color 0.2s;
+}
+
+.popup-button:hover {
+  background-color: #1d4ed8;
+}
+
+.popup-close {
+  background: none;
+  border: none;
+  position: absolute;
+  top: 1.25rem;
+  right: 1.25rem;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #6b7280;
+}
+
+/* Add higher contrast for form labels */
+label {
+  font-weight: 600;
+  color: #1f2937; /* dark gray */
+}
+
+/* Improve contrast for table headers */
+th.text-gray-500 {
+  color: #1f2937 !important; /* Much darker for better readability */
+  font-weight: 600;
 }
