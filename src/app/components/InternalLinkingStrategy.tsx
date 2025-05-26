@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useMemo } from 'react'
 import Link from 'next/link'
 
 interface InternalLink {
@@ -23,7 +23,7 @@ export default function InternalLinkingStrategy({
 }: InternalLinkingProps) {
   const [suggestedLinks, setSuggestedLinks] = useState<InternalLink[]>([])
 
-  const allLinks: InternalLink[] = [
+  const allLinks: InternalLink[] = useMemo(() => [
     // Learn section
     {
       href: '/learn/what-is-cryptocurrency',
@@ -97,7 +97,7 @@ export default function InternalLinkingStrategy({
       description: 'Common questions about cryptocurrency and CryptoTracker',
       category: 'faq'
     }
-  ]
+  ], [])
 
   useEffect(() => {
     // Filter out current page and excluded paths
@@ -114,7 +114,7 @@ export default function InternalLinkingStrategy({
 
     // Limit to 3-4 suggestions
     setSuggestedLinks(filteredLinks.slice(0, 4))
-  }, [currentPath, category])
+  }, [currentPath, category, allLinks, excludePaths])
 
   if (suggestedLinks.length === 0) {
     return null

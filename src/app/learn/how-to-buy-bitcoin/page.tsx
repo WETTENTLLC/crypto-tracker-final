@@ -48,7 +48,7 @@ export default function HowToBuyBitcoin() {
                   <ul className="list-disc pl-6 space-y-2">
                     <li><strong>Understand the Risks:</strong> Bitcoin is highly volatile and speculative</li>
                     <li><strong>Only Invest What You Can Afford to Lose:</strong> Never use money needed for essentials</li>
-                    <li><strong>Do Your Research:</strong> Understand Bitcoin's technology and market dynamics</li>
+                    <li><strong>Do Your Research:</strong> Understand Bitcoin&apos;s technology and market dynamics</li>
                     <li><strong>Plan for Security:</strong> Learn about wallet security and best practices</li>
                     <li><strong>Consider Tax Implications:</strong> Bitcoin purchases may have tax consequences</li>
                   </ul>
@@ -56,9 +56,9 @@ export default function HowToBuyBitcoin() {
               </section>
 
               <div itemProp="supply" itemScope itemType="https://schema.org/HowToSupply">
-                <h2 className="text-2xl font-semibold mb-4 text-orange-400">What You'll Need</h2>
+                <h2 className="text-2xl font-semibold mb-4 text-orange-400">What You&apos;ll Need</h2>
                 <ul className="list-disc pl-6 space-y-2 mb-8">
-                  <li itemProp="name">Government-issued ID (passport, driver's license)</li>
+                  <li itemProp="name">Government-issued ID (passport, driver&apos;s license)</li>
                   <li itemProp="name">Bank account or debit/credit card</li>
                   <li itemProp="name">Smartphone or computer with internet access</li>
                   <li itemProp="name">Email address and phone number</li>
@@ -145,7 +145,7 @@ export default function HowToBuyBitcoin() {
                     <h3 itemProp="name" className="text-xl font-semibold text-orange-400 mb-3">Step 4: Buy Bitcoin</h3>
                     <div itemProp="text">
                       <ol className="list-decimal pl-6 space-y-3 mb-4">
-                        <li>Navigate to the "Buy" or "Trade" section</li>
+                        <li>Navigate to the &quot;Buy&quot; or &quot;Trade&quot; section</li>
                         <li>Select Bitcoin (BTC) as the cryptocurrency to purchase</li>
                         <li>Choose your payment method</li>
                         <li>Enter the amount you want to spend (in USD/EUR) or Bitcoin amount</li>
@@ -237,7 +237,7 @@ export default function HowToBuyBitcoin() {
                 
                 <div className="grid md:grid-cols-2 gap-6">
                   <div className="bg-green-900/20 border border-green-500/30 p-4 rounded-lg">
-                    <h3 className="font-semibold text-green-400 mb-3">Do's</h3>
+                    <h3 className="font-semibold text-green-400 mb-3">Do&apos;s</h3>
                     <ul className="text-sm space-y-2">
                       <li>✅ Use strong, unique passwords</li>
                       <li>✅ Enable two-factor authentication</li>
@@ -248,11 +248,11 @@ export default function HowToBuyBitcoin() {
                     </ul>
                   </div>
                   <div className="bg-red-900/20 border border-red-500/30 p-4 rounded-lg">
-                    <h3 className="font-semibold text-red-400 mb-3">Don'ts</h3>
+                    <h3 className="font-semibold text-red-400 mb-3">Don&apos;ts</h3>
                     <ul className="text-sm space-y-2">
                       <li>❌ Share your private keys</li>
                       <li>❌ Use public Wi-Fi for trading</li>
-                      <li>❌ Fall for "guaranteed returns" scams</li>
+                      <li>❌ Fall for &quot;guaranteed returns&quot; scams</li>
                       <li>❌ Store large amounts on exchanges</li>
                       <li>❌ Ignore security warnings</li>
                       <li>❌ FOMO into purchases</li>

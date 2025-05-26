@@ -1,4 +1,5 @@
 import { Metadata } from 'next'
+import Link from 'next/link'
 
 export const metadata: Metadata = {
   title: 'Complete Guide to DeFi (Decentralized Finance) 2025 | CryptoTracker',
@@ -327,9 +328,9 @@ export default function DeFiGuide() {
           <p className="text-purple-100 mb-6">
             Monitor your DeFi investments, track yields, and get alerts for protocol updates with CryptoTracker.
           </p>
-          <a href="/" className="bg-white text-purple-600 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
+          <Link href="/" className="bg-white text-purple-600 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
             Start Tracking DeFi
-          </a>
+          </Link>
         </div>
       </div>
     </div>

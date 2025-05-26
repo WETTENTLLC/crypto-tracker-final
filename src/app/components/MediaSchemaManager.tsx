@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useCallback } from 'react'
 import Image from 'next/image'
 
 interface VideoSchema {
@@ -164,7 +164,7 @@ const SAMPLE_MEDIA_CONTENT: MediaContent[] = [
 export default function MediaSchemaManager() {
   const [mediaContent] = useState<MediaContent[]>(SAMPLE_MEDIA_CONTENT)
 
-  const generateMediaSchema = (content: MediaContent): VideoSchema | PodcastSchema | PodcastEpisodeSchema | LiveStreamSchema | null => {
+  const generateMediaSchema = useCallback((content: MediaContent): VideoSchema | PodcastSchema | PodcastEpisodeSchema | LiveStreamSchema | null => {
     switch (content.type) {
       case 'video':
         return generateVideoSchema(content)
@@ -177,7 +177,7 @@ export default function MediaSchemaManager() {
       default:
         return null
     }
-  }
+  }, [])
   const generateVideoSchema = (content: MediaContent): VideoSchema => {
     return {
       '@context': 'https://schema.org',

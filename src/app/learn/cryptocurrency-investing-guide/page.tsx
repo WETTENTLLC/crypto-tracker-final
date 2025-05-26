@@ -1,4 +1,5 @@
 import { Metadata } from 'next'
+import Link from 'next/link'
 
 export const metadata: Metadata = {
   title: 'Complete Guide to Cryptocurrency Investing for Beginners 2025 | CryptoTracker',
@@ -65,12 +66,11 @@ export default function CryptocurrencyInvestingGuide() {
       />
 
       <div className="container mx-auto px-4 py-8 max-w-4xl">
-        {/* Breadcrumbs */}
-        <nav className="mb-8 text-sm">
+        {/* Breadcrumbs */}        <nav className="mb-8 text-sm">
           <ol className="flex items-center space-x-2">
-            <li><a href="/" className="text-blue-600 hover:underline">Home</a></li>
+            <li><Link href="/" className="text-blue-600 hover:underline">Home</Link></li>
             <li className="text-gray-500">/</li>
-            <li><a href="/learn" className="text-blue-600 hover:underline">Learn</a></li>
+            <li><Link href="/learn" className="text-blue-600 hover:underline">Learn</Link></li>
             <li className="text-gray-500">/</li>
             <li className="text-gray-900">Cryptocurrency Investing Guide</li>
           </ol>
@@ -82,7 +82,7 @@ export default function CryptocurrencyInvestingGuide() {
             Complete Guide to Cryptocurrency Investing for Beginners 2025
           </h1>
           <p className="text-xl text-gray-600 leading-relaxed">
-            Learn how to invest in cryptocurrency safely with our comprehensive beginner's guide. 
+            Learn how to invest in cryptocurrency safely with our comprehensive beginner&apos;s guide. 
             Discover proven strategies, risk management techniques, and portfolio allocation tips 
             to start your crypto investing journey.
           </p>
@@ -113,7 +113,7 @@ export default function CryptocurrencyInvestingGuide() {
             <h2 className="text-3xl font-bold text-gray-900 mb-6">Understanding Cryptocurrency</h2>
             
             <p className="text-gray-600 mb-6">
-              Before diving into cryptocurrency investing, it's crucial to understand what cryptocurrencies are 
+              Before diving into cryptocurrency investing, it&apos;s crucial to understand what cryptocurrencies are 
               and how they work. Cryptocurrencies are digital or virtual currencies secured by cryptography, 
               making them nearly impossible to counterfeit.
             </p>
@@ -141,7 +141,7 @@ export default function CryptocurrencyInvestingGuide() {
             
             <h3 className="text-2xl font-semibold text-gray-900 mb-4">Step 1: Education First</h3>
             <p className="text-gray-600 mb-6">
-              Never invest in what you don't understand. Start by learning about blockchain technology, 
+              Never invest in what you don&apos;t understand. Start by learning about blockchain technology, 
               different types of cryptocurrencies, and market dynamics.
             </p>
 
@@ -285,33 +285,30 @@ export default function CryptocurrencyInvestingGuide() {
           <h3 className="text-2xl font-bold mb-4">Ready to Start Your Crypto Journey?</h3>
           <p className="text-blue-100 mb-6">
             Use CryptoTracker to monitor your investments, set price alerts, and manage your portfolio with confidence.
-          </p>
-          <div className="flex space-x-4">
-            <a href="/" className="bg-white text-blue-600 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
+          </p>          <div className="flex space-x-4">
+            <Link href="/" className="bg-white text-blue-600 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
               Start Tracking
-            </a>
-            <a href="/learn" className="border border-white text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors">
+            </Link>
+            <Link href="/learn" className="border border-white text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors">
               More Guides
-            </a>
+            </Link>
           </div>
-        </div>
-
-        {/* Related Articles */}
+        </div>        {/* Related Articles */}
         <div className="mt-12">
           <h3 className="text-2xl font-bold text-gray-900 mb-6">Related Articles</h3>
           <div className="grid md:grid-cols-3 gap-6">
-            <a href="/learn/what-is-cryptocurrency" className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+            <Link href="/learn/what-is-cryptocurrency" className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
               <h4 className="text-lg font-semibold text-gray-900 mb-2">What is Cryptocurrency?</h4>
               <p className="text-gray-600 text-sm">Learn the basics of digital currencies and blockchain technology.</p>
-            </a>
-            <a href="/learn/how-to-buy-bitcoin" className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+            </Link>
+            <Link href="/learn/how-to-buy-bitcoin" className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
               <h4 className="text-lg font-semibold text-gray-900 mb-2">How to Buy Bitcoin</h4>
               <p className="text-gray-600 text-sm">Step-by-step guide to purchasing your first Bitcoin safely.</p>
-            </a>
-            <a href="/faq" className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+            </Link>
+            <Link href="/faq" className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
               <h4 className="text-lg font-semibold text-gray-900 mb-2">Crypto FAQ</h4>
               <p className="text-gray-600 text-sm">Common questions about cryptocurrency and investing.</p>
-            </a>
+            </Link>
           </div>
         </div>
       </div>

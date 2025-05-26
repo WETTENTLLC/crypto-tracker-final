@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useCallback } from 'react'
 import { usePathname } from 'next/navigation'
 
 interface FAQItem {
@@ -260,7 +260,7 @@ export default function EnhancedFAQManager() {
   
   const filteredFAQs = CRYPTO_FAQS
 
-  const generateEnhancedFAQSchema = (): EnhancedFAQSchema => {
+  const generateEnhancedFAQSchema = useCallback((): EnhancedFAQSchema => {
     return {
       "@context": "https://schema.org",
       "@type": "FAQPage",
@@ -303,7 +303,7 @@ export default function EnhancedFAQManager() {
       dateModified: "2024-12-25",
       inLanguage: "en-US"
     }
-  }
+  }, [filteredFAQs])
 
   const generateHowToSchema = (guideKey: string): HowToSchema => {
     const guide = HOW_TO_GUIDES[guideKey as keyof typeof HOW_TO_GUIDES]

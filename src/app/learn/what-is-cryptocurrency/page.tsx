@@ -25,7 +25,7 @@ export default function WhatIsCryptocurrency() {
           <article itemScope itemType="https://schema.org/Article">
             <header className="mb-8">
               <h1 itemProp="headline" className="text-4xl font-bold mb-4 bg-gradient-to-r from-blue-400 to-purple-600 bg-clip-text text-transparent">
-                What is Cryptocurrency? Complete Beginner's Guide 2025
+                What is Cryptocurrency? Complete Beginner&apos;s Guide 2025
               </h1>
               <div className="flex items-center text-gray-400 mb-4">
                 <time itemProp="datePublished" dateTime="2025-05-24" className="mr-4">
@@ -92,12 +92,12 @@ export default function WhatIsCryptocurrency() {
                 <div className="space-y-6">
                   <div className="bg-orange-900/20 border border-orange-500/30 p-6 rounded-lg">
                     <h3 className="text-xl font-semibold text-orange-400 mb-2">Bitcoin (BTC)</h3>
-                    <p>The first and most well-known cryptocurrency, created in 2009 by the pseudonymous Satoshi Nakamoto. Often called "digital gold," Bitcoin serves as a store of value and medium of exchange.</p>
+                    <p>The first and most well-known cryptocurrency, created in 2009 by the pseudonymous Satoshi Nakamoto. Often called &quot;digital gold,&quot; Bitcoin serves as a store of value and medium of exchange.</p>
                   </div>
                   
                   <div className="bg-blue-900/20 border border-blue-500/30 p-6 rounded-lg">
                     <h3 className="text-xl font-semibold text-blue-400 mb-2">Ethereum (ETH)</h3>
-                    <p>A programmable blockchain platform that enables smart contracts and decentralized applications (DApps). Ethereum's native currency is Ether, but the platform supports thousands of other tokens.</p>
+                    <p>A programmable blockchain platform that enables smart contracts and decentralized applications (DApps). Ethereum&apos;s native currency is Ether, but the platform supports thousands of other tokens.</p>
                   </div>
                   
                   <div className="bg-green-900/20 border border-green-500/30 p-6 rounded-lg">
@@ -150,7 +150,7 @@ export default function WhatIsCryptocurrency() {
                   </div>
                   <div className="bg-blue-900/20 border border-blue-500/30 p-4 rounded-lg">
                     <h4 className="font-semibold text-blue-400 mb-2">HODLing</h4>
-                    <p className="text-sm">Long-term holding strategy based on belief in cryptocurrency's future value.</p>
+                    <p className="text-sm">Long-term holding strategy based on belief in cryptocurrency&apos;s future value.</p>
                   </div>
                   <div className="bg-purple-900/20 border border-purple-500/30 p-4 rounded-lg">
                     <h4 className="font-semibold text-purple-400 mb-2">Diversification</h4>
@@ -171,7 +171,7 @@ export default function WhatIsCryptocurrency() {
                     <li className="flex items-start">
                       <span className="text-red-400 mr-2">⚠️</span>
                       <div>
-                        <strong>FOMO (Fear of Missing Out):</strong> Don't chase pumps or make emotional decisions
+                        <strong>FOMO (Fear of Missing Out):</strong> Don&apos;t chase pumps or make emotional decisions
                       </div>
                     </li>
                     <li className="flex items-start">
@@ -189,7 +189,7 @@ export default function WhatIsCryptocurrency() {
                     <li className="flex items-start">
                       <span className="text-red-400 mr-2">⚠️</span>
                       <div>
-                        <strong>Falling for Scams:</strong> Be wary of "guaranteed returns" and fake exchanges
+                        <strong>Falling for Scams:</strong> Be wary of &quot;guaranteed returns&quot; and fake exchanges
                       </div>
                     </li>
                   </ul>

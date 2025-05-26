@@ -1,4 +1,5 @@
 import { Metadata } from 'next'
+import Link from 'next/link'
 
 export const metadata: Metadata = {
   title: 'NFT Guide for Beginners 2025 - Everything You Need to Know | CryptoTracker',
@@ -60,17 +61,15 @@ export default function NFTGuide() {
       />
 
       <div className="container mx-auto px-4 py-8 max-w-4xl">
-        {/* Breadcrumbs */}
         <nav className="mb-8 text-sm">
           <ol className="flex items-center space-x-2">
-            <li><a href="/" className="text-blue-600 hover:underline">Home</a></li>
+            <li><Link href="/" className="text-blue-600 hover:underline">Home</Link></li>
             <li className="text-gray-500">/</li>
-            <li><a href="/learn" className="text-blue-600 hover:underline">Learn</a></li>
+            <li><Link href="/learn" className="text-blue-600 hover:underline">Learn</Link></li>
             <li className="text-gray-500">/</li>
             <li className="text-gray-900">NFT Guide</li>
           </ol>
         </nav>
-
         {/* Header */}
         <header className="mb-12">
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
@@ -215,7 +214,7 @@ export default function NFTGuide() {
                   <span className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">Largest</span>
                 </div>
                 <p className="text-gray-600 mb-3">
-                  The world's largest NFT marketplace with the widest selection of digital assets.
+                  The world&apos;s largest NFT marketplace with the widest selection of digital assets.
                 </p>
                 <div className="text-sm text-gray-500">
                   • Supports multiple blockchains • Low fees • User-friendly interface
@@ -323,7 +322,7 @@ export default function NFTGuide() {
                 <ul className="text-red-700 space-y-2">
                   <li>• <strong>Market Volatility:</strong> NFT prices can fluctuate dramatically</li>
                   <li>• <strong>Liquidity Issues:</strong> May be difficult to sell when needed</li>
-                  <li>• <strong>Copyright Concerns:</strong> Ownership doesn't always mean copyright</li>
+                  <li>• <strong>Copyright Concerns:</strong> Ownership doesn&apos;t always mean copyright</li>
                   <li>• <strong>Technical Risks:</strong> Smart contract vulnerabilities</li>
                   <li>• <strong>Platform Dependency:</strong> Reliance on marketplace platforms</li>
                 </ul>
@@ -333,9 +332,9 @@ export default function NFTGuide() {
                 <h3 className="text-lg font-semibold text-blue-800 mb-2">Due Diligence Tips</h3>
                 <ul className="text-blue-700 space-y-2">
                   <li>• Research the creator and their previous work</li>
-                  <li>• Check the collection's roadmap and community</li>
+                  <li>• Check the collection&apos;s roadmap and community</li>
                   <li>• Verify the authenticity and rarity of the NFT</li>
-                  <li>• Understand the rights you're purchasing</li>
+                  <li>• Understand the rights you&apos;re purchasing</li>
                   <li>• Consider long-term value and utility</li>
                 </ul>
               </div>
@@ -348,29 +347,26 @@ export default function NFTGuide() {
           <h3 className="text-2xl font-bold mb-4">Track NFT Floor Prices</h3>
           <p className="text-purple-100 mb-6">
             Monitor NFT collection floor prices, track your NFT portfolio value, and get alerts 
-            for price movements with CryptoTracker's NFT tracking features.
+            for price movements with CryptoTracker&apos;s NFT tracking features.
           </p>
-          <a href="/" className="bg-white text-purple-600 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
+          <Link href="/" className="bg-white text-purple-600 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
             Start Tracking NFTs
-          </a>
+          </Link>
         </div>
-
-        {/* Related Articles */}
         <div className="mt-12">
-          <h3 className="text-2xl font-bold text-gray-900 mb-6">Related Articles</h3>
           <div className="grid md:grid-cols-3 gap-6">
-            <a href="/learn/defi-guide" className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+            <Link href="/learn/defi-guide" className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
               <h4 className="text-lg font-semibold text-gray-900 mb-2">DeFi Guide</h4>
               <p className="text-gray-600 text-sm">Learn about decentralized finance and yield farming.</p>
-            </a>
-            <a href="/learn/cryptocurrency-investing-guide" className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+            </Link>
+            <Link href="/learn/cryptocurrency-investing-guide" className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
               <h4 className="text-lg font-semibold text-gray-900 mb-2">Crypto Investing Guide</h4>
               <p className="text-gray-600 text-sm">Complete guide to cryptocurrency investing strategies.</p>
-            </a>
-            <a href="/learn/what-is-cryptocurrency" className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+            </Link>
+            <Link href="/learn/what-is-cryptocurrency" className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
               <h4 className="text-lg font-semibold text-gray-900 mb-2">What is Cryptocurrency?</h4>
               <p className="text-gray-600 text-sm">Learn the basics of digital currencies and blockchain.</p>
-            </a>
+            </Link>
           </div>
         </div>
       </div>

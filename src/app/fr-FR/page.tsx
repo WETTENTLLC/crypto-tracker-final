@@ -1,4 +1,5 @@
 import { Metadata } from 'next'
+import Link from 'next/link'
 
 export const metadata: Metadata = {
   title: 'CryptoTracker - Suivi des Cryptomonnaies en Temps Réel et Alertes de Prix',
@@ -57,11 +58,10 @@ export default function FrenchPage() {
               </p>
             </div>
           </div>
-          
           <div className="mt-12">
-            <a href="/" className="inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-8 rounded-lg transition-colors">
+            <Link href="/" className="inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-8 rounded-lg transition-colors">
               Commencer le Suivi
-            </a>
+            </Link>
           </div>
         </div>
       </div>

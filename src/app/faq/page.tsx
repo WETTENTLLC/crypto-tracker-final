@@ -1,7 +1,6 @@
 import { Metadata } from 'next'
 import Script from 'next/script'
 import AdvancedSEO from '../components/AdvancedSEO'
-import { EnhancedFAQDisplay } from '../components/EnhancedFAQManager'
 
 export const metadata: Metadata = {
   title: 'CryptoTracker FAQ - Frequently Asked Questions about Cryptocurrency Tracking',
@@ -165,7 +164,7 @@ export default function FAQ() {
           <section className="mt-16 bg-gradient-to-r from-blue-900/50 to-purple-900/50 rounded-lg p-8 border border-blue-500/30">
             <h2 className="text-2xl font-bold mb-4 text-center">Still Have Questions?</h2>
             <p className="text-center text-gray-300 mb-6">
-              Can't find the answer you're looking for? Our support team is here to help!
+              Can&apos;t find the answer you&apos;re looking for? Our support team is here to help!
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a 
