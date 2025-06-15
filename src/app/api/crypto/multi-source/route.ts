@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { getCoins, getGlobalData, getTrendingCoins } from '@/lib/multiSourceCryptoService';
+import { getCoins, getGlobalData, getTrendingCoins } from '../../../../lib/multiSourceCryptoService';
 
 export async function GET(request: NextRequest) {
   try {
