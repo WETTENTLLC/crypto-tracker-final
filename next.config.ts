@@ -1,7 +1,7 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  /* Production optimized configuration */
   eslint: {
     // Disable ESLint during production builds for deployment
     ignoreDuringBuilds: true,
@@ -10,6 +10,20 @@ const nextConfig: NextConfig = {
     // Ignore TypeScript errors during build
     ignoreBuildErrors: true,
   },
+  
+  // Production optimizations
+  trailingSlash: false,
+  generateEtags: true,
+  poweredByHeader: false,
+  compress: true,
+  
+  // Performance optimizations
+  experimental: {
+    optimizeCss: true,
+    optimizePackageImports: ['lucide-react'],
+  },
+  
+  // Image optimization
   images: {
     remotePatterns: [
       {
@@ -18,7 +32,24 @@ const nextConfig: NextConfig = {
         port: '',
         pathname: '/coins/images/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'assets.coingecko.com',
+        port: '',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'cryptotrackerapp.com',
+        port: '',
+        pathname: '/**',
+      },
     ],
+    formats: ['image/webp', 'image/avif'],
+    minimumCacheTTL: 3600, // 1 hour cache
+    dangerouslyAllowSVG: true,
+    contentDispositionType: 'attachment',
+    contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
   },
   async headers() {
     return [

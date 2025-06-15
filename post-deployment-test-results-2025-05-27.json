@@ -1,0 +1,262 @@
+{
+  "metadata": {
+    "timestamp": "2025-05-27T05:44:08.185Z",
+    "testSuite": "Post-Deployment Validation",
+    "version": "3.0.0"
+  },
+  "summary": {
+    "totalTests": 17,
+    "totalPassed": 16,
+    "totalFailed": 1,
+    "overallSuccessRate": 94
+  },
+  "results": [
+    {
+      "suiteName": "Deployed",
+      "baseUrl": "https://crypto-tracker-no-modules-63pevoa5x-wettentllcs-projects.vercel.app",
+      "results": [
+        {
+          "path": "/",
+          "name": "Homepage",
+          "category": "navigation",
+          "success": true,
+          "status": 200,
+          "url": "https://crypto-tracker-no-modules-63pevoa5x-wettentllcs-projects.vercel.app/",
+          "duration": 342,
+          "contentLength": 45577,
+          "hasContent": true,
+          "contentPreview": "<!DOCTYPE html><html lang=\"en\"><head><meta charSet=\"utf-8\"/><meta name=\"viewport\" content=\"width=device-width, initial-scale=1, maximum-scale=5, user-scalable=yes\"/><link rel=\"preload\" href=\"/_next/st",
+          "timestamp": "2025-05-27T05:43:49.172Z"
+        },
+        {
+          "path": "/dashboard",
+          "name": "Dashboard",
+          "category": "navigation",
+          "success": true,
+          "status": 200,
+          "url": "https://crypto-tracker-no-modules-63pevoa5x-wettentllcs-projects.vercel.app/dashboard",
+          "duration": 116,
+          "contentLength": 49047,
+          "hasContent": true,
+          "contentPreview": "<!DOCTYPE html><html lang=\"en\"><head><meta charSet=\"utf-8\"/><meta name=\"viewport\" content=\"width=device-width, initial-scale=1, maximum-scale=5, user-scalable=yes\"/><link rel=\"preload\" href=\"/_next/st",
+          "timestamp": "2025-05-27T05:43:49.497Z"
+        },
+        {
+          "path": "/alerts",
+          "name": "Price Alerts",
+          "category": "navigation",
+          "success": true,
+          "status": 200,
+          "url": "https://crypto-tracker-no-modules-63pevoa5x-wettentllcs-projects.vercel.app/alerts",
+          "duration": 58,
+          "contentLength": 33008,
+          "hasContent": true,
+          "contentPreview": "<!DOCTYPE html><html lang=\"en\"><head><meta charSet=\"utf-8\"/><meta name=\"viewport\" content=\"width=device-width, initial-scale=1, maximum-scale=5, user-scalable=yes\"/><link rel=\"preload\" href=\"/_next/st",
+          "timestamp": "2025-05-27T05:43:49.768Z"
+        },
+        {
+          "path": "/premium",
+          "name": "Premium Page",
+          "category": "navigation",
+          "success": true,
+          "status": 200,
+          "url": "https://crypto-tracker-no-modules-63pevoa5x-wettentllcs-projects.vercel.app/premium",
+          "duration": 764,
+          "contentLength": 32285,
+          "hasContent": true,
+          "contentPreview": "<!DOCTYPE html><html lang=\"en\"><head><meta charSet=\"utf-8\"/><meta name=\"viewport\" content=\"width=device-width, initial-scale=1, maximum-scale=5, user-scalable=yes\"/><link rel=\"preload\" href=\"/_next/st",
+          "timestamp": "2025-05-27T05:43:50.736Z"
+        },
+        {
+          "path": "/account",
+          "name": "Account Page",
+          "category": "navigation",
+          "success": true,
+          "status": 200,
+          "url": "https://crypto-tracker-no-modules-63pevoa5x-wettentllcs-projects.vercel.app/account",
+          "duration": 387,
+          "contentLength": 31999,
+          "hasContent": true,
+          "contentPreview": "<!DOCTYPE html><html lang=\"en\"><head><meta charSet=\"utf-8\"/><meta name=\"viewport\" content=\"width=device-width, initial-scale=1, maximum-scale=5, user-scalable=yes\"/><link rel=\"preload\" href=\"/_next/st",
+          "timestamp": "2025-05-27T05:43:51.325Z"
+        },
+        {
+          "path": "/faq",
+          "name": "FAQ Page",
+          "category": "navigation",
+          "success": true,
+          "status": 200,
+          "url": "https://crypto-tracker-no-modules-63pevoa5x-wettentllcs-projects.vercel.app/faq",
+          "duration": 918,
+          "contentLength": 86631,
+          "hasContent": true,
+          "contentPreview": "<!DOCTYPE html><html lang=\"en\"><head><meta charSet=\"utf-8\"/><meta name=\"viewport\" content=\"width=device-width, initial-scale=1, maximum-scale=5, user-scalable=yes\"/><link rel=\"preload\" href=\"/_next/st",
+          "timestamp": "2025-05-27T05:43:52.446Z"
+        },
+        {
+          "path": "/learn/cryptocurrency-investing-guide",
+          "name": "Crypto Investment Guide",
+          "category": "navigation",
+          "success": true,
+          "status": 200,
+          "url": "https://crypto-tracker-no-modules-63pevoa5x-wettentllcs-projects.vercel.app/learn/cryptocurrency-investing-guide",
+          "duration": 540,
+          "contentLength": 55807,
+          "hasContent": true,
+          "contentPreview": "<!DOCTYPE html><html lang=\"en\"><head><meta charSet=\"utf-8\"/><meta name=\"viewport\" content=\"width=device-width, initial-scale=1, maximum-scale=5, user-scalable=yes\"/><link rel=\"preload\" href=\"/_next/st",
+          "timestamp": "2025-05-27T05:43:53.195Z"
+        },
+        {
+          "path": "/learn/what-is-cryptocurrency",
+          "name": "What is Cryptocurrency",
+          "category": "navigation",
+          "success": true,
+          "status": 200,
+          "url": "https://crypto-tracker-no-modules-63pevoa5x-wettentllcs-projects.vercel.app/learn/what-is-cryptocurrency",
+          "duration": 481,
+          "contentLength": 54383,
+          "hasContent": true,
+          "contentPreview": "<!DOCTYPE html><html lang=\"en\"><head><meta charSet=\"utf-8\"/><meta name=\"viewport\" content=\"width=device-width, initial-scale=1, maximum-scale=5, user-scalable=yes\"/><link rel=\"preload\" href=\"/_next/st",
+          "timestamp": "2025-05-27T05:43:53.880Z"
+        },
+        {
+          "path": "/learn/how-to-buy-bitcoin",
+          "name": "How to Buy Bitcoin",
+          "category": "navigation",
+          "success": true,
+          "status": 200,
+          "url": "https://crypto-tracker-no-modules-63pevoa5x-wettentllcs-projects.vercel.app/learn/how-to-buy-bitcoin",
+          "duration": 698,
+          "contentLength": 62062,
+          "hasContent": true,
+          "contentPreview": "<!DOCTYPE html><html lang=\"en\"><head><meta charSet=\"utf-8\"/><meta name=\"viewport\" content=\"width=device-width, initial-scale=1, maximum-scale=5, user-scalable=yes\"/><link rel=\"preload\" href=\"/_next/st",
+          "timestamp": "2025-05-27T05:43:54.787Z"
+        },
+        {
+          "path": "/learn/defi-guide",
+          "name": "DeFi Guide",
+          "category": "navigation",
+          "success": true,
+          "status": 200,
+          "url": "https://crypto-tracker-no-modules-63pevoa5x-wettentllcs-projects.vercel.app/learn/defi-guide",
+          "duration": 1018,
+          "contentLength": 53135,
+          "hasContent": true,
+          "contentPreview": "<!DOCTYPE html><html lang=\"en\"><head><meta charSet=\"utf-8\"/><meta name=\"viewport\" content=\"width=device-width, initial-scale=1, maximum-scale=5, user-scalable=yes\"/><link rel=\"preload\" href=\"/_next/st",
+          "timestamp": "2025-05-27T05:43:56.009Z"
+        },
+        {
+          "path": "/learn/nft-guide",
+          "name": "NFT Guide",
+          "category": "navigation",
+          "success": true,
+          "status": 200,
+          "url": "https://crypto-tracker-no-modules-63pevoa5x-wettentllcs-projects.vercel.app/learn/nft-guide",
+          "duration": 803,
+          "contentLength": 58814,
+          "hasContent": true,
+          "contentPreview": "<!DOCTYPE html><html lang=\"en\"><head><meta charSet=\"utf-8\"/><meta name=\"viewport\" content=\"width=device-width, initial-scale=1, maximum-scale=5, user-scalable=yes\"/><link rel=\"preload\" href=\"/_next/st",
+          "timestamp": "2025-05-27T05:43:57.024Z"
+        },
+        {
+          "path": "/admin/login",
+          "name": "Admin Login",
+          "category": "admin",
+          "success": true,
+          "status": 200,
+          "url": "https://crypto-tracker-no-modules-63pevoa5x-wettentllcs-projects.vercel.app/admin/login",
+          "duration": 474,
+          "contentLength": 27704,
+          "hasContent": true,
+          "contentPreview": "<!DOCTYPE html><html lang=\"en\"><head><meta charSet=\"utf-8\"/><meta name=\"viewport\" content=\"width=device-width, initial-scale=1, maximum-scale=5, user-scalable=yes\"/><link rel=\"preload\" href=\"/_next/st",
+          "timestamp": "2025-05-27T05:43:57.700Z"
+        },
+        {
+          "path": "/api/mcp/content?type=market_update",
+          "name": "Market Update API",
+          "category": "api",
+          "success": true,
+          "status": 200,
+          "url": "https://crypto-tracker-no-modules-63pevoa5x-wettentllcs-projects.vercel.app/api/mcp/content?type=market_update",
+          "duration": 3616,
+          "contentLength": 2089,
+          "hasContent": true,
+          "contentPreview": "{\"success\":true,\"message\":\"Content generated and distributed successfully\",\"content\":{\"content\":\"📊 Crypto Market Update 📉\\n\\nGlobal Market: -2.77% (24h)\\nBTC Dominance: 61.2%\\n\\n🚀 Top Gainers (24h)",
+          "timestamp": "2025-05-27T05:44:01.528Z"
+        },
+        {
+          "path": "/api/mcp/content?type=trending_coins",
+          "name": "Trending Coins API",
+          "category": "api",
+          "success": true,
+          "status": 200,
+          "url": "https://crypto-tracker-no-modules-63pevoa5x-wettentllcs-projects.vercel.app/api/mcp/content?type=trending_coins",
+          "duration": 2448,
+          "contentLength": 1946,
+          "hasContent": true,
+          "contentPreview": "{\"success\":true,\"message\":\"Content generated and distributed successfully\",\"content\":{\"content\":\"🔥 Trending Coins Today 🔥\\n\\n1. Notcoin (NOT) | Rank #257\\n2. Sui (SUI) | Rank #14\\n3. Huma Finance (H",
+          "timestamp": "2025-05-27T05:44:04.185Z"
+        },
+        {
+          "path": "/api/mcp/content?type=price_alert",
+          "name": "Price Alert API",
+          "category": "api",
+          "success": true,
+          "status": 200,
+          "url": "https://crypto-tracker-no-modules-63pevoa5x-wettentllcs-projects.vercel.app/api/mcp/content?type=price_alert",
+          "duration": 2459,
+          "contentLength": 1877,
+          "hasContent": true,
+          "contentPreview": "{\"success\":true,\"message\":\"Content generated and distributed successfully\",\"content\":{\"content\":\"⚠️ Price Alert ⚠️\\n\\nBitcoin (BTC) has dropped below $102,409.11!\\n\\nCurrent price: $108,738\\n24h chang",
+          "timestamp": "2025-05-27T05:44:06.853Z"
+        },
+        {
+          "path": "/api/mcp/analytics",
+          "name": "Analytics API",
+          "category": "api",
+          "success": true,
+          "status": 200,
+          "url": "https://crypto-tracker-no-modules-63pevoa5x-wettentllcs-projects.vercel.app/api/mcp/analytics",
+          "duration": 154,
+          "contentLength": 70,
+          "hasContent": false,
+          "contentPreview": "{\"success\":true,\"data\":{\"events\":[],\"total\":0,\"limit\":100,\"offset\":0}}",
+          "timestamp": "2025-05-27T05:44:07.214Z"
+        },
+        {
+          "path": "/api/mcp/email-capture",
+          "name": "Email Capture API",
+          "category": "api",
+          "success": false,
+          "status": 405,
+          "url": "https://crypto-tracker-no-modules-63pevoa5x-wettentllcs-projects.vercel.app/api/mcp/email-capture",
+          "duration": 560,
+          "contentLength": 0,
+          "hasContent": false,
+          "contentPreview": "",
+          "timestamp": "2025-05-27T05:44:07.980Z"
+        }
+      ],
+      "summary": {
+        "total": 17,
+        "passed": 16,
+        "failed": 1,
+        "successRate": 94
+      }
+    }
+  ],
+  "analysis": {
+    "criticalIssues": [
+      {
+        "test": "Email Capture API",
+        "path": "/api/mcp/email-capture",
+        "status": 405,
+        "category": "api"
+      }
+    ],
+    "improvements": [],
+    "recommendations": [
+      "✅ Deployment largely successful. Address remaining issues."
+    ]
+  }
+}

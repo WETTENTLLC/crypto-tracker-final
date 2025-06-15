@@ -4,6 +4,7 @@
 import fs from 'fs';
 import path from 'path';
 import { format } from 'date-fns';
+import fetch from 'node-fetch'; // Added import for node-fetch
 
 // Configuration
 const config = {
@@ -22,27 +23,89 @@ if (!fs.existsSync(config.dataPath)) {
   fs.mkdirSync(config.dataPath, { recursive: true });
 }
 
-// Simulated revenue data fetching
-// In a real implementation, this would call your analytics API or payment processor APIs
+// Real revenue data fetching from analytics API
 const fetchRevenueData = async (stream, date) => {
-  // Placeholder for actual API calls
-  // Example: const response = await fetch(`https://api.payment-processor.com/revenue?stream=${stream}&date=${formatDate(date)}`);
-  
-  // For now, we'll simulate revenue growth
-  const daysSinceStart = Math.floor((date.getTime() - config.startDate.getTime()) / (1000 * 60 * 60 * 24));
-  
-  const baseRevenue = {
-    premium_subscriptions: 16.67, // $500/month base ÷ 30 days
-    advertising: 10.00,           // $300/month base ÷ 30 days
-    affiliate_marketing: 6.67,    // $200/month base ÷ 30 days
-    api_access: 3.33,             // $100/month base ÷ 30 days
-  };
-  
-  // Apply a small random fluctuation and growth over time
-  const growthFactor = 1 + (daysSinceStart * 0.005); // 0.5% daily growth
-  const randomFactor = 0.8 + (Math.random() * 0.4); // Random between 0.8 and 1.2
-  
-  return baseRevenue[stream] * growthFactor * randomFactor;
+  try {
+    // Format the date for the API query
+    const formattedDate = formatDateForFile(date);
+    console.log(`[DEBUG] fetchRevenueData called for stream: ${stream}, date: ${date}, formattedDate: ${formattedDate}`);
+
+    // Fetch actual revenue data from the analytics API
+    const analyticsApiUrl = `http://localhost:3003/api/mcp/analytics?eventName=revenue_recorded&date=${formattedDate}`;
+    console.log(`[DEBUG] Fetching analytics URL: ${analyticsApiUrl}`);
+    const response = await fetch(analyticsApiUrl);
+    console.log(`[DEBUG] Analytics API response status: ${response.status}, statusText: ${response.statusText}`);
+
+    if (!response.ok) {
+      const errorText = await response.text();
+      console.error(`[DEBUG] Analytics API error response text: ${errorText}`);
+      throw new Error(`Failed to fetch revenue data: ${response.status} ${response.statusText}`);
+    }
+    
+    const analyticsData = await response.json();
+    console.log('[DEBUG] Parsed analyticsData:', JSON.stringify(analyticsData, null, 2));
+    
+    if (!analyticsData.success || !analyticsData.data || !analyticsData.data.events) {
+      console.error('[DEBUG] Invalid analytics data structure in response.');
+      throw new Error('Invalid analytics data response');
+    }
+    
+    // Find events for this revenue stream on this date
+    console.log(`[DEBUG] Filtering ${analyticsData.data.events.length} events for stream: ${stream} AND date: ${formattedDate}`);
+    const streamEvents = analyticsData.data.events.filter(event => {
+      const eventMatches = event.eventData.stream === stream && event.eventData.date === formattedDate;
+      // if (event.eventData.date === formattedDate) { // Log all events for today to see what we got
+      //   console.log(`[DEBUG] Event for today found (stream ${event.eventData.stream}):`, JSON.stringify(event.eventData, null, 2));
+      // }
+      return eventMatches;
+    });
+    console.log(`[DEBUG] Found ${streamEvents.length} matching streamEvents:`, JSON.stringify(streamEvents, null, 2));
+    
+    // Calculate total revenue for this stream on this date
+    let totalRevenue = 0;
+    
+    if (streamEvents.length > 0) {
+      streamEvents.forEach(event => {
+        const amount = parseFloat(event.eventData.amount || 0);
+        totalRevenue += isNaN(amount) ? 0 : amount;
+      });
+      console.log(`[DEBUG] Calculated totalRevenue from streamEvents: ${totalRevenue}`);
+      return totalRevenue;
+    } else {
+      console.log(`[DEBUG] No direct streamEvents found for ${stream} on ${formattedDate}. Checking PayPal fallback if applicable.`);
+      // If no events are found, check for PayPal transactions for premium subscriptions
+      if (stream === 'premium_subscriptions') {
+        const paypalApiUrl = `http://localhost:3003/api/paypal/transactions?date=${formattedDate}`;
+        console.log(`[DEBUG] Fetching PayPal URL: ${paypalApiUrl}`);
+        const paypalResponse = await fetch(paypalApiUrl);
+        console.log(`[DEBUG] PayPal API response status: ${paypalResponse.status}, statusText: ${paypalResponse.statusText}`);
+
+        if (paypalResponse.ok) {
+          const paypalData = await paypalResponse.json();
+          console.log('[DEBUG] Parsed paypalData:', JSON.stringify(paypalData, null, 2));
+          if (paypalData.success && paypalData.transactions && paypalData.transactions.length > 0) {
+            totalRevenue = paypalData.transactions.reduce((total, tx) => total + parseFloat(tx.amount.value), 0);
+            console.log(`[DEBUG] Calculated totalRevenue from PayPal: ${totalRevenue}`);
+            return totalRevenue;
+          } else {
+            console.log('[DEBUG] No successful PayPal transactions found or empty transaction list.');
+          }
+        } else {
+          const paypalErrorText = await paypalResponse.text();
+          console.error(`[DEBUG] PayPal API error response text: ${paypalErrorText}`);
+          console.log('[DEBUG] PayPal fetch failed, returning 0 for this stream.');
+        }
+      }
+      
+      // Default to 0 if no data is found
+      console.log(`[DEBUG] No revenue found for ${stream} on ${formattedDate} after all checks. Returning 0.`);
+      return 0;
+    }
+  } catch (error) {
+    console.error(`Error fetching revenue data for ${stream}:`, error);
+    // Return 0 on error
+    return 0;
+  }
 };
 
 // Format date for filenames

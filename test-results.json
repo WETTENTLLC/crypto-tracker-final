@@ -1,0 +1,1092 @@
+{
+  "metadata": {
+    "timestamp": "2025-06-06T06:55:17.132Z",
+    "siteUrl": "https://crypto-tracker-no-modules-mbj901bup-wettentllcs-projects.vercel.app",
+    "testSuite": "CryptoTracker Comprehensive Test",
+    "version": "2.0.0",
+    "testDuration": "18.61s"
+  },
+  "summary": {
+    "total": 54,
+    "passed": 45,
+    "failed": 1,
+    "warnings": 8,
+    "errors": 0,
+    "duration": 18608
+  },
+  "categories": {
+    "navigation": {
+      "tests": [
+        {
+          "test": "Homepage Page Load",
+          "category": "navigation",
+          "status": "PASS",
+          "details": "HTTP 200, 1107ms, content verified",
+          "duration": 1107,
+          "url": "https://crypto-tracker-no-modules-mbj901bup-wettentllcs-projects.vercel.app/",
+          "timestamp": "2025-06-06T06:55:18.247Z"
+        },
+        {
+          "test": "Dashboard Page Load",
+          "category": "navigation",
+          "status": "PASS",
+          "details": "HTTP 200, 504ms, content verified",
+          "duration": 504,
+          "url": "https://crypto-tracker-no-modules-mbj901bup-wettentllcs-projects.vercel.app/dashboard",
+          "timestamp": "2025-06-06T06:55:18.867Z"
+        },
+        {
+          "test": "Price Alerts Page Load",
+          "category": "navigation",
+          "status": "PASS",
+          "details": "HTTP 200, 434ms, content verified",
+          "duration": 434,
+          "url": "https://crypto-tracker-no-modules-mbj901bup-wettentllcs-projects.vercel.app/alerts",
+          "timestamp": "2025-06-06T06:55:19.403Z"
+        },
+        {
+          "test": "Premium Page Load",
+          "category": "navigation",
+          "status": "WARNING",
+          "details": "HTTP 200, 402ms, content check: 2/3",
+          "duration": 402,
+          "url": "https://crypto-tracker-no-modules-mbj901bup-wettentllcs-projects.vercel.app/premium",
+          "timestamp": "2025-06-06T06:55:19.914Z"
+        },
+        {
+          "test": "Account Page Load",
+          "category": "navigation",
+          "status": "PASS",
+          "details": "HTTP 200, 389ms, content verified",
+          "duration": 389,
+          "url": "https://crypto-tracker-no-modules-mbj901bup-wettentllcs-projects.vercel.app/account",
+          "timestamp": "2025-06-06T06:55:20.418Z"
+        },
+        {
+          "test": "FAQ Page Load",
+          "category": "navigation",
+          "status": "PASS",
+          "details": "HTTP 200, 575ms, content verified",
+          "duration": 575,
+          "url": "https://crypto-tracker-no-modules-mbj901bup-wettentllcs-projects.vercel.app/faq",
+          "timestamp": "2025-06-06T06:55:21.102Z"
+        },
+        {
+          "test": "Crypto Guide Page Load",
+          "category": "navigation",
+          "status": "PASS",
+          "details": "HTTP 200, 406ms, content verified",
+          "duration": 406,
+          "url": "https://crypto-tracker-no-modules-mbj901bup-wettentllcs-projects.vercel.app/learn/cryptocurrency-investing-guide",
+          "timestamp": "2025-06-06T06:55:21.620Z"
+        },
+        {
+          "test": "What is Crypto Page Load",
+          "category": "navigation",
+          "status": "PASS",
+          "details": "HTTP 200, 438ms, content verified",
+          "duration": 438,
+          "url": "https://crypto-tracker-no-modules-mbj901bup-wettentllcs-projects.vercel.app/learn/what-is-cryptocurrency",
+          "timestamp": "2025-06-06T06:55:22.170Z"
+        },
+        {
+          "test": "How to Buy Bitcoin Page Load",
+          "category": "navigation",
+          "status": "PASS",
+          "details": "HTTP 200, 303ms, content verified",
+          "duration": 303,
+          "url": "https://crypto-tracker-no-modules-mbj901bup-wettentllcs-projects.vercel.app/learn/how-to-buy-bitcoin",
+          "timestamp": "2025-06-06T06:55:22.581Z"
+        },
+        {
+          "test": "DeFi Guide Page Load",
+          "category": "navigation",
+          "status": "PASS",
+          "details": "HTTP 200, 376ms, content verified",
+          "duration": 376,
+          "url": "https://crypto-tracker-no-modules-mbj901bup-wettentllcs-projects.vercel.app/learn/defi-guide",
+          "timestamp": "2025-06-06T06:55:23.059Z"
+        },
+        {
+          "test": "NFT Guide Page Load",
+          "category": "navigation",
+          "status": "PASS",
+          "details": "HTTP 200, 318ms, content verified",
+          "duration": 318,
+          "url": "https://crypto-tracker-no-modules-mbj901bup-wettentllcs-projects.vercel.app/learn/nft-guide",
+          "timestamp": "2025-06-06T06:55:23.490Z"
+        }
+      ],
+      "passed": 10,
+      "failed": 0,
+      "warnings": 1
+    },
+    "api": {
+      "tests": [
+        {
+          "test": "Market Update API",
+          "category": "api",
+          "status": "PASS",
+          "details": "HTTP 200, 3992ms, content valid",
+          "duration": 3992,
+          "url": "https://crypto-tracker-no-modules-mbj901bup-wettentllcs-projects.vercel.app/api/mcp/content?type=market_update",
+          "timestamp": "2025-06-06T06:55:27.586Z"
+        },
+        {
+          "test": "Trending Coins API",
+          "category": "api",
+          "status": "PASS",
+          "details": "HTTP 200, 2357ms, content valid",
+          "duration": 2357,
+          "url": "https://crypto-tracker-no-modules-mbj901bup-wettentllcs-projects.vercel.app/api/mcp/content?type=trending_coins",
+          "timestamp": "2025-06-06T06:55:29.944Z"
+        },
+        {
+          "test": "Price Alert API",
+          "category": "api",
+          "status": "PASS",
+          "details": "HTTP 200, 2375ms, content valid",
+          "duration": 2375,
+          "url": "https://crypto-tracker-no-modules-mbj901bup-wettentllcs-projects.vercel.app/api/mcp/content?type=price_alert",
+          "timestamp": "2025-06-06T06:55:32.319Z"
+        },
+        {
+          "test": "RSS Feed",
+          "category": "api",
+          "status": "PASS",
+          "details": "HTTP 200, 1397ms, content valid",
+          "duration": 1397,
+          "url": "https://crypto-tracker-no-modules-mbj901bup-wettentllcs-projects.vercel.app/api/rss",
+          "timestamp": "2025-06-06T06:55:33.716Z"
+        },
+        {
+          "test": "Email Capture API",
+          "category": "api",
+          "status": "PASS",
+          "details": "HTTP 200, 285ms",
+          "duration": 285,
+          "url": "https://crypto-tracker-no-modules-mbj901bup-wettentllcs-projects.vercel.app/api/mcp/email-capture",
+          "timestamp": "2025-06-06T06:55:34.001Z"
+        }
+      ],
+      "passed": 5,
+      "failed": 0,
+      "warnings": 0
+    },
+    "authentication": {
+      "tests": [
+        {
+          "test": "Admin Login Page Load",
+          "category": "authentication",
+          "status": "WARNING",
+          "details": "HTTP 200, 326ms, content check: 3/4",
+          "duration": 326,
+          "url": "https://crypto-tracker-no-modules-mbj901bup-wettentllcs-projects.vercel.app/admin/login",
+          "timestamp": "2025-06-06T06:55:34.329Z"
+        },
+        {
+          "test": "Login Form Elements",
+          "category": "authentication",
+          "status": "PASS",
+          "details": "Login form elements detected",
+          "duration": 0,
+          "url": "",
+          "timestamp": "2025-06-06T06:55:34.329Z"
+        },
+        {
+          "test": "Account Page Protection Page Load",
+          "category": "authentication",
+          "status": "WARNING",
+          "details": "HTTP 200, 38ms, content check: 2/3",
+          "duration": 38,
+          "url": "https://crypto-tracker-no-modules-mbj901bup-wettentllcs-projects.vercel.app/account",
+          "timestamp": "2025-06-06T06:55:34.367Z"
+        },
+        {
+          "test": "Account Protection",
+          "category": "authentication",
+          "status": "PASS",
+          "details": "Account page properly protected",
+          "duration": 0,
+          "url": "",
+          "timestamp": "2025-06-06T06:55:34.367Z"
+        }
+      ],
+      "passed": 2,
+      "failed": 0,
+      "warnings": 2
+    },
+    "payments": {
+      "tests": [
+        {
+          "test": "Premium Page Page Load",
+          "category": "payments",
+          "status": "WARNING",
+          "details": "HTTP 200, 45ms, content check: 3/4",
+          "duration": 45,
+          "url": "https://crypto-tracker-no-modules-mbj901bup-wettentllcs-projects.vercel.app/premium",
+          "timestamp": "2025-06-06T06:55:34.412Z"
+        },
+        {
+          "test": "PayPal Integration Present",
+          "category": "payments",
+          "status": "FAIL",
+          "details": "PayPal integration not detected",
+          "duration": 0,
+          "url": "",
+          "timestamp": "2025-06-06T06:55:34.412Z"
+        },
+        {
+          "test": "Pricing Information",
+          "category": "payments",
+          "status": "PASS",
+          "details": "Pricing information found",
+          "duration": 0,
+          "url": "",
+          "timestamp": "2025-06-06T06:55:34.412Z"
+        },
+        {
+          "test": "Premium Features Listed",
+          "category": "payments",
+          "status": "PASS",
+          "details": "Premium features described",
+          "duration": 0,
+          "url": "",
+          "timestamp": "2025-06-06T06:55:34.412Z"
+        },
+        {
+          "test": "PayPal Webhook Endpoint",
+          "category": "payments",
+          "status": "PASS",
+          "details": "Webhook endpoint exists (Method Not Allowed expected for GET)",
+          "duration": 289,
+          "url": "https://crypto-tracker-no-modules-mbj901bup-wettentllcs-projects.vercel.app/api/webhooks/paypal",
+          "timestamp": "2025-06-06T06:55:34.701Z"
+        }
+      ],
+      "passed": 3,
+      "failed": 1,
+      "warnings": 1
+    },
+    "crypto_data": {
+      "tests": [
+        {
+          "test": "Homepage Crypto Data Page Load",
+          "category": "crypto_data",
+          "status": "PASS",
+          "details": "HTTP 200, 71ms, content verified",
+          "duration": 71,
+          "url": "https://crypto-tracker-no-modules-mbj901bup-wettentllcs-projects.vercel.app/",
+          "timestamp": "2025-06-06T06:55:34.773Z"
+        },
+        {
+          "test": "Price Data Display",
+          "category": "crypto_data",
+          "status": "PASS",
+          "details": "Cryptocurrency price data found on homepage",
+          "duration": 0,
+          "url": "",
+          "timestamp": "2025-06-06T06:55:34.773Z"
+        },
+        {
+          "test": "Market Data Display",
+          "category": "crypto_data",
+          "status": "PASS",
+          "details": "Market cap/volume data found",
+          "duration": 0,
+          "url": "",
+          "timestamp": "2025-06-06T06:55:34.773Z"
+        },
+        {
+          "test": "Trending Coins",
+          "category": "crypto_data",
+          "status": "PASS",
+          "details": "Trending/popular coins section found",
+          "duration": 0,
+          "url": "",
+          "timestamp": "2025-06-06T06:55:34.773Z"
+        },
+        {
+          "test": "Dashboard Crypto Data Page Load",
+          "category": "crypto_data",
+          "status": "PASS",
+          "details": "HTTP 200, 43ms, content verified",
+          "duration": 43,
+          "url": "https://crypto-tracker-no-modules-mbj901bup-wettentllcs-projects.vercel.app/dashboard",
+          "timestamp": "2025-06-06T06:55:34.817Z"
+        },
+        {
+          "test": "Portfolio Display",
+          "category": "crypto_data",
+          "status": "PASS",
+          "details": "Portfolio functionality found on dashboard",
+          "duration": 0,
+          "url": "",
+          "timestamp": "2025-06-06T06:55:34.817Z"
+        }
+      ],
+      "passed": 6,
+      "failed": 0,
+      "warnings": 0
+    },
+    "alerts": {
+      "tests": [
+        {
+          "test": "Alerts Page Page Load",
+          "category": "alerts",
+          "status": "PASS",
+          "details": "HTTP 200, 38ms, content verified",
+          "duration": 38,
+          "url": "https://crypto-tracker-no-modules-mbj901bup-wettentllcs-projects.vercel.app/alerts",
+          "timestamp": "2025-06-06T06:55:34.855Z"
+        },
+        {
+          "test": "Alert Creation Interface",
+          "category": "alerts",
+          "status": "PASS",
+          "details": "Alert creation interface found",
+          "duration": 0,
+          "url": "",
+          "timestamp": "2025-06-06T06:55:34.855Z"
+        },
+        {
+          "test": "Free Tier Limitations",
+          "category": "alerts",
+          "status": "WARNING",
+          "details": "Free tier limitations not clearly communicated",
+          "duration": 0,
+          "url": "",
+          "timestamp": "2025-06-06T06:55:34.855Z"
+        },
+        {
+          "test": "Premium Upsell",
+          "category": "alerts",
+          "status": "WARNING",
+          "details": "Premium upsell not clearly presented",
+          "duration": 0,
+          "url": "",
+          "timestamp": "2025-06-06T06:55:34.856Z"
+        }
+      ],
+      "passed": 2,
+      "failed": 0,
+      "warnings": 2
+    },
+    "premium": {
+      "tests": [
+        {
+          "test": "Premium Account Page Page Load",
+          "category": "premium",
+          "status": "WARNING",
+          "details": "HTTP 200, 38ms, content check: 2/3",
+          "duration": 38,
+          "url": "https://crypto-tracker-no-modules-mbj901bup-wettentllcs-projects.vercel.app/account",
+          "timestamp": "2025-06-06T06:55:34.894Z"
+        },
+        {
+          "test": "Subscription Management",
+          "category": "premium",
+          "status": "PASS",
+          "details": "Subscription management features found",
+          "duration": 0,
+          "url": "",
+          "timestamp": "2025-06-06T06:55:34.894Z"
+        },
+        {
+          "test": "Premium Feature Access",
+          "category": "premium",
+          "status": "PASS",
+          "details": "Premium features properly described",
+          "duration": 0,
+          "url": "",
+          "timestamp": "2025-06-06T06:55:34.895Z"
+        }
+      ],
+      "passed": 2,
+      "failed": 0,
+      "warnings": 1
+    },
+    "admin": {
+      "tests": [],
+      "passed": 0,
+      "failed": 0,
+      "warnings": 0
+    },
+    "performance": {
+      "tests": [
+        {
+          "test": "Load Time: homepage",
+          "category": "performance",
+          "status": "PASS",
+          "details": "41ms (excellent)",
+          "duration": 41,
+          "url": "https://crypto-tracker-no-modules-mbj901bup-wettentllcs-projects.vercel.app/",
+          "timestamp": "2025-06-06T06:55:34.936Z"
+        },
+        {
+          "test": "Page Size: homepage",
+          "category": "performance",
+          "status": "PASS",
+          "details": "44.5KB (good)",
+          "duration": 41,
+          "url": "https://crypto-tracker-no-modules-mbj901bup-wettentllcs-projects.vercel.app/",
+          "timestamp": "2025-06-06T06:55:34.936Z"
+        },
+        {
+          "test": "Load Time: dashboard",
+          "category": "performance",
+          "status": "PASS",
+          "details": "66ms (excellent)",
+          "duration": 66,
+          "url": "https://crypto-tracker-no-modules-mbj901bup-wettentllcs-projects.vercel.app/dashboard",
+          "timestamp": "2025-06-06T06:55:35.002Z"
+        },
+        {
+          "test": "Page Size: dashboard",
+          "category": "performance",
+          "status": "PASS",
+          "details": "48.0KB (good)",
+          "duration": 66,
+          "url": "https://crypto-tracker-no-modules-mbj901bup-wettentllcs-projects.vercel.app/dashboard",
+          "timestamp": "2025-06-06T06:55:35.002Z"
+        },
+        {
+          "test": "Load Time: premium",
+          "category": "performance",
+          "status": "PASS",
+          "details": "40ms (excellent)",
+          "duration": 40,
+          "url": "https://crypto-tracker-no-modules-mbj901bup-wettentllcs-projects.vercel.app/premium",
+          "timestamp": "2025-06-06T06:55:35.042Z"
+        },
+        {
+          "test": "Page Size: premium",
+          "category": "performance",
+          "status": "PASS",
+          "details": "31.7KB (good)",
+          "duration": 40,
+          "url": "https://crypto-tracker-no-modules-mbj901bup-wettentllcs-projects.vercel.app/premium",
+          "timestamp": "2025-06-06T06:55:35.042Z"
+        },
+        {
+          "test": "Average Load Time",
+          "category": "performance",
+          "status": "PASS",
+          "details": "49ms across 3 pages",
+          "duration": 0,
+          "url": "",
+          "timestamp": "2025-06-06T06:55:35.042Z"
+        }
+      ],
+      "passed": 7,
+      "failed": 0,
+      "warnings": 0
+    },
+    "seo": {
+      "tests": [
+        {
+          "test": "Title Tag",
+          "category": "seo",
+          "status": "PASS",
+          "details": "Title tag found",
+          "duration": 0,
+          "url": "",
+          "timestamp": "2025-06-06T06:55:35.089Z"
+        },
+        {
+          "test": "Meta Description",
+          "category": "seo",
+          "status": "PASS",
+          "details": "Meta description found",
+          "duration": 0,
+          "url": "",
+          "timestamp": "2025-06-06T06:55:35.089Z"
+        },
+        {
+          "test": "Open Graph Tags",
+          "category": "seo",
+          "status": "PASS",
+          "details": "Open Graph tags found",
+          "duration": 0,
+          "url": "",
+          "timestamp": "2025-06-06T06:55:35.089Z"
+        },
+        {
+          "test": "Structured Data",
+          "category": "seo",
+          "status": "PASS",
+          "details": "Structured data found",
+          "duration": 0,
+          "url": "",
+          "timestamp": "2025-06-06T06:55:35.089Z"
+        },
+        {
+          "test": "Canonical URL",
+          "category": "seo",
+          "status": "PASS",
+          "details": "Canonical URL found",
+          "duration": 0,
+          "url": "",
+          "timestamp": "2025-06-06T06:55:35.089Z"
+        },
+        {
+          "test": "Robots Meta Tag",
+          "category": "seo",
+          "status": "PASS",
+          "details": "Robots meta tag found",
+          "duration": 0,
+          "url": "",
+          "timestamp": "2025-06-06T06:55:35.089Z"
+        },
+        {
+          "test": "Heading Tags",
+          "category": "seo",
+          "status": "WARNING",
+          "details": "Heading tags not found",
+          "duration": 0,
+          "url": "",
+          "timestamp": "2025-06-06T06:55:35.089Z"
+        },
+        {
+          "test": "Robots.txt",
+          "category": "seo",
+          "status": "PASS",
+          "details": "Robots.txt exists and accessible",
+          "duration": 0,
+          "url": "",
+          "timestamp": "2025-06-06T06:55:35.448Z"
+        },
+        {
+          "test": "Sitemap",
+          "category": "seo",
+          "status": "PASS",
+          "details": "Sitemap.xml exists and accessible",
+          "duration": 0,
+          "url": "",
+          "timestamp": "2025-06-06T06:55:35.741Z"
+        }
+      ],
+      "passed": 8,
+      "failed": 0,
+      "warnings": 1
+    }
+  },
+  "recommendations": [
+    {
+      "priority": "HIGH",
+      "category": "Critical Issues",
+      "items": [
+        "PayPal Integration Present: PayPal integration not detected"
+      ]
+    },
+    {
+      "priority": "MEDIUM",
+      "category": "Improvements",
+      "items": [
+        "Premium Page Load: HTTP 200, 402ms, content check: 2/3",
+        "Admin Login Page Load: HTTP 200, 326ms, content check: 3/4",
+        "Account Page Protection Page Load: HTTP 200, 38ms, content check: 2/3",
+        "Premium Page Page Load: HTTP 200, 45ms, content check: 3/4",
+        "Free Tier Limitations: Free tier limitations not clearly communicated",
+        "Premium Upsell: Premium upsell not clearly presented",
+        "Premium Account Page Page Load: HTTP 200, 38ms, content check: 2/3",
+        "Heading Tags: Heading tags not found"
+      ]
+    },
+    {
+      "priority": "LOW",
+      "category": "SEO",
+      "items": [
+        "Improve Heading Tags: Heading tags not found"
+      ]
+    }
+  ],
+  "detailed_results": [
+    {
+      "test": "Homepage Page Load",
+      "category": "navigation",
+      "status": "PASS",
+      "details": "HTTP 200, 1107ms, content verified",
+      "duration": 1107,
+      "url": "https://crypto-tracker-no-modules-mbj901bup-wettentllcs-projects.vercel.app/",
+      "timestamp": "2025-06-06T06:55:18.247Z"
+    },
+    {
+      "test": "Dashboard Page Load",
+      "category": "navigation",
+      "status": "PASS",
+      "details": "HTTP 200, 504ms, content verified",
+      "duration": 504,
+      "url": "https://crypto-tracker-no-modules-mbj901bup-wettentllcs-projects.vercel.app/dashboard",
+      "timestamp": "2025-06-06T06:55:18.867Z"
+    },
+    {
+      "test": "Price Alerts Page Load",
+      "category": "navigation",
+      "status": "PASS",
+      "details": "HTTP 200, 434ms, content verified",
+      "duration": 434,
+      "url": "https://crypto-tracker-no-modules-mbj901bup-wettentllcs-projects.vercel.app/alerts",
+      "timestamp": "2025-06-06T06:55:19.403Z"
+    },
+    {
+      "test": "Premium Page Load",
+      "category": "navigation",
+      "status": "WARNING",
+      "details": "HTTP 200, 402ms, content check: 2/3",
+      "duration": 402,
+      "url": "https://crypto-tracker-no-modules-mbj901bup-wettentllcs-projects.vercel.app/premium",
+      "timestamp": "2025-06-06T06:55:19.914Z"
+    },
+    {
+      "test": "Account Page Load",
+      "category": "navigation",
+      "status": "PASS",
+      "details": "HTTP 200, 389ms, content verified",
+      "duration": 389,
+      "url": "https://crypto-tracker-no-modules-mbj901bup-wettentllcs-projects.vercel.app/account",
+      "timestamp": "2025-06-06T06:55:20.418Z"
+    },
+    {
+      "test": "FAQ Page Load",
+      "category": "navigation",
+      "status": "PASS",
+      "details": "HTTP 200, 575ms, content verified",
+      "duration": 575,
+      "url": "https://crypto-tracker-no-modules-mbj901bup-wettentllcs-projects.vercel.app/faq",
+      "timestamp": "2025-06-06T06:55:21.102Z"
+    },
+    {
+      "test": "Crypto Guide Page Load",
+      "category": "navigation",
+      "status": "PASS",
+      "details": "HTTP 200, 406ms, content verified",
+      "duration": 406,
+      "url": "https://crypto-tracker-no-modules-mbj901bup-wettentllcs-projects.vercel.app/learn/cryptocurrency-investing-guide",
+      "timestamp": "2025-06-06T06:55:21.620Z"
+    },
+    {
+      "test": "What is Crypto Page Load",
+      "category": "navigation",
+      "status": "PASS",
+      "details": "HTTP 200, 438ms, content verified",
+      "duration": 438,
+      "url": "https://crypto-tracker-no-modules-mbj901bup-wettentllcs-projects.vercel.app/learn/what-is-cryptocurrency",
+      "timestamp": "2025-06-06T06:55:22.170Z"
+    },
+    {
+      "test": "How to Buy Bitcoin Page Load",
+      "category": "navigation",
+      "status": "PASS",
+      "details": "HTTP 200, 303ms, content verified",
+      "duration": 303,
+      "url": "https://crypto-tracker-no-modules-mbj901bup-wettentllcs-projects.vercel.app/learn/how-to-buy-bitcoin",
+      "timestamp": "2025-06-06T06:55:22.581Z"
+    },
+    {
+      "test": "DeFi Guide Page Load",
+      "category": "navigation",
+      "status": "PASS",
+      "details": "HTTP 200, 376ms, content verified",
+      "duration": 376,
+      "url": "https://crypto-tracker-no-modules-mbj901bup-wettentllcs-projects.vercel.app/learn/defi-guide",
+      "timestamp": "2025-06-06T06:55:23.059Z"
+    },
+    {
+      "test": "NFT Guide Page Load",
+      "category": "navigation",
+      "status": "PASS",
+      "details": "HTTP 200, 318ms, content verified",
+      "duration": 318,
+      "url": "https://crypto-tracker-no-modules-mbj901bup-wettentllcs-projects.vercel.app/learn/nft-guide",
+      "timestamp": "2025-06-06T06:55:23.490Z"
+    },
+    {
+      "test": "Market Update API",
+      "category": "api",
+      "status": "PASS",
+      "details": "HTTP 200, 3992ms, content valid",
+      "duration": 3992,
+      "url": "https://crypto-tracker-no-modules-mbj901bup-wettentllcs-projects.vercel.app/api/mcp/content?type=market_update",
+      "timestamp": "2025-06-06T06:55:27.586Z"
+    },
+    {
+      "test": "Trending Coins API",
+      "category": "api",
+      "status": "PASS",
+      "details": "HTTP 200, 2357ms, content valid",
+      "duration": 2357,
+      "url": "https://crypto-tracker-no-modules-mbj901bup-wettentllcs-projects.vercel.app/api/mcp/content?type=trending_coins",
+      "timestamp": "2025-06-06T06:55:29.944Z"
+    },
+    {
+      "test": "Price Alert API",
+      "category": "api",
+      "status": "PASS",
+      "details": "HTTP 200, 2375ms, content valid",
+      "duration": 2375,
+      "url": "https://crypto-tracker-no-modules-mbj901bup-wettentllcs-projects.vercel.app/api/mcp/content?type=price_alert",
+      "timestamp": "2025-06-06T06:55:32.319Z"
+    },
+    {
+      "test": "RSS Feed",
+      "category": "api",
+      "status": "PASS",
+      "details": "HTTP 200, 1397ms, content valid",
+      "duration": 1397,
+      "url": "https://crypto-tracker-no-modules-mbj901bup-wettentllcs-projects.vercel.app/api/rss",
+      "timestamp": "2025-06-06T06:55:33.716Z"
+    },
+    {
+      "test": "Email Capture API",
+      "category": "api",
+      "status": "PASS",
+      "details": "HTTP 200, 285ms",
+      "duration": 285,
+      "url": "https://crypto-tracker-no-modules-mbj901bup-wettentllcs-projects.vercel.app/api/mcp/email-capture",
+      "timestamp": "2025-06-06T06:55:34.001Z"
+    },
+    {
+      "test": "Admin Login Page Load",
+      "category": "authentication",
+      "status": "WARNING",
+      "details": "HTTP 200, 326ms, content check: 3/4",
+      "duration": 326,
+      "url": "https://crypto-tracker-no-modules-mbj901bup-wettentllcs-projects.vercel.app/admin/login",
+      "timestamp": "2025-06-06T06:55:34.329Z"
+    },
+    {
+      "test": "Login Form Elements",
+      "category": "authentication",
+      "status": "PASS",
+      "details": "Login form elements detected",
+      "duration": 0,
+      "url": "",
+      "timestamp": "2025-06-06T06:55:34.329Z"
+    },
+    {
+      "test": "Account Page Protection Page Load",
+      "category": "authentication",
+      "status": "WARNING",
+      "details": "HTTP 200, 38ms, content check: 2/3",
+      "duration": 38,
+      "url": "https://crypto-tracker-no-modules-mbj901bup-wettentllcs-projects.vercel.app/account",
+      "timestamp": "2025-06-06T06:55:34.367Z"
+    },
+    {
+      "test": "Account Protection",
+      "category": "authentication",
+      "status": "PASS",
+      "details": "Account page properly protected",
+      "duration": 0,
+      "url": "",
+      "timestamp": "2025-06-06T06:55:34.367Z"
+    },
+    {
+      "test": "Premium Page Page Load",
+      "category": "payments",
+      "status": "WARNING",
+      "details": "HTTP 200, 45ms, content check: 3/4",
+      "duration": 45,
+      "url": "https://crypto-tracker-no-modules-mbj901bup-wettentllcs-projects.vercel.app/premium",
+      "timestamp": "2025-06-06T06:55:34.412Z"
+    },
+    {
+      "test": "PayPal Integration Present",
+      "category": "payments",
+      "status": "FAIL",
+      "details": "PayPal integration not detected",
+      "duration": 0,
+      "url": "",
+      "timestamp": "2025-06-06T06:55:34.412Z"
+    },
+    {
+      "test": "Pricing Information",
+      "category": "payments",
+      "status": "PASS",
+      "details": "Pricing information found",
+      "duration": 0,
+      "url": "",
+      "timestamp": "2025-06-06T06:55:34.412Z"
+    },
+    {
+      "test": "Premium Features Listed",
+      "category": "payments",
+      "status": "PASS",
+      "details": "Premium features described",
+      "duration": 0,
+      "url": "",
+      "timestamp": "2025-06-06T06:55:34.412Z"
+    },
+    {
+      "test": "PayPal Webhook Endpoint",
+      "category": "payments",
+      "status": "PASS",
+      "details": "Webhook endpoint exists (Method Not Allowed expected for GET)",
+      "duration": 289,
+      "url": "https://crypto-tracker-no-modules-mbj901bup-wettentllcs-projects.vercel.app/api/webhooks/paypal",
+      "timestamp": "2025-06-06T06:55:34.701Z"
+    },
+    {
+      "test": "Homepage Crypto Data Page Load",
+      "category": "crypto_data",
+      "status": "PASS",
+      "details": "HTTP 200, 71ms, content verified",
+      "duration": 71,
+      "url": "https://crypto-tracker-no-modules-mbj901bup-wettentllcs-projects.vercel.app/",
+      "timestamp": "2025-06-06T06:55:34.773Z"
+    },
+    {
+      "test": "Price Data Display",
+      "category": "crypto_data",
+      "status": "PASS",
+      "details": "Cryptocurrency price data found on homepage",
+      "duration": 0,
+      "url": "",
+      "timestamp": "2025-06-06T06:55:34.773Z"
+    },
+    {
+      "test": "Market Data Display",
+      "category": "crypto_data",
+      "status": "PASS",
+      "details": "Market cap/volume data found",
+      "duration": 0,
+      "url": "",
+      "timestamp": "2025-06-06T06:55:34.773Z"
+    },
+    {
+      "test": "Trending Coins",
+      "category": "crypto_data",
+      "status": "PASS",
+      "details": "Trending/popular coins section found",
+      "duration": 0,
+      "url": "",
+      "timestamp": "2025-06-06T06:55:34.773Z"
+    },
+    {
+      "test": "Dashboard Crypto Data Page Load",
+      "category": "crypto_data",
+      "status": "PASS",
+      "details": "HTTP 200, 43ms, content verified",
+      "duration": 43,
+      "url": "https://crypto-tracker-no-modules-mbj901bup-wettentllcs-projects.vercel.app/dashboard",
+      "timestamp": "2025-06-06T06:55:34.817Z"
+    },
+    {
+      "test": "Portfolio Display",
+      "category": "crypto_data",
+      "status": "PASS",
+      "details": "Portfolio functionality found on dashboard",
+      "duration": 0,
+      "url": "",
+      "timestamp": "2025-06-06T06:55:34.817Z"
+    },
+    {
+      "test": "Alerts Page Page Load",
+      "category": "alerts",
+      "status": "PASS",
+      "details": "HTTP 200, 38ms, content verified",
+      "duration": 38,
+      "url": "https://crypto-tracker-no-modules-mbj901bup-wettentllcs-projects.vercel.app/alerts",
+      "timestamp": "2025-06-06T06:55:34.855Z"
+    },
+    {
+      "test": "Alert Creation Interface",
+      "category": "alerts",
+      "status": "PASS",
+      "details": "Alert creation interface found",
+      "duration": 0,
+      "url": "",
+      "timestamp": "2025-06-06T06:55:34.855Z"
+    },
+    {
+      "test": "Free Tier Limitations",
+      "category": "alerts",
+      "status": "WARNING",
+      "details": "Free tier limitations not clearly communicated",
+      "duration": 0,
+      "url": "",
+      "timestamp": "2025-06-06T06:55:34.855Z"
+    },
+    {
+      "test": "Premium Upsell",
+      "category": "alerts",
+      "status": "WARNING",
+      "details": "Premium upsell not clearly presented",
+      "duration": 0,
+      "url": "",
+      "timestamp": "2025-06-06T06:55:34.856Z"
+    },
+    {
+      "test": "Premium Account Page Page Load",
+      "category": "premium",
+      "status": "WARNING",
+      "details": "HTTP 200, 38ms, content check: 2/3",
+      "duration": 38,
+      "url": "https://crypto-tracker-no-modules-mbj901bup-wettentllcs-projects.vercel.app/account",
+      "timestamp": "2025-06-06T06:55:34.894Z"
+    },
+    {
+      "test": "Subscription Management",
+      "category": "premium",
+      "status": "PASS",
+      "details": "Subscription management features found",
+      "duration": 0,
+      "url": "",
+      "timestamp": "2025-06-06T06:55:34.894Z"
+    },
+    {
+      "test": "Premium Feature Access",
+      "category": "premium",
+      "status": "PASS",
+      "details": "Premium features properly described",
+      "duration": 0,
+      "url": "",
+      "timestamp": "2025-06-06T06:55:34.895Z"
+    },
+    {
+      "test": "Load Time: homepage",
+      "category": "performance",
+      "status": "PASS",
+      "details": "41ms (excellent)",
+      "duration": 41,
+      "url": "https://crypto-tracker-no-modules-mbj901bup-wettentllcs-projects.vercel.app/",
+      "timestamp": "2025-06-06T06:55:34.936Z"
+    },
+    {
+      "test": "Page Size: homepage",
+      "category": "performance",
+      "status": "PASS",
+      "details": "44.5KB (good)",
+      "duration": 41,
+      "url": "https://crypto-tracker-no-modules-mbj901bup-wettentllcs-projects.vercel.app/",
+      "timestamp": "2025-06-06T06:55:34.936Z"
+    },
+    {
+      "test": "Load Time: dashboard",
+      "category": "performance",
+      "status": "PASS",
+      "details": "66ms (excellent)",
+      "duration": 66,
+      "url": "https://crypto-tracker-no-modules-mbj901bup-wettentllcs-projects.vercel.app/dashboard",
+      "timestamp": "2025-06-06T06:55:35.002Z"
+    },
+    {
+      "test": "Page Size: dashboard",
+      "category": "performance",
+      "status": "PASS",
+      "details": "48.0KB (good)",
+      "duration": 66,
+      "url": "https://crypto-tracker-no-modules-mbj901bup-wettentllcs-projects.vercel.app/dashboard",
+      "timestamp": "2025-06-06T06:55:35.002Z"
+    },
+    {
+      "test": "Load Time: premium",
+      "category": "performance",
+      "status": "PASS",
+      "details": "40ms (excellent)",
+      "duration": 40,
+      "url": "https://crypto-tracker-no-modules-mbj901bup-wettentllcs-projects.vercel.app/premium",
+      "timestamp": "2025-06-06T06:55:35.042Z"
+    },
+    {
+      "test": "Page Size: premium",
+      "category": "performance",
+      "status": "PASS",
+      "details": "31.7KB (good)",
+      "duration": 40,
+      "url": "https://crypto-tracker-no-modules-mbj901bup-wettentllcs-projects.vercel.app/premium",
+      "timestamp": "2025-06-06T06:55:35.042Z"
+    },
+    {
+      "test": "Average Load Time",
+      "category": "performance",
+      "status": "PASS",
+      "details": "49ms across 3 pages",
+      "duration": 0,
+      "url": "",
+      "timestamp": "2025-06-06T06:55:35.042Z"
+    },
+    {
+      "test": "Title Tag",
+      "category": "seo",
+      "status": "PASS",
+      "details": "Title tag found",
+      "duration": 0,
+      "url": "",
+      "timestamp": "2025-06-06T06:55:35.089Z"
+    },
+    {
+      "test": "Meta Description",
+      "category": "seo",
+      "status": "PASS",
+      "details": "Meta description found",
+      "duration": 0,
+      "url": "",
+      "timestamp": "2025-06-06T06:55:35.089Z"
+    },
+    {
+      "test": "Open Graph Tags",
+      "category": "seo",
+      "status": "PASS",
+      "details": "Open Graph tags found",
+      "duration": 0,
+      "url": "",
+      "timestamp": "2025-06-06T06:55:35.089Z"
+    },
+    {
+      "test": "Structured Data",
+      "category": "seo",
+      "status": "PASS",
+      "details": "Structured data found",
+      "duration": 0,
+      "url": "",
+      "timestamp": "2025-06-06T06:55:35.089Z"
+    },
+    {
+      "test": "Canonical URL",
+      "category": "seo",
+      "status": "PASS",
+      "details": "Canonical URL found",
+      "duration": 0,
+      "url": "",
+      "timestamp": "2025-06-06T06:55:35.089Z"
+    },
+    {
+      "test": "Robots Meta Tag",
+      "category": "seo",
+      "status": "PASS",
+      "details": "Robots meta tag found",
+      "duration": 0,
+      "url": "",
+      "timestamp": "2025-06-06T06:55:35.089Z"
+    },
+    {
+      "test": "Heading Tags",
+      "category": "seo",
+      "status": "WARNING",
+      "details": "Heading tags not found",
+      "duration": 0,
+      "url": "",
+      "timestamp": "2025-06-06T06:55:35.089Z"
+    },
+    {
+      "test": "Robots.txt",
+      "category": "seo",
+      "status": "PASS",
+      "details": "Robots.txt exists and accessible",
+      "duration": 0,
+      "url": "",
+      "timestamp": "2025-06-06T06:55:35.448Z"
+    },
+    {
+      "test": "Sitemap",
+      "category": "seo",
+      "status": "PASS",
+      "details": "Sitemap.xml exists and accessible",
+      "duration": 0,
+      "url": "",
+      "timestamp": "2025-06-06T06:55:35.741Z"
+    }
+  ]
+}

@@ -51,10 +51,9 @@ export async function GET(request: Request) {
         error: 'No content available for distribution' 
       }, { status: 500 });
     }
-    
-    // Distribute the content
+      // Distribute the content
     const distributionResult = await distributeContent(
-      contentResult.data.content,
+      String(contentResult.data.content),
       channels
     );
     
@@ -64,12 +63,12 @@ export async function GET(request: Request) {
       content: contentResult.data?.content,
       distribution: distributionResult.data,
       timestamp: new Date().toISOString()
-    });
-  } catch (error) {
+    });  } catch (error) {
     console.error('Error in content generation and distribution:', error);
     return NextResponse.json({ 
       success: false, 
-      error: 'Failed to generate and distribute content' 
+      error: error instanceof Error ? error.message : 'Failed to generate and distribute content',
+      stack: error instanceof Error ? error.stack : undefined
     }, { status: 500 });
   }
 }

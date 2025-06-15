@@ -157,13 +157,11 @@ update_time: string;
   }>;
 }
 
-const PAYPAL_CLIENT_ID = process.env.PAYPAL_CLIENT_ID || 'AX_UCD0FG6LaVhl1smF44PQuxkRzoCNE_GreJfYg1DHycaE_IDKHrCJEhfcDWlK5sdVX44E8yBWnFns5';
-const PAYPAL_SECRET = process.env.PAYPAL_CLIENT_SECRET || 'ELac9rsu8SC5C5pa04b3N2ywO9UAZ_s7p9eXl59E1-kryMttyJ-ndyLlHUqtT058pmMoP9aMEZEBnEUX';
+const PAYPAL_CLIENT_ID = process.env.PAYPAL_CLIENT_ID;
+const PAYPAL_SECRET = process.env.PAYPAL_CLIENT_SECRET;
 
-// Use production API in production environment, otherwise use sandbox
-const PAYPAL_API_BASE = process.env.NODE_ENV === 'production' 
-  ? 'https://api-m.paypal.com'  // Production environment
-  : 'https://api-m.sandbox.paypal.com'; // Sandbox environment
+// Always use production API to ensure real transactions
+const PAYPAL_API_BASE = 'https://api-m.paypal.com';  // Production environment only
 
 // Function to get PayPal access token
 export const getPayPalAccessToken = async (): Promise<string> => {

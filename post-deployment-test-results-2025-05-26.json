@@ -1,0 +1,164 @@
+{
+  "metadata": {
+    "timestamp": "2025-05-26T12:38:21.209Z",
+    "testSuite": "Post-Deployment Validation",
+    "version": "3.0.0"
+  },
+  "summary": {
+    "totalTests": 10,
+    "totalPassed": 10,
+    "totalFailed": 0,
+    "overallSuccessRate": 100
+  },
+  "results": [
+    {
+      "suiteName": "Deployed",
+      "baseUrl": "https://crypto-tracker-no-modules-j0fnuk55u-wettentllcs-projects.vercel.app",
+      "results": [
+        {
+          "path": "/",
+          "name": "Homepage",
+          "category": "navigation",
+          "success": true,
+          "status": 200,
+          "url": "https://crypto-tracker-no-modules-j0fnuk55u-wettentllcs-projects.vercel.app/",
+          "duration": 316,
+          "contentLength": 45577,
+          "hasContent": true,
+          "contentPreview": "<!DOCTYPE html><html lang=\"en\"><head><meta charSet=\"utf-8\"/><meta name=\"viewport\" content=\"width=device-width, initial-scale=1, maximum-scale=5, user-scalable=yes\"/><link rel=\"preload\" href=\"/_next/st",
+          "timestamp": "2025-05-26T12:38:06.362Z"
+        },
+        {
+          "path": "/faq",
+          "name": "FAQ Page",
+          "category": "navigation",
+          "success": true,
+          "status": 200,
+          "url": "https://crypto-tracker-no-modules-j0fnuk55u-wettentllcs-projects.vercel.app/faq",
+          "duration": 1067,
+          "contentLength": 86631,
+          "hasContent": true,
+          "contentPreview": "<!DOCTYPE html><html lang=\"en\"><head><meta charSet=\"utf-8\"/><meta name=\"viewport\" content=\"width=device-width, initial-scale=1, maximum-scale=5, user-scalable=yes\"/><link rel=\"preload\" href=\"/_next/st",
+          "timestamp": "2025-05-26T12:38:07.642Z"
+        },
+        {
+          "path": "/learn/cryptocurrency-investing-guide",
+          "name": "Crypto Investment Guide",
+          "category": "navigation",
+          "success": true,
+          "status": 200,
+          "url": "https://crypto-tracker-no-modules-j0fnuk55u-wettentllcs-projects.vercel.app/learn/cryptocurrency-investing-guide",
+          "duration": 424,
+          "contentLength": 55807,
+          "hasContent": true,
+          "contentPreview": "<!DOCTYPE html><html lang=\"en\"><head><meta charSet=\"utf-8\"/><meta name=\"viewport\" content=\"width=device-width, initial-scale=1, maximum-scale=5, user-scalable=yes\"/><link rel=\"preload\" href=\"/_next/st",
+          "timestamp": "2025-05-26T12:38:08.276Z"
+        },
+        {
+          "path": "/learn/what-is-cryptocurrency",
+          "name": "What is Cryptocurrency",
+          "category": "navigation",
+          "success": true,
+          "status": 200,
+          "url": "https://crypto-tracker-no-modules-j0fnuk55u-wettentllcs-projects.vercel.app/learn/what-is-cryptocurrency",
+          "duration": 802,
+          "contentLength": 54383,
+          "hasContent": true,
+          "contentPreview": "<!DOCTYPE html><html lang=\"en\"><head><meta charSet=\"utf-8\"/><meta name=\"viewport\" content=\"width=device-width, initial-scale=1, maximum-scale=5, user-scalable=yes\"/><link rel=\"preload\" href=\"/_next/st",
+          "timestamp": "2025-05-26T12:38:09.280Z"
+        },
+        {
+          "path": "/learn/how-to-buy-bitcoin",
+          "name": "How to Buy Bitcoin",
+          "category": "navigation",
+          "success": true,
+          "status": 200,
+          "url": "https://crypto-tracker-no-modules-j0fnuk55u-wettentllcs-projects.vercel.app/learn/how-to-buy-bitcoin",
+          "duration": 935,
+          "contentLength": 62062,
+          "hasContent": true,
+          "contentPreview": "<!DOCTYPE html><html lang=\"en\"><head><meta charSet=\"utf-8\"/><meta name=\"viewport\" content=\"width=device-width, initial-scale=1, maximum-scale=5, user-scalable=yes\"/><link rel=\"preload\" href=\"/_next/st",
+          "timestamp": "2025-05-26T12:38:10.431Z"
+        },
+        {
+          "path": "/learn/defi-guide",
+          "name": "DeFi Guide",
+          "category": "navigation",
+          "success": true,
+          "status": 200,
+          "url": "https://crypto-tracker-no-modules-j0fnuk55u-wettentllcs-projects.vercel.app/learn/defi-guide",
+          "duration": 572,
+          "contentLength": 53135,
+          "hasContent": true,
+          "contentPreview": "<!DOCTYPE html><html lang=\"en\"><head><meta charSet=\"utf-8\"/><meta name=\"viewport\" content=\"width=device-width, initial-scale=1, maximum-scale=5, user-scalable=yes\"/><link rel=\"preload\" href=\"/_next/st",
+          "timestamp": "2025-05-26T12:38:11.213Z"
+        },
+        {
+          "path": "/learn/nft-guide",
+          "name": "NFT Guide",
+          "category": "navigation",
+          "success": true,
+          "status": 200,
+          "url": "https://crypto-tracker-no-modules-j0fnuk55u-wettentllcs-projects.vercel.app/learn/nft-guide",
+          "duration": 672,
+          "contentLength": 58814,
+          "hasContent": true,
+          "contentPreview": "<!DOCTYPE html><html lang=\"en\"><head><meta charSet=\"utf-8\"/><meta name=\"viewport\" content=\"width=device-width, initial-scale=1, maximum-scale=5, user-scalable=yes\"/><link rel=\"preload\" href=\"/_next/st",
+          "timestamp": "2025-05-26T12:38:12.096Z"
+        },
+        {
+          "path": "/api/mcp/content?type=market_update",
+          "name": "Market Update API",
+          "category": "api",
+          "success": true,
+          "status": 200,
+          "url": "https://crypto-tracker-no-modules-j0fnuk55u-wettentllcs-projects.vercel.app/api/mcp/content?type=market_update",
+          "duration": 3180,
+          "contentLength": 1950,
+          "hasContent": true,
+          "contentPreview": "{\"success\":true,\"message\":\"Content generated and distributed successfully\",\"content\":{\"content\":\"📊 Crypto Market Update 📈\\n\\nGlobal Market: +0.46% (24h)\\nBTC Dominance: 61.2%\\n\\n🚀 Top Gainers (24h)",
+          "timestamp": "2025-05-26T12:38:15.477Z"
+        },
+        {
+          "path": "/api/mcp/content?type=trending_coins",
+          "name": "Trending Coins API",
+          "category": "api",
+          "success": true,
+          "status": 200,
+          "url": "https://crypto-tracker-no-modules-j0fnuk55u-wettentllcs-projects.vercel.app/api/mcp/content?type=trending_coins",
+          "duration": 2439,
+          "contentLength": 1960,
+          "hasContent": true,
+          "contentPreview": "{\"success\":true,\"message\":\"Content generated and distributed successfully\",\"content\":{\"content\":\"🔥 Trending Coins Today 🔥\\n\\n1. Hyperliquid (HYPE) | Rank #13\\n2. Sui (SUI) | Rank #14\\n3. Cookie DAO ",
+          "timestamp": "2025-05-26T12:38:18.117Z"
+        },
+        {
+          "path": "/api/mcp/content?type=price_alert",
+          "name": "Price Alert API",
+          "category": "api",
+          "success": true,
+          "status": 200,
+          "url": "https://crypto-tracker-no-modules-j0fnuk55u-wettentllcs-projects.vercel.app/api/mcp/content?type=price_alert",
+          "duration": 2682,
+          "contentLength": 1871,
+          "hasContent": true,
+          "contentPreview": "{\"success\":true,\"message\":\"Content generated and distributed successfully\",\"content\":{\"content\":\"⚠️ Price Alert ⚠️\\n\\nBitcoin (BTC) has surpassed $113,274.85!\\n\\nCurrent price: $109,801\\n24h change: +",
+          "timestamp": "2025-05-26T12:38:21.006Z"
+        }
+      ],
+      "summary": {
+        "total": 10,
+        "passed": 10,
+        "failed": 0,
+        "successRate": 100
+      }
+    }
+  ],
+  "analysis": {
+    "criticalIssues": [],
+    "improvements": [],
+    "recommendations": [
+      "🎉 All tests passed! Deployment fix was successful."
+    ]
+  }
+}

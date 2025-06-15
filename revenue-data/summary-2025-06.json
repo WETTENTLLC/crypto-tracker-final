@@ -1,0 +1,43 @@
+{
+  "total": 73.34,
+  "streams": {
+    "affiliate_marketing": 13.34,
+    "advertising": 20,
+    "api_access": 6.66,
+    "premium_subscriptions": 33.34
+  },
+  "dailyData": [
+    {
+      "date": "2025-06-05",
+      "total": 36.67,
+      "streams": {
+        "affiliate_marketing": 6.67,
+        "advertising": 10,
+        "api_access": 3.33,
+        "premium_subscriptions": 16.67
+      }
+    },
+    {
+      "date": "2025-06-13",
+      "total": 36.67,
+      "streams": {
+        "affiliate_marketing": 6.67,
+        "advertising": 10,
+        "api_access": 3.33,
+        "premium_subscriptions": 16.67
+      }
+    },
+    {
+      "date": "2025-06-14",
+      "total": 0,
+      "streams": {
+        "premium_subscriptions": 0,
+        "advertising": 0,
+        "affiliate_marketing": 0,
+        "api_access": 0
+      }
+    }
+  ],
+  "year": 2025,
+  "month": 6
+}

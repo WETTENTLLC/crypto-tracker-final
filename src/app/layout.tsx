@@ -12,6 +12,8 @@ import TechnicalSEOAutomation from './components/TechnicalSEOAutomation'
 import ContentMarketingAutomation from './components/ContentMarketingAutomation'
 import EcommerceServiceSchema from './components/EcommerceServiceSchema'
 import AdvancedSEOAnalyticsDashboard from './components/AdvancedSEOAnalyticsDashboard'
+import NavigationFix from './utils/NavigationFix'
+import ClientDynamicComponents from '../components/ClientDynamicComponents'
 
 const inter = Inter({ 
   subsets: ['latin'],
@@ -320,6 +322,7 @@ export default function RootLayout({
         </Script>
       </head>
       <body className={inter.className} itemScope itemType="https://schema.org/WebPage">
+        <NavigationFix />
         <MCPUserAcquisitionAutomation />
         <MCPNotificationCenter />
         <LocalSEOManager />
@@ -329,7 +332,12 @@ export default function RootLayout({
         <ContentMarketingAutomation />
         <EcommerceServiceSchema />
         <AdvancedSEOAnalyticsDashboard />
-        {children}
+        
+        {/* Client-side dynamic components wrapper */}
+        <ClientDynamicComponents>
+          {children}
+        </ClientDynamicComponents>
+        
         <WebVitalsMonitor />
         
         {/* Service Worker Registration */}

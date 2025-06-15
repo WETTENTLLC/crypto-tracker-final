@@ -1,0 +1,45 @@
+{
+  "timestamp": "2025-06-06T06:55:07.201Z",
+  "summary": {
+    "errors": 6,
+    "warnings": 2,
+    "successes": 17,
+    "score": 30
+  },
+  "details": {
+    "errors": [
+      "Sitemap /sitemap-images.xml returned status 404",
+      "Sitemap /sitemap-news.xml returned status 404",
+      "Sitemap /sitemap-videos.xml returned status 404",
+      "Sitemap /sitemap-mobile.xml returned status 404",
+      "PWA manifest returned status 404",
+      "Service worker returned status 404"
+    ],
+    "warnings": [
+      "Missing Structured data (JSON-LD)",
+      "Security header missing: content-security-policy"
+    ],
+    "successes": [
+      "Sitemap /sitemap.xml is accessible",
+      "Sitemap /sitemap.xml contains valid XML structure",
+      "robots.txt is accessible",
+      "robots.txt contains sitemap directives",
+      "robots.txt contains user-agent directives",
+      "Found Title tag",
+      "Found Meta description",
+      "Found Open Graph title",
+      "Found Open Graph description",
+      "Found Open Graph image",
+      "Found Twitter Card",
+      "Found Canonical URL",
+      "Page loaded in 67ms (Excellent)",
+      "SSL certificate is valid and accessible",
+      "Security header present: strict-transport-security",
+      "Security header present: x-frame-options",
+      "Security header present: x-content-type-options"
+    ],
+    "recommendations": [
+      "Add content-security-policy security header"
+    ]
+  }
+}

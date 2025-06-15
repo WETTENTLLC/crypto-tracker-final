@@ -139,7 +139,7 @@ export default function MarketOverview() {
           </div>
           
           <div className="p-4 bg-gray-50 dark:bg-gray-700 rounded-lg">
-            <div className="text-sm text-gray-500 dark:text-gray-400">Market Dominance</div>
+            <div className="text-sm text-black dark:text-gray-400">Market Dominance</div>
             <div className="flex items-center">
               <div className="flex-1">
                 <div className="text-md font-medium text-gray-900 dark:text-white">BTC</div>
@@ -155,7 +155,7 @@ export default function MarketOverview() {
               </div>
               <div className="flex-1">
                 <div className="text-md font-medium text-gray-900 dark:text-white">Others</div>
-                <div className="text-sm text-gray-500 dark:text-gray-400">
+                <div className="text-sm text-black dark:text-gray-400">
                   {(100 - btcDominance - ethDominance).toFixed(1)}%
                 </div>
               </div>

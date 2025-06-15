@@ -6,6 +6,7 @@ import CoinList from './components/CoinList';
 import SocialShareOptimization from './components/SocialShareOptimization';
 import InternalLinkingStrategy, { SmartInternalLinks } from './components/InternalLinkingStrategy';
 import SEOPerformanceMonitor from './components/SEOPerformanceMonitor';
+import { navigateTo } from './utils/NavigationFix';
 
 export default function Home() {
   const [isPremium, setIsPremium] = useState<boolean>(false);
@@ -36,15 +37,24 @@ export default function Home() {
             </div>
             
             <div className="flex space-x-4">
-              <Link href="/alerts" className="text-gray-600 hover:text-gray-900">
+              <Link href="/alerts" className="text-black hover:text-gray-700" onClick={(e) => {
+                e.preventDefault();
+                navigateTo('/alerts');
+              }}>
                 My Alerts
               </Link>
               {isPremium ? (
-                <Link href="/account" className="text-gray-600 hover:text-gray-900">
+                <Link href="/account" className="text-black hover:text-gray-700" onClick={(e) => {
+                  e.preventDefault();
+                  navigateTo('/account');
+                }}>
                   Premium Account
                 </Link>
               ) : (
-                <Link href="/premium" className="text-blue-600 hover:text-blue-800 font-medium">
+                <Link href="/premium" className="text-blue-600 hover:text-blue-800 font-medium" onClick={(e) => {
+                  e.preventDefault();
+                  navigateTo('/premium');
+                }}>
                   Upgrade to Premium
                 </Link>
               )}
@@ -54,6 +64,36 @@ export default function Home() {
       </header>
 
       <div className="container mx-auto px-4 py-8">
+        {/* Admin Help Banner - Only shown on initial visit */}
+        <div className="bg-blue-100 border-l-4 border-blue-500 text-blue-700 p-4 mb-8" role="alert">
+          <div className="flex">
+            <div className="py-1">
+              <svg className="h-6 w-6 text-blue-500 mr-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+            <div>
+              <p className="font-bold">Navigation Guide</p>
+              <p className="text-sm">
+                Having trouble navigating? Try clicking links twice, or use direct URLs. 
+                For admin access, use the &quot;Admin Access&quot; link in the footer with credentials: admin@example.com / password.
+                <button 
+                  onClick={() => {
+                    if (typeof document !== 'undefined') {
+                      const banner = document.querySelector('.bg-blue-100') as HTMLElement;
+                      if (banner) banner.style.display = 'none';
+                      localStorage.setItem('hideBanner', 'true');
+                    }
+                  }}
+                  className="ml-4 text-xs underline"
+                >
+                  Dismiss
+                </button>
+              </p>
+            </div>
+          </div>
+        </div>
+
         <div className="bg-blue-600 text-white rounded-lg shadow-md p-6 mb-8">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="mb-4 md:mb-0">
@@ -64,6 +104,10 @@ export default function Home() {
               <Link 
                 href="/premium" 
                 className="bg-white text-blue-600 hover:bg-blue-50 font-medium py-2 px-6 rounded-md transition duration-200"
+                onClick={(e) => {
+                  e.preventDefault();
+                  navigateTo('/premium');
+                }}
               >
                 Try Premium Free for 7 Days
               </Link>
@@ -83,7 +127,7 @@ export default function Home() {
             <div className="flex flex-col md:flex-row items-center">
               <div className="mb-6 md:mb-0 md:mr-8 flex-1">
                 <h2 className="text-xl font-semibold mb-3">Upgrade to Premium</h2>
-                <p className="text-gray-600 mb-4">Get unlimited price alerts, SMS notifications, portfolio tracking, and more for just $5.99/month.</p>
+                <p className="text-black mb-4">Get unlimited price alerts, SMS notifications, portfolio tracking, and more for just $5.99/month.</p>
                 <ul className="space-y-2 mb-4">
                   <li className="flex items-center">
                     <svg className="w-5 h-5 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -159,7 +203,7 @@ export default function Home() {
               </svg>
               <h3 className="text-lg font-semibold">Real-Time Alerts</h3>
             </div>
-            <p className="text-gray-600">Set price alerts for your favorite cryptocurrencies and get notified when they reach your target price.</p>
+            <p className="text-black">Set price alerts for your favorite cryptocurrencies and get notified when they reach your target price.</p>
           </div>
           
           <div className="bg-white rounded-lg shadow-md p-6">
@@ -169,7 +213,7 @@ export default function Home() {
               </svg>
               <h3 className="text-lg font-semibold">Market Trends</h3>
             </div>
-            <p className="text-gray-600">Track market trends with interactive charts and historical data to make informed investment decisions.</p>
+            <p className="text-black">Track market trends with interactive charts and historical data to make informed investment decisions.</p>
           </div>
           
           <div className="bg-white rounded-lg shadow-md p-6">
@@ -179,7 +223,7 @@ export default function Home() {
               </svg>
               <h3 className="text-lg font-semibold">Portfolio Tracking</h3>
             </div>
-            <p className="text-gray-600">Monitor your cryptocurrency portfolio performance and track your gains and losses over time.</p>
+            <p className="text-black">Monitor your cryptocurrency portfolio performance and track your gains and losses over time.</p>
           </div>
         </div>
       </div>
@@ -195,25 +239,43 @@ export default function Home() {
                 </svg>
                 <span className="text-xl font-bold">CryptoTracker</span>
               </div>
-              <p className="text-gray-400 mt-2">Real-time cryptocurrency tracking and alerts</p>
+              <p className="text-black mt-2">Real-time cryptocurrency tracking and alerts</p>
             </div>
             
             <div className="flex space-x-6">
-              <Link href="/about" className="text-gray-300 hover:text-white">
+              <Link href="/about" className="text-gray-300 hover:text-white" onClick={(e) => {
+                e.preventDefault();
+                navigateTo('/about');
+              }}>
                 About
               </Link>
-              <Link href="/faq" className="text-gray-300 hover:text-white">
+              <Link href="/faq" className="text-gray-300 hover:text-white" onClick={(e) => {
+                e.preventDefault();
+                navigateTo('/faq');
+              }}>
                 FAQ
               </Link>
-              <Link href="/privacy" className="text-gray-300 hover:text-white">
+              <Link href="/privacy" className="text-gray-300 hover:text-white" onClick={(e) => {
+                e.preventDefault();
+                navigateTo('/privacy');
+              }}>
                 Privacy
               </Link>
-              <Link href="/terms" className="text-gray-300 hover:text-white">
+              <Link href="/terms" className="text-gray-300 hover:text-white" onClick={(e) => {
+                e.preventDefault();
+                navigateTo('/terms');
+              }}>
                 Terms
+              </Link>
+              <Link href="/admin/login" className="text-blue-400 hover:text-blue-300 font-medium" onClick={(e) => {
+                e.preventDefault();
+                navigateTo('/admin/login');
+              }}>
+                Admin Access
               </Link>
             </div>
           </div>
-          <div className="mt-8 pt-6 border-t border-gray-700 text-center text-gray-400 text-sm">
+          <div className="mt-8 pt-6 border-t border-gray-700 text-center text-black text-sm">
             <p>© {new Date().getFullYear()} CryptoTracker. All rights reserved.</p>
             <p className="mt-2">Powered by CoinGecko API. Not financial advice.</p>
           </div>

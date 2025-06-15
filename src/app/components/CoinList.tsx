@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { getCoins, Coin } from '../api/coingecko';
 import Link from 'next/link';
 import Image from 'next/image';
+import { navigateTo } from '../utils/NavigationFix';
 
 export default function CoinList() {
   const [coins, setCoins] = useState<Coin[]>([]);
@@ -84,7 +85,10 @@ export default function CoinList() {
             <tr key={coin.id} className="hover:bg-gray-50">
               <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{coin.market_cap_rank}</td>
               <td className="px-6 py-4 whitespace-nowrap">
-                <Link href={`/coin/${coin.id}`} className="flex items-center">
+                <Link href={`/coin/${coin.id}`} className="flex items-center" prefetch={true} onClick={(e) => {
+                  e.preventDefault();
+                  navigateTo(`/coin/${coin.id}`);
+                }}>
                   <div className="flex-shrink-0 h-8 w-8 mr-3">
                     <Image 
                       src={coin.image} 
@@ -96,7 +100,7 @@ export default function CoinList() {
                         e.currentTarget.src = '/crypto-placeholder.svg';
                       }}
                       placeholder="blur"
-                      blurDataURL="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHZpZXdCb3g9IjAgMCAzMiAzMiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMTYiIGN5PSIxNiIgcj0iMTYiIGZpbGw9IiNmM2Y0ZjYiLz4KPHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAxNiAxNiIgZmlsbD0iIzk0YTNiOCIgeD0iOCIgeT0iOCI+CjxwYXRoIGQ9Im04IDFhNyA3IDAgMSAwIDAgMTRhNyA3IDAgMCAwIDAtMTR6bTAgMTJhNSA1IDAgMSAxIDAtMTBhNSA1IDAgMCAxIDAgMTB6Ii8+Cjwvc3ZnPgo8L3N2Zz4K"
+                      blurDataURL="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHZpZXdCb3g9IjAgMCAzMiAzMiIgZmlsbD0ibm9uZSIgeG1zbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMTYiIGN5PSIxNiIgcj0iMTYiIGZpbGw9IiNmM2Y0ZjYiLz4KPHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAxNiAxNiIgZmlsbD0iIzk0YTNiOCIgeD0iOCIgeT0iOCI+CjxwYXRoIGQ9Im04IDFhNyA3IDAgMSAwIDAgMTRhNyA3IDAgMCAwIDAtMTR6bTAgMTJhNSA1IDAgMSAxIDAtMTBhNSA1IDAgMCAxIDAgMTB6Ii8+Cjwvc3ZnPgo8L3N2Zz4K"
                     />
                   </div>
                   <div className="flex flex-col">

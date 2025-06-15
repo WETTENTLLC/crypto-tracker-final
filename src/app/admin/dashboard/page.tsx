@@ -3,48 +3,189 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, BarChart, Bar, Legend } from 'recharts';
+import EmailSequenceAutomation from '../../../components/EmailSequenceAutomation';
+import AffiliateMarketingTracker from '../../../components/AffiliateMarketingTracker';
+import ABTestingManager from '../../../components/ABTestingManager';
+import ConversionAnalytics from '../../../components/ConversionAnalytics';
+import CryptoSourceHealthDashboard from '../../../components/CryptoSourceHealthDashboard';
 
 export default function AdminDashboard() {
   const [stats, setStats] = useState({
-    totalUsers: 1245,
-    premiumUsers: 328,
-    conversionRate: 26.3,
-    monthlyRevenue: 1964.72,
-    activeAlerts: 4721,
-    newUsersToday: 37
+    totalUsers: 0,
+    premiumUsers: 0,
+    conversionRate: 0,
+    monthlyRevenue: 0,
+    activeAlerts: 0,
+    newUsersToday: 0
   });
   
-  const [revenueData, setRevenueData] = useState([
-    { name: 'Jan', revenue: 1200 },
-    { name: 'Feb', revenue: 1400 },
-    { name: 'Mar', revenue: 1650 },
-    { name: 'Apr', revenue: 1800 },
-    { name: 'May', revenue: 1964 }
-  ]);
-  
-  const [userGrowthData, setUserGrowthData] = useState([
-    { name: 'Jan', free: 600, premium: 150 },
-    { name: 'Feb', premium: 200, free: 750 },
-    { name: 'Mar', premium: 250, free: 850 },
-    { name: 'Apr', premium: 280, free: 950 },
-    { name: 'May', premium: 328, free: 917 }
-  ]);
-  
-  const [recentSignups, setRecentSignups] = useState([
-    { id: 1, email: 'user1@example.com', date: '2025-05-22', status: 'Free' },
-    { id: 2, email: 'user2@example.com', date: '2025-05-22', status: 'Premium' },
-    { id: 3, email: 'user3@example.com', date: '2025-05-21', status: 'Free' },
-    { id: 4, email: 'user4@example.com', date: '2025-05-21', status: 'Free' },
-    { id: 5, email: 'user5@example.com', date: '2025-05-20', status: 'Premium' }
-  ]);
-  
-  const [alertsTriggered, setAlertsTriggered] = useState([
-    { id: 1, coin: 'Bitcoin', price: '$62,450.00', user: 'user2@example.com', date: '2025-05-22 09:45' },
-    { id: 2, coin: 'Ethereum', price: '$3,120.75', user: 'user5@example.com', date: '2025-05-22 08:30' },
-    { id: 3, coin: 'Solana', price: '$142.25', user: 'user1@example.com', date: '2025-05-21 22:15' },
-    { id: 4, coin: 'Cardano', price: '$0.58', user: 'user3@example.com', date: '2025-05-21 18:20' },
-    { id: 5, coin: 'Dogecoin', price: '$0.12', user: 'user4@example.com', date: '2025-05-20 14:10' }
-  ]);
+  const [revenueData, setRevenueData] = useState([]);
+  const [userGrowthData, setUserGrowthData] = useState([]);
+  const [recentSignups, setRecentSignups] = useState([]);
+  const [alertsTriggered, setAlertsTriggered] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchDashboardData = async () => {
+      setIsLoading(true);
+      try {
+        // Fetch analytics data
+        const response = await fetch('/api/mcp/analytics?limit=1000');
+        if (!response.ok) {
+          throw new Error('Failed to fetch analytics data');
+        }
+        
+        const analyticsData = await response.json();
+        
+        if (!analyticsData.success || !analyticsData.data) {
+          throw new Error('Invalid analytics data response');
+        }
+        
+        const events = analyticsData.data.events;
+        
+        // Process user statistics
+        const userSignups = events.filter(event => event.eventName === 'user_signup');
+        const premiumSubscriptions = events.filter(event => 
+          event.eventName === 'premium_subscription' || 
+          (event.eventName === 'user_signup' && event.eventData.isPremium)
+        );
+        
+        const totalUsers = userSignups.length;
+        const premiumUsers = premiumSubscriptions.length;
+        const conversionRate = totalUsers > 0 ? ((premiumUsers / totalUsers) * 100).toFixed(1) : 0;
+        
+        // Get today's signups
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+        const newUsersToday = userSignups.filter(event => {
+          const eventDate = new Date(event.timestamp);
+          return eventDate >= today;
+        }).length;
+        
+        // Get active alerts
+        const alertEvents = events.filter(event => event.eventName === 'alert_created');
+        const alertsDeleted = events.filter(event => event.eventName === 'alert_deleted')
+          .map(event => event.eventData.alertId);
+          
+        const activeAlerts = alertEvents.filter(event => 
+          !alertsDeleted.includes(event.eventData.alertId)
+        ).length;
+        
+        // Calculate monthly revenue from premium subscriptions
+        // Assuming each premium subscription is $9.99
+        const monthlyRevenue = premiumUsers * 9.99;
+        
+        setStats({
+          totalUsers,
+          premiumUsers,
+          conversionRate: parseFloat(conversionRate),
+          monthlyRevenue,
+          activeAlerts,
+          newUsersToday
+        });
+        
+        // Process revenue data
+        const last6Months = [];
+        const currentDate = new Date();
+        
+        for (let i = 5; i >= 0; i--) {
+          const monthDate = new Date(currentDate);
+          monthDate.setMonth(currentDate.getMonth() - i);
+          const monthName = monthDate.toLocaleString('default', { month: 'short' });
+          
+          // Filter subscriptions from this month
+          const monthStart = new Date(monthDate.getFullYear(), monthDate.getMonth(), 1);
+          const monthEnd = new Date(monthDate.getFullYear(), monthDate.getMonth() + 1, 0);
+          
+          const monthSubscriptions = premiumSubscriptions.filter(event => {
+            const eventDate = new Date(event.timestamp);
+            return eventDate >= monthStart && eventDate <= monthEnd;
+          });
+          
+          last6Months.push({
+            name: monthName,
+            revenue: Math.round(monthSubscriptions.length * 9.99)
+          });
+        }
+        
+        setRevenueData(last6Months);
+        
+        // Process user growth data
+        const userGrowth = [];
+        
+        for (let i = 5; i >= 0; i--) {
+          const monthDate = new Date(currentDate);
+          monthDate.setMonth(currentDate.getMonth() - i);
+          const monthName = monthDate.toLocaleString('default', { month: 'short' });
+          
+          // Filter users from this month
+          const monthStart = new Date(monthDate.getFullYear(), monthDate.getMonth(), 1);
+          const monthEnd = new Date(monthDate.getFullYear(), monthDate.getMonth() + 1, 0);
+          
+          const freeUsers = userSignups.filter(event => {
+            const eventDate = new Date(event.timestamp);
+            return eventDate >= monthStart && eventDate <= monthEnd && !event.eventData.isPremium;
+          }).length;
+          
+          const premiumMonthUsers = premiumSubscriptions.filter(event => {
+            const eventDate = new Date(event.timestamp);
+            return eventDate >= monthStart && eventDate <= monthEnd;
+          }).length;
+          
+          userGrowth.push({
+            name: monthName,
+            free: freeUsers,
+            premium: premiumMonthUsers
+          });
+        }
+        
+        setUserGrowthData(userGrowth);
+        
+        // Process recent signups
+        const recent = userSignups
+          .sort((a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime())
+          .slice(0, 5)
+          .map((event, index) => ({
+            id: index + 1,
+            email: event.eventData.email || `user${index + 1}@example.com`,
+            date: new Date(event.timestamp).toISOString().split('T')[0],
+            status: event.eventData.isPremium ? 'Premium' : 'Free'
+          }));
+          
+        setRecentSignups(recent);
+        
+        // Process alerts triggered
+        const alertsTrigger = events
+          .filter(event => event.eventName === 'alert_triggered')
+          .sort((a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime())
+          .slice(0, 5)
+          .map((event, index) => ({
+            id: index + 1,
+            coin: event.eventData.coinName || 'Bitcoin',
+            price: event.eventData.price ? `$${Number(event.eventData.price).toLocaleString()}` : '$0.00',
+            user: event.eventData.userEmail || `user${index + 1}@example.com`,
+            date: new Date(event.timestamp).toLocaleString('en-US', {
+              year: 'numeric',
+              month: '2-digit',
+              day: '2-digit',
+              hour: '2-digit',
+              minute: '2-digit'
+            })
+          }));
+          
+        setAlertsTriggered(alertsTrigger);
+        
+      } catch (err) {
+        console.error('Error fetching dashboard data:', err);
+        setError(err instanceof Error ? err.message : 'Unknown error occurred');
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    
+    fetchDashboardData();
+  }, []);
 
   return (
     <div>
@@ -229,6 +370,21 @@ export default function AdminDashboard() {
         </div>
       </div>
 
+      {/* Data Sources Health Dashboard */}
+      <div className="mt-8">
+        <div className="bg-white overflow-hidden shadow rounded-lg">
+          <div className="px-4 py-5 sm:px-6">
+            <h3 className="text-lg leading-6 font-medium text-gray-900">Data Sources Health Monitor</h3>
+            <p className="mt-1 text-sm text-gray-600">
+              Real-time monitoring of cryptocurrency data source reliability and failover status
+            </p>
+          </div>
+          <div className="border-t border-gray-200 p-4">
+            <CryptoSourceHealthDashboard />
+          </div>
+        </div>
+      </div>
+
       <div className="mt-8 grid grid-cols-1 gap-5 lg:grid-cols-2">
         {/* Charts */}
         <div className="bg-white overflow-hidden shadow rounded-lg">
@@ -369,6 +525,31 @@ export default function AdminDashboard() {
             <Link href="/admin/alerts" className="text-sm font-medium text-blue-600 hover:text-blue-500">
               View all alerts <span aria-hidden="true">→</span>
             </Link>
+          </div>
+        </div>
+
+        {/* Revenue Optimization Tools */}
+        <div className="mt-8">
+          <h2 className="text-2xl font-bold text-gray-900 mb-6">Revenue Optimization Dashboard</h2>
+          
+          {/* Conversion Analytics */}
+          <div className="mb-8">
+            <ConversionAnalytics />
+          </div>
+
+          {/* A/B Testing Manager */}
+          <div className="mb-8">
+            <ABTestingManager />
+          </div>
+          
+          {/* Email Marketing Automation */}
+          <div className="mb-8">
+            <EmailSequenceAutomation />
+          </div>
+
+          {/* Affiliate Marketing Tracker */}
+          <div className="mb-8">
+            <AffiliateMarketingTracker />
           </div>
         </div>
       </div>

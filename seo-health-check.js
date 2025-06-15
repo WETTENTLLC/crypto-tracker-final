@@ -5,10 +5,10 @@
  * Validates all SEO implementations and provides recommendations
  */
 
-const fs = require('fs');
-const path = require('path');
-const https = require('https');
-const { exec } = require('child_process');
+import fs from 'fs';
+import path from 'path';
+import https from 'https';
+// import { exec } from 'child_process'; // Unused import
 
 class SEOHealthChecker {
   constructor() {
@@ -149,8 +149,8 @@ class SEOHealthChecker {
           } else {
             this.log('error', 'Manifest missing icons');
           }
-        } catch (parseError) {
-          this.log('error', 'Manifest contains invalid JSON');
+        } catch (apiError) { // Renamed from parseError to apiError, and log it
+          this.log('error', `Manifest contains invalid JSON: ${apiError.message}`);
         }
       } else {
         this.log('error', `PWA manifest returned status ${response.statusCode}`);
@@ -231,7 +231,7 @@ class SEOHealthChecker {
     
     try {
       const startTime = Date.now();
-      const response = await this.checkUrl(this.baseUrl);
+      /* const response = */ await this.checkUrl(this.baseUrl); // Commented out unused variable
       const loadTime = Date.now() - startTime;
       
       if (loadTime < 2000) {

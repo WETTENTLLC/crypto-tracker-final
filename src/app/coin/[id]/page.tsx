@@ -110,7 +110,7 @@ export default function CoinDetailPage({ params }: PageProps) {
           />
           <div>
             <h1 className="text-3xl font-bold">{coin.name}</h1>
-            <p className="text-gray-500">{coin.symbol.toUpperCase()}</p>
+            <p className="text-black">{coin.symbol.toUpperCase()}</p>
           </div>
         </div>
         <div className="flex flex-col items-end">
@@ -123,7 +123,7 @@ export default function CoinDetailPage({ params }: PageProps) {
               : 'text-red-600'
           }`}>
             {formatPercent(coin.market_data.price_change_percentage_24h_in_currency.usd)}
-            <span className="text-gray-500 text-sm ml-1">24h</span>
+            <span className="text-black text-sm ml-1">24h</span>
           </div>
         </div>
       </div>
@@ -207,7 +207,7 @@ export default function CoinDetailPage({ params }: PageProps) {
             </ResponsiveContainer>
           ) : (
             <div className="flex justify-center items-center h-full">
-              <p className="text-gray-500">No chart data available</p>
+              <p className="text-black">No chart data available</p>
             </div>
           )}
         </div>
@@ -218,7 +218,7 @@ export default function CoinDetailPage({ params }: PageProps) {
           <h2 className="text-xl font-semibold mb-4">Market Stats</h2>
           <div className="space-y-4">
             <div className="flex justify-between">
-              <span className="text-gray-600">Market Cap</span>
+              <span className="text-black">Market Cap</span>
               <span className="font-medium">
                 {new Intl.NumberFormat('en-US', {
                   style: 'currency',
@@ -229,7 +229,7 @@ export default function CoinDetailPage({ params }: PageProps) {
               </span>
             </div>
             <div className="flex justify-between">
-              <span className="text-gray-600">24h Trading Volume</span>
+              <span className="text-black">24h Trading Volume</span>
               <span className="font-medium">
                 {new Intl.NumberFormat('en-US', {
                   style: 'currency',
@@ -240,13 +240,13 @@ export default function CoinDetailPage({ params }: PageProps) {
               </span>
             </div>
             <div className="flex justify-between">
-              <span className="text-gray-600">Circulating Supply</span>
+              <span className="text-black">Circulating Supply</span>
               <span className="font-medium">
                 {new Intl.NumberFormat('en-US').format(coin.circulating_supply)} {coin.symbol.toUpperCase()}
               </span>
             </div>
             <div className="flex justify-between">
-              <span className="text-gray-600">Max Supply</span>
+              <span className="text-black">Max Supply</span>
               <span className="font-medium">
                 {coin.max_supply 
                   ? new Intl.NumberFormat('en-US').format(coin.max_supply) + ' ' + coin.symbol.toUpperCase()
@@ -254,13 +254,13 @@ export default function CoinDetailPage({ params }: PageProps) {
               </span>
             </div>
             <div className="flex justify-between">
-              <span className="text-gray-600">All-Time High</span>
+              <span className="text-black">All-Time High</span>
               <span className="font-medium">
                 {formatPrice(coin.ath)}
               </span>
             </div>
             <div className="flex justify-between">
-              <span className="text-gray-600">All-Time Low</span>
+              <span className="text-black">All-Time Low</span>
               <span className="font-medium">
                 {formatPrice(coin.atl)}
               </span>

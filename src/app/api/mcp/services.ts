@@ -1,5 +1,8 @@
 import mcpConfig from './config';
 
+// Server-side in-memory store for subscribers (placeholder for a real database/CRM)
+const serverSideSubscribers: Array<{ email: string; firstName?: string; lastName?: string; timestamp: string }> = [];
+
 // Generic response type for all MCP services
 interface MCPResponse<T = unknown> {
   success: boolean;
@@ -145,7 +148,7 @@ export const subscribeEmail = async (
     const isSuccess = Math.random() < mockSuccessRate;
     
     if (isSuccess) {
-      // Store in localStorage if browser environment
+      // Store in localStorage if browser environment and storeLocally is true
       if (typeof window !== 'undefined' && config.options?.storeLocally) {
         const subscribers = JSON.parse(localStorage.getItem('mcp_subscribers') || '[]');
         subscribers.push({
@@ -180,25 +183,26 @@ export const subscribeEmail = async (
     }
   }
   
-  // For webhook service (store locally)
+  // For webhook service (store on server-side in-memory array)
   if (config.serviceType === 'webhook') {
     try {
-      // In a real implementation, this would call the webhook endpoint
-      // For simplicity, we'll store the data locally if the option is enabled
-      if (typeof window !== 'undefined' && config.options?.storeLocally) {
-        const subscribers = JSON.parse(localStorage.getItem('mcp_subscribers') || '[]');
-        subscribers.push({
+      // Store in server-side in-memory array if storeLocally option is enabled
+      // This is a placeholder for a real database/CRM integration.
+      if (config.options?.storeLocally) {
+        serverSideSubscribers.push({
           email,
           firstName,
           lastName,
           timestamp: new Date().toISOString()
         });
-        localStorage.setItem('mcp_subscribers', JSON.stringify(subscribers));
+        console.log('MCP Service: Email captured (server-side in-memory)', { email, firstName, lastName });
+        // To view the captured emails (for debugging, remove in production):
+        // console.log('Current serverSideSubscribers:', serverSideSubscribers);
       }
       
       return {
         success: true,
-        message: 'Subscription successful via webhook',
+        message: 'Subscription successful via webhook (stored server-side in-memory)',
         data: {
           id: generateMockId(),
           email,
@@ -209,9 +213,10 @@ export const subscribeEmail = async (
         serviceType: 'webhook'
       };
     } catch (error) {
+      console.error('Error in webhook subscription (server-side in-memory):', error);
       return {
         success: false,
-        message: 'Error in webhook subscription',
+        message: 'Error in webhook subscription (server-side in-memory)',
         error: error instanceof Error ? error.message : 'Unknown error',
         timestamp: new Date().toISOString(),
         serviceType: 'webhook'
@@ -322,8 +327,7 @@ export const generateDistributableContent = async (
     } = await import('./contentGenerator');
     
     let content = '';
-    
-    switch (contentType) {
+      switch (contentType) {
       case 'market_update':
         const marketUpdate = await generateMarketUpdateContent();
         content = marketUpdate || 'Failed to generate market update content';
@@ -341,6 +345,11 @@ export const generateDistributableContent = async (
       default:
         throw new Error('Unsupported content type');
     }
+
+    // Ensure content is a string
+    if (typeof content !== 'string') {
+      content = String(content || 'Failed to generate content');
+    }
     
     return {
       success: true,
@@ -352,8 +361,8 @@ export const generateDistributableContent = async (
       },
       timestamp: new Date().toISOString(),
       serviceType: 'aggregator'
-    };
-  } catch (error) {
+    };  } catch (error) {
+    console.error('Error generating distributable content:', error);
     return {
       success: false,
       message: 'Failed to generate content',
@@ -382,8 +391,7 @@ export const distributeContent = async (
       }
     }
   }
-  
-  // Distribute via RSS
+    // Distribute via RSS
   if (channels.includes('rss') && mcpConfig.contentDistribution.rss.enabled) {
     // In a real implementation, this would update the RSS feed with the new content
     results.rss = {
@@ -391,14 +399,13 @@ export const distributeContent = async (
       message: 'Content added to RSS feed',
       data: {
         feedUrl: '/api/rss',
-        content: content.substring(0, 100) + '...'
+        content: String(content).substring(0, 100) + '...'
       },
       timestamp: new Date().toISOString(),
       serviceType: 'aggregator'
     };
   }
-  
-  // Distribute via web push
+    // Distribute via web push
   if (channels.includes('webpush') && mcpConfig.contentDistribution.webPush.enabled) {
     // In a real implementation, this would send web push notifications
     results.webpush = {
@@ -406,7 +413,7 @@ export const distributeContent = async (
       message: 'Content sent via web push notifications',
       data: {
         recipientCount: Math.floor(Math.random() * 100 + 50),
-        content: content.substring(0, 50) + '...'
+        content: String(content).substring(0, 50) + '...'
       },
       timestamp: new Date().toISOString(),
       serviceType: 'webhook'

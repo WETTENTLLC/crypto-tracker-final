@@ -21,8 +21,13 @@ export default function SEOPerformanceMonitor() {
   const [metrics, setMetrics] = useState<SEOMetrics | null>(null)
   const [isVisible, setIsVisible] = useState(false)
   const [isLoading, setIsLoading] = useState(true)
-
   useEffect(() => {
+    // Check if user is admin
+    const isAdmin = localStorage.getItem('isAdmin') === 'true';
+    
+    // Only show SEO monitor for admin users
+    setIsVisible(isAdmin);
+    
     const analyzePageSEO = async () => {
       setIsLoading(true)
       

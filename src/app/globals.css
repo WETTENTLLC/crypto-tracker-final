@@ -22,15 +22,77 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-/* Improved contrast for gray text */
+/* Default text color to black for better readability */
+.text-black {
+  color: #000000 !important;
+}
+
+/* Override text-gray-900 to be pure black for better readability */
+.text-gray-900 {
+  color: #000000 !important;
+}
+
+/* Override text-gray-500 and text-gray-600 to be black for better readability */
 .text-gray-500 {
-  color: var(--gray-500) !important;
+  color: #000000 !important;
   font-weight: 500 !important;
 }
 
 .text-gray-600 {
-  color: var(--gray-600) !important;
+  color: #000000 !important;
   font-weight: 500 !important;
+}
+
+/* Override text-gray-400 to be black for better readability */
+.text-gray-400 {
+  color: #000000 !important;
+  font-weight: 500 !important;
+}
+
+/* Ensure table content is readable */
+td.text-gray-500, 
+th.text-gray-500,
+span.text-gray-500,
+p.text-gray-500,
+div.text-gray-500 {
+  color: #000000 !important;
+  font-weight: 500 !important;
+}
+
+/* Fix notification and component text colors */
+.text-gray-400,
+.text-gray-500,
+.text-gray-600 {
+  color: #000000 !important;
+}
+
+/* Ensure form labels and descriptions are readable */
+label, 
+.form-label,
+.text-sm.text-gray-500,
+.text-sm.text-gray-600 {
+  color: #000000 !important;
+  font-weight: 500 !important;
+}
+
+/* Improve readability for notification text */
+.notification-text {
+  color: #000000 !important;
+}
+
+/* Table content readability */
+.table-text {
+  color: #000000 !important;
+}
+
+/* Card content readability */
+.card-text {
+  color: #000000 !important;
+}
+
+/* Form text readability */
+.form-text {
+  color: #000000 !important;
 }
 
 /* Improved styling for popup forms */

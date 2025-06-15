@@ -1,31 +1,55 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { productionDataService } from '../../../lib/productionDataService';
+
+interface Payment {
+  id: number;
+  user: string; // Changed from customerName, matches PaymentData
+  amount: string;
+  status: 'Successful' | 'Failed' | 'Pending'; // Matches PaymentData
+  date: string;
+  subscription: 'Active' | 'Inactive' | 'Cancelled'; // Matches PaymentData
+  transactionId?: string;
+}
 
 export default function AdminPayments() {
-  const [timeRange, setTimeRange] = useState('month');
-  const [paymentData] = useState([
-    { id: 1, user: 'user2@example.com', amount: '$5.99', status: 'Successful', date: '2025-05-22', subscription: 'Active' },
-    { id: 2, user: 'user5@example.com', amount: '$5.99', status: 'Successful', date: '2025-05-21', subscription: 'Active' },
-    { id: 3, user: 'user8@example.com', amount: '$5.99', status: 'Successful', date: '2025-05-20', subscription: 'Active' },
-    { id: 4, user: 'user12@example.com', amount: '$5.99', status: 'Failed', date: '2025-05-20', subscription: 'Inactive' },
-    { id: 5, user: 'user15@example.com', amount: '$5.99', status: 'Successful', date: '2025-05-19', subscription: 'Active' },
-    { id: 6, user: 'user18@example.com', amount: '$5.99', status: 'Successful', date: '2025-05-18', subscription: 'Active' },
-    { id: 7, user: 'user22@example.com', amount: '$5.99', status: 'Successful', date: '2025-05-17', subscription: 'Active' },
-    { id: 8, user: 'user25@example.com', amount: '$5.99', status: 'Successful', date: '2025-05-16', subscription: 'Active' },
-    { id: 9, user: 'user28@example.com', amount: '$5.99', status: 'Successful', date: '2025-05-15', subscription: 'Active' },
-    { id: 10, user: 'user30@example.com', amount: '$5.99', status: 'Successful', date: '2025-05-14', subscription: 'Active' }
-  ]);
-  
-  const stats = {
-    totalRevenue: '$1,964.72',
-    activeSubscriptions: 328,
-    averageRevenue: '$5.99',
-    churnRate: '3.2%',
-    failedPayments: 12,
-    lifetimeValue: '$71.88'
-  };
+  const [timeRange, setTimeRange] = useState<'week' | 'month' | 'year'>('month');
+  const [paymentData, setPaymentData] = useState<Payment[]>([]);
+  const [stats, setStats] = useState({
+    totalRevenue: '$0.00',
+    activeSubscriptions: 0,
+    averageRevenue: '$0.00',
+    churnRate: '0.0%',
+    failedPayments: 0,
+    lifetimeValue: '$0.00'
+  });
+
+  useEffect(() => {
+    const fetchPaymentData = async () => {
+      try {
+        const [payments, productionStats] = await Promise.all([
+          productionDataService.getPaymentData(timeRange, 10),
+          productionDataService.getProductionStats()
+        ]);
+        
+        setPaymentData(payments);
+        setStats({
+          totalRevenue: productionStats.totalRevenue,
+          activeSubscriptions: productionStats.activeSubscriptions,
+          averageRevenue: productionStats.averageRevenue,
+          churnRate: productionStats.churnRate,
+          failedPayments: productionStats.failedPayments,
+          lifetimeValue: productionStats.lifetimeValue
+        });
+      } catch (error) {
+        console.error('Error fetching payment data:', error);
+      }
+    };
+
+    fetchPaymentData();
+  }, [timeRange]);
   
   type TimeRange = 'week' | 'month' | 'year';
   
@@ -50,7 +74,7 @@ export default function AdminPayments() {
     <div>
       <div className="md:flex md:items-center md:justify-between mb-8">
         <div className="flex-1 min-w-0">
-          <h2 className="text-2xl font-bold leading-7 text-gray-900 sm:text-3xl sm:truncate">
+          <h2 className="text-2xl font-bold leading-7 text-black sm:text-3xl sm:truncate">
             Payment Management
           </h2>
         </div>
@@ -83,8 +107,8 @@ export default function AdminPayments() {
               </div>
               <div className="ml-5 w-0 flex-1">
                 <dl>
-                  <dt className="text-sm font-medium text-gray-500 truncate">Total Revenue (Monthly)</dt>
-                  <dd className="text-2xl font-semibold text-gray-900">{stats.totalRevenue}</dd>
+                  <dt className="text-sm font-medium text-black truncate">Total Revenue (Monthly)</dt>
+                  <dd className="text-2xl font-semibold text-black">{stats.totalRevenue}</dd>
                 </dl>
               </div>
             </div>
@@ -101,8 +125,8 @@ export default function AdminPayments() {
               </div>
               <div className="ml-5 w-0 flex-1">
                 <dl>
-                  <dt className="text-sm font-medium text-gray-500 truncate">Active Subscriptions</dt>
-                  <dd className="text-2xl font-semibold text-gray-900">{stats.activeSubscriptions}</dd>
+                  <dt className="text-sm font-medium text-black truncate">Active Subscriptions</dt>
+                  <dd className="text-2xl font-semibold text-black">{stats.activeSubscriptions}</dd>
                 </dl>
               </div>
             </div>
@@ -119,8 +143,8 @@ export default function AdminPayments() {
               </div>
               <div className="ml-5 w-0 flex-1">
                 <dl>
-                  <dt className="text-sm font-medium text-gray-500 truncate">Average Revenue Per User</dt>
-                  <dd className="text-2xl font-semibold text-gray-900">{stats.averageRevenue}</dd>
+                  <dt className="text-sm font-medium text-black truncate">Average Revenue Per User</dt>
+                  <dd className="text-2xl font-semibold text-black">{stats.averageRevenue}</dd>
                 </dl>
               </div>
             </div>
@@ -137,8 +161,8 @@ export default function AdminPayments() {
               </div>
               <div className="ml-5 w-0 flex-1">
                 <dl>
-                  <dt className="text-sm font-medium text-gray-500 truncate">Churn Rate (Monthly)</dt>
-                  <dd className="text-2xl font-semibold text-gray-900">{stats.churnRate}</dd>
+                  <dt className="text-sm font-medium text-black truncate">Churn Rate (Monthly)</dt>
+                  <dd className="text-2xl font-semibold text-black">{stats.churnRate}</dd>
                 </dl>
               </div>
             </div>
@@ -155,8 +179,8 @@ export default function AdminPayments() {
               </div>
               <div className="ml-5 w-0 flex-1">
                 <dl>
-                  <dt className="text-sm font-medium text-gray-500 truncate">Failed Payments (Monthly)</dt>
-                  <dd className="text-2xl font-semibold text-gray-900">{stats.failedPayments}</dd>
+                  <dt className="text-sm font-medium text-black truncate">Failed Payments (Monthly)</dt>
+                  <dd className="text-2xl font-semibold text-black">{stats.failedPayments}</dd>
                 </dl>
               </div>
             </div>
@@ -173,8 +197,8 @@ export default function AdminPayments() {
               </div>
               <div className="ml-5 w-0 flex-1">
                 <dl>
-                  <dt className="text-sm font-medium text-gray-500 truncate">Customer Lifetime Value</dt>
-                  <dd className="text-2xl font-semibold text-gray-900">{stats.lifetimeValue}</dd>
+                  <dt className="text-sm font-medium text-black truncate">Customer Lifetime Value</dt>
+                  <dd className="text-2xl font-semibold text-black">{stats.lifetimeValue}</dd>
                 </dl>
               </div>
             </div>
@@ -246,14 +270,17 @@ export default function AdminPayments() {
                     #{payment.id}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                    {payment.user}
+                    {payment.user} {/* Was payment.customerName, now correct */}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                     {payment.amount}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
                     <span className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${
-                      payment.status === 'Successful' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'
+                      payment.status === 'Successful' ? 'bg-green-100 text-green-800' :
+                      payment.status === 'Failed' ? 'bg-red-100 text-red-800' :
+                      payment.status === 'Pending' ? 'bg-yellow-100 text-yellow-800' : 
+                      'bg-gray-100 text-gray-800' // Default/fallback
                     }`}>
                       {payment.status}
                     </span>
@@ -263,7 +290,9 @@ export default function AdminPayments() {
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
                     <span className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${
-                      payment.subscription === 'Active' ? 'bg-green-100 text-green-800' : 'bg-gray-100 text-gray-800'
+                      payment.subscription === 'Active' ? 'bg-green-100 text-green-800' :
+                      payment.subscription === 'Cancelled' ? 'bg-red-100 text-red-800' :
+                      'bg-gray-100 text-gray-800'
                     }`}>
                       {payment.subscription}
                     </span>
@@ -271,16 +300,15 @@ export default function AdminPayments() {
                   <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                     <button 
                       onClick={() => handleRefundPayment(payment.id)}
-                      className="text-indigo-600 hover:text-indigo-900"
-                      disabled={payment.status !== 'Successful'}
+                      className="text-indigo-600 hover:text-indigo-900 mr-2"
+                      // Refund logic might need adjustment if 'Refunded' status is added or handled differently
+                      // For now, enabling refund only for 'Successful' payments
+                      disabled={payment.status !== 'Successful'} 
                     >
                       Refund
                     </button>
-                    <Link 
-                      href={`/admin/payments/${payment.id}`}
-                      className="ml-4 text-blue-600 hover:text-blue-900"
-                    >
-                      View
+                    <Link href={`/admin/payments/details/${payment.transactionId || payment.id}`} className="text-blue-600 hover:text-blue-900">
+                      Details
                     </Link>
                   </td>
                 </tr>
