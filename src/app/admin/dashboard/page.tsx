@@ -7,7 +7,7 @@ import EmailSequenceAutomation from '../../../components/EmailSequenceAutomation
 import AffiliateMarketingTracker from '../../../components/AffiliateMarketingTracker';
 import ABTestingManager from '../../../components/ABTestingManager';
 import ConversionAnalytics from '../../../components/ConversionAnalytics';
-import CryptoSourceHealthDashboard from '../../../components/CryptoSourceHealthDashboard';
+import CryptoSourceHealthDashboard from '../../components/CryptoSourceHealthDashboard';
 
 export default function AdminDashboard() {
   const [stats, setStats] = useState({
