@@ -1,6 +1,6 @@
-import type { NextConfig } from "next";
 
-const nextConfig: NextConfig = {
+/** @type {import('next').NextConfig} */
+const nextConfig = {
   /* Production optimized configuration */
   eslint: {
     // Disable ESLint during production builds for deployment
