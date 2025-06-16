@@ -2,16 +2,7 @@ import './globals.css'
 import type { Metadata, Viewport } from 'next'
 import { Inter } from 'next/font/google'
 import Script from 'next/script'
-import MCPUserAcquisitionAutomation from './components/MCPUserAcquisitionAutomation'
-import MCPNotificationCenter from './components/MCPNotificationCenter'
 import WebVitalsMonitor from './components/WebVitalsMonitor'
-import LocalSEOManager from './components/LocalSEOManager'
-import EnhancedFAQManager from './components/EnhancedFAQManager'
-import PerformanceOptimizationAutomator from './components/PerformanceOptimizationAutomator'
-import TechnicalSEOAutomation from './components/TechnicalSEOAutomation'
-import ContentMarketingAutomation from './components/ContentMarketingAutomation'
-import EcommerceServiceSchema from './components/EcommerceServiceSchema'
-import AdvancedSEOAnalyticsDashboard from './components/AdvancedSEOAnalyticsDashboard'
 import NavigationFix from './utils/NavigationFix'
 import ClientDynamicComponents from '../components/ClientDynamicComponents'
 
@@ -68,7 +59,6 @@ export const metadata: Metadata = {
     'price charts',
     'technical analysis',
     'crypto signals',
-    'market trends',
     'cryptocurrency exchange',
     'crypto wallet tracker'
   ],
@@ -323,15 +313,6 @@ export default function RootLayout({
       </head>
       <body className={inter.className} itemScope itemType="https://schema.org/WebPage">
         <NavigationFix />
-        <MCPUserAcquisitionAutomation />
-        <MCPNotificationCenter />
-        <LocalSEOManager />
-        <EnhancedFAQManager />
-        <PerformanceOptimizationAutomator />
-        <TechnicalSEOAutomation />
-        <ContentMarketingAutomation />
-        <EcommerceServiceSchema />
-        <AdvancedSEOAnalyticsDashboard />
         
         {/* Client-side dynamic components wrapper */}
         <ClientDynamicComponents>
