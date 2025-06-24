@@ -310,6 +310,38 @@ export default function RootLayout({
             getTTFB(sendToAnalytics);
           `}
         </Script>
+        
+        {/* Page View Tracking Script */}
+        <Script id="page-view-tracking" strategy="afterInteractive">
+          {`
+            // Track page view on each navigation
+            if (typeof window !== 'undefined') {
+              function trackPageView() {
+                fetch('/api/analytics', {
+                  method: 'POST',
+                  headers: { 'Content-Type': 'application/json' },
+                  body: JSON.stringify({
+                    event: 'page_view',
+                    page: window.location.pathname
+                  })
+                }).catch(err => console.error('Failed to track page view:', err));
+              }
+              
+              // Track initial page view
+              trackPageView();
+              
+              // Track on route change (for SPA navigation)
+              let lastPath = window.location.pathname;
+              setInterval(() => {
+                const currentPath = window.location.pathname;
+                if (currentPath !== lastPath) {
+                  lastPath = currentPath;
+                  trackPageView();
+                }
+              }, 1000);
+            }
+          `}
+        </Script>
       </head>
       <body className={inter.className} itemScope itemType="https://schema.org/WebPage">
         <NavigationFix />
@@ -337,6 +369,8 @@ export default function RootLayout({
             }
           `}
         </Script>
+        
+        {/* No public analytics link */}
       </body>
     </html>
   )

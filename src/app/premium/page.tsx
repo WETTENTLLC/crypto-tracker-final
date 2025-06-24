@@ -117,6 +117,21 @@ export default function PremiumPage() {
     localStorage.setItem('isPremium', 'true');
     setIsPremium(true);
     setPaymentSuccess(true);
+    
+    // Track successful payment in analytics
+    fetch('/api/analytics', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        event: 'payment_success',
+        page: '/premium',
+        metadata: { 
+          plan: selectedPlan,
+          price: getCurrentPlanPrice().price,
+          specialOffer: hasSpecialOffer
+        }
+      })
+    }).catch(err => console.error('Failed to track payment success:', err));
   };
 
   const handlePaymentError = (err: Error | Record<string, unknown>) => { // Accept Error or PayPal error object
@@ -241,6 +256,20 @@ export default function PremiumPage() {
                 <PayPalButtons
                   style={{ layout: "vertical", color: "blue", shape: "rect", label: "subscribe" }}
                   createSubscription={(_data: Record<string, unknown>, actions: CreateSubscriptionActions) => {
+                    // Track payment attempt
+                    fetch('/api/analytics', {
+                      method: 'POST',
+                      headers: { 'Content-Type': 'application/json' },
+                      body: JSON.stringify({
+                        event: 'payment_attempt',
+                        page: '/premium',
+                        metadata: { 
+                          plan: selectedPlan,
+                          price: getCurrentPlanPrice().price,
+                          specialOffer: hasSpecialOffer
+                        }
+                      })
+                    }).catch(err => console.error('Failed to track payment attempt:', err));
                     console.log("Creating subscription with plan:", PAYPAL_PLAN_ID, "selected plan type:", selectedPlan);
                     return actions.subscription.create({
                       plan_id: PAYPAL_PLAN_ID, 

@@ -21,10 +21,10 @@ const RevenueTracker: React.FC<RevenueTrackerProps> = ({
   className = '' 
 }) => {
   const [revenueData, setRevenueData] = useState<RevenueData>({
-    totalRevenue: 1973.48, // ACTUAL ACHIEVED REVENUE
-    todayRevenue: 234.67,
-    goalProgress: 131.6,
-    conversionRate: 7.2,
+    totalRevenue: 0, // REAL REVENUE - CURRENTLY $0 (PayPal not configured)
+    todayRevenue: 0,
+    goalProgress: 0,
+    conversionRate: 0,
     lastUpdated: new Date().toISOString()
   });
   
@@ -59,12 +59,12 @@ const RevenueTracker: React.FC<RevenueTrackerProps> = ({
             lastUpdated: new Date().toISOString()
           });
         } else {
-          // Use actual achieved revenue as fallback
+          // Use real revenue data (currently $0 - PayPal setup required)
           setRevenueData({
-            totalRevenue: 1973.48, // ACTUAL ACHIEVED REVENUE
-            todayRevenue: 234.67,
-            goalProgress: 131.6, // 131.6% of $1,500 goal
-            conversionRate: 7.2,
+            totalRevenue: 0, // REAL REVENUE - PayPal not configured
+            todayRevenue: 0,
+            goalProgress: 0,
+            conversionRate: 0,
             lastUpdated: new Date().toISOString()
           });
         }
@@ -72,12 +72,12 @@ const RevenueTracker: React.FC<RevenueTrackerProps> = ({
         console.error('Revenue tracking error:', err);
         setError('Failed to load revenue data');
         
-        // Fallback to actual achieved data
+        // Fallback to real data (currently $0 - PayPal not configured)
         setRevenueData({
-          totalRevenue: 1973.48, // ACTUAL ACHIEVED REVENUE
-          todayRevenue: 234.67,
-          goalProgress: 131.6,
-          conversionRate: 7.2,
+          totalRevenue: 0, // REAL REVENUE - PayPal setup required
+          todayRevenue: 0,
+          goalProgress: 0,
+          conversionRate: 0,
           lastUpdated: new Date().toISOString()
         });
       } finally {

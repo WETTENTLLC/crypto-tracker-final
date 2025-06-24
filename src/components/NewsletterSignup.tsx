@@ -40,6 +40,17 @@ export default function NewsletterSignup({
         });
       }
       
+      // Track in our real analytics system
+      fetch('/api/analytics', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          event: 'email_signup',
+          page: window.location.pathname,
+          metadata: { variant }
+        })
+      }).catch(err => console.error('Failed to track email signup:', err));
+      
       onSuccess?.();
     } catch (error) {
       console.error('Newsletter signup error:', error);
