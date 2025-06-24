@@ -1,7 +1,7 @@
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 
 // Production-ready middleware with security headers
-export function middleware() {
+export function middleware(request: NextRequest) {
   // Get response
   const response = NextResponse.next();
 
