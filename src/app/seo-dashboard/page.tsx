@@ -2,11 +2,11 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import CoinList from './components/CoinList';
-import SocialShareOptimization from './components/SocialShareOptimization';
-import InternalLinkingStrategy, { SmartInternalLinks } from './components/InternalLinkingStrategy';
-import SEOPerformanceMonitor from './components/SEOPerformanceMonitor';
-import { navigateTo } from './utils/NavigationFix';
+import CoinList from '../components/CoinList';
+import SocialShareOptimization from '../components/SocialShareOptimization';
+import InternalLinkingStrategy, { SmartInternalLinks } from '../components/InternalLinkingStrategy';
+import SEOPerformanceMonitor from '../components/SEOPerformanceMonitor';
+import { navigateTo } from '../utils/NavigationFix';
 
 export default function Home() {
   const [isPremium, setIsPremium] = useState<boolean>(false);
